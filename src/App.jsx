@@ -5,6 +5,8 @@ import LogoSmall from "./assets/icons/logo-devlinks-small.svg";
 import LinkIcon from "./assets/icons/icon-link.svg";
 import ProfileIcon from "./assets/icons/icon-profile-details-header.svg";
 
+import PreviewIcon from "./assets/icons/icon-preview-header.svg";
+
 function App() {
   return (
     <>
@@ -22,17 +24,22 @@ function App() {
           />
         </div>
         <nav className={styles.navList}>
-          <Link to="preview" className={`row ${styles.navLink}`}>
+          <Link
+            to="preview"
+            className={`row ${styles.navLink} ${styles.activeLink}`}
+          >
             <img src={LinkIcon} alt="" aria-hidden="true" />
             <span className={styles.hideOnMobile}>Links</span>
           </Link>
           <Link to="profile" className={`row ${styles.navLink}`}>
             <img src={ProfileIcon} alt="" aria-hidden="true" />
-            <span className={styles.hideOnMobile}>View Profile</span>
+            <span className={styles.hideOnMobile}>Profile Details</span>
           </Link>
         </nav>
-
-        <button>Preview</button>
+        <button className="btn btn--secondary">
+          <span className={styles.hideOnMobile}>Preview</span>
+          <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
+        </button>
       </header>
       <main></main>
     </>

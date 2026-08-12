@@ -1,8 +1,15 @@
 .navList {
   display: flex;
 }
+
 .navLink {
   padding: 1rem 1.5rem;
+}
+
+.activeLink {
+  background-color: var(--colors-grey-100);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
 }
 
 .hideOnMobile {
