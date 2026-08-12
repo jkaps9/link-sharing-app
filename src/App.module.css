@@ -2,3 +2,21 @@
   display: flex;
   gap: 1rem;
 }
+
+.logoLarge {
+  display: none;
+}
+
+.logoSmall {
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .logoLarge {
+    display: block;
+  }
+
+  .logoSmall {
+    display: none;
+  }
+}
