@@ -34,8 +34,10 @@ function App() {
           </NavLink>
         </nav>
         <button className="btn btn--secondary">
-          <span className={styles.hideOnMobile}>Preview</span>
-          <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
+          <NavLink to="preview">
+            <span className={styles.hideOnMobile}>Preview</span>
+            <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
+          </NavLink>
         </button>
       </header>
       <main>
