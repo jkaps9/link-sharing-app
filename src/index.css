@@ -190,17 +190,27 @@ p {
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 0.6479rem + 1.5023vw, 2rem);
-  justify-content: center;
 
   /* SPACING */
   --spacing-100: 8;
   margin-inline: auto;
-  max-width: 33.75rem;
+  max-width: 90rem;
   min-height: 100svh;
+  padding-inline: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
   width: 100%;
 }
 
 a {
   color: currentColor;
   text-decoration: none;
+}
+
+/*~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~>
+<~~         Utilities          ~~>
+<~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~*/
+
+.row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
