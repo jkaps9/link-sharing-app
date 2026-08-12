@@ -1,111 +1,198 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+/* instrument-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/instrument-sans-v4-latin-regular.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* instrument-sans-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./assets/fonts/instrument-sans-v4-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* instrument-sans-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./assets/fonts/instrument-sans-v4-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+:root {
+  /* COLOR */
+  --colors-white: #ffffff;
+  --colors-black: #000000;
+  --colors-grey-50: #fafafa;
+  --colors-grey-100: #eeeeee;
+  --colors-grey-200: #d9d9d9;
+  --colors-grey-500: #737373;
+  --colors-grey-900: #333333;
+  --colors-grey-950: #1a1a1a;
+  --colors-blue-500: #2d68ff;
+  --colors-blue-800: #0330d1;
+  --colors-purple-300: #beadff;
+  --colors-purple-600: #633cff;
+  --colors-purple-950: #302267;
+  --colors-red-500: #ff3939;
+  --colors-red-550: #ee3939;
+  --colors-pink-400: #f4a28c;
+  --colors-pink-900: #8a1a50;
+  --colors-orange-500: #eb4925;
+  --colors-orange-600: #ec7100;
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  /* SPACING */
+  --spacing-0: 0rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-700: 3.5rem;
+  --spacing-800: 4rem;
+  --spacing-900: 4.5rem;
+  --spacing-1000: 5rem;
+
+  /* RADIUS */
+  --corner-radius-0: 0;
+  --corner-radius-4: 4;
+  --corner-radius-6: 6;
+  --corner-radius-8: 8;
+  --corner-radius-10: 10;
+  --corner-radius-12: 12;
+  --corner-radius-16: 16;
+  --corner-radius-20: 20;
+  --corner-radius-24: 24;
+  --corner-radius-full: 999;
+
+  /* COLORS */
+  --color-primary: var(--colors-green-200);
+
+  --color-accent: var(--colors-green-200);
+  --color-bg: var(--colors-grey-950);
+
+  --color-text-header: var(--colors-grey-600);
+  --color-text-body: var(--colors-grey-200);
+
+  --color-border: var(--colors-grey-200);
+  --color-bg-surface: var(--colors-grey-800);
+
+  /* TYPOGRAPHY */
+  --font-header: "Instrument Sans", Arial, Helvetica, sans-serif;
+  --font-body: "Instrument Sans", Arial, Helvetica, sans-serif;
+
+  /* LAYOUT */
+  --container-max-width: 70rem;
+  --container-width: 92%;
+  --section-spacing: clamp(0.75rem, 0.662rem + 0.3756vw, 1rem);
+
+  /* Radius */
+  --radius-xs: calc(var(--corner-radius-4) / 16 * 1rem);
+  --radius-full: calc(var(--corner-radius-full)/16 * 1rem);
+}
+/*~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~>
+<~~           Reset            ~~>
+<~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+    overflow-x: hidden;
   }
 }
 
 body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  background-color: var(--color-bg);
+  color: var(--color-text-body);
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  font-family: var(--font-body);
+  min-height: 100svh;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
 }
 
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+select,
+textarea {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
 h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+/* 9. Improve line wrapping */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text-header);
+  font-family: var(--font-header);
+  font-weight: 700;
+  line-height: 1.33;
+  text-wrap: balance;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
+
 p {
-  margin: 0;
+  max-width: 65ch;
+  text-wrap: pretty;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/*
+  10. Create a root stacking context
+*/
+[id="root"],
+[id="__next"] {
+  isolation: isolate;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+[id="root"] {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 0.6479rem + 1.5023vw, 2rem);
+  justify-content: center;
+
+  /* SPACING */
+  --spacing-100: 8;
+  margin-inline: auto;
+  max-width: 33.75rem;
+  min-height: 100svh;
+  width: 100%;
 }
