@@ -49,6 +49,12 @@ const Profile = () => {
           </section>
         </form>
       </section>
+
+      <footer>
+        <button type="button" className="btn btn--primary">
+          Save
+        </button>
+      </footer>
     </>
   );
 };
