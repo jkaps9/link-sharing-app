@@ -214,6 +214,10 @@ a.active {
   background-color: var(--colors-grey-100);
   border-radius: var(--radius-sm);
   color: var(--color-primary);
+  img {
+    filter: invert(24%) sepia(50%) saturate(5800%) hue-rotate(247deg)
+      brightness(99%) contrast(103%);
+  }
 }
 
 label {

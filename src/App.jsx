@@ -24,7 +24,7 @@ function App() {
           />
         </div>
         <nav className={styles.navList}>
-          <NavLink to="preview" className={`row ${styles.navLink}`}>
+          <NavLink to="links" className={`row ${styles.navLink}`}>
             <img src={LinkIcon} alt="" aria-hidden="true" />
             <span className={styles.hideOnMobile}>Links</span>
           </NavLink>
