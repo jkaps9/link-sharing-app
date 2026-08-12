@@ -1,4 +1,10 @@
-// const platforms = ["GitHub", "YouTube", "Twitter", "LinkedIn"];
+const platforms = [
+  "GitHub",
+  "YouTube",
+  "Twitter",
+  "LinkedIn",
+  "Frontend Mentor",
+];
 const UserLink = ({ userLink, onDelete }) => {
   return (
     <>
@@ -11,16 +17,19 @@ const UserLink = ({ userLink, onDelete }) => {
             Remove
           </button>
         </header>
-        {/* <div className="input-group"> */}
-        {/*   <label htmlFor="platform">Platform</label> */}
-        {/*   <select id="platform" name="platform"> */}
-        {/*     <optgroup> */}
-        {/*       {platforms.map((p) => { */}
-        {/*         <option value={p.toLowerCase().replace(" ", "_")}>{p}</option>; */}
-        {/*       })} */}
-        {/*     </optgroup> */}
-        {/*   </select> */}
-        {/* </div> */}
+        <div className="input-group">
+          <label htmlFor="platform">Platform</label>
+          <select id="platform" name="platform">
+            {platforms.map((p) => (
+              <option
+                value={p.toLowerCase().replace(" ", "_")}
+                selected={userLink.platform === p}
+              >
+                {p}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="input-group">
           <label htmlFor="url">Link</label>
           <input type="text" name="url" id="url" value={userLink?.url} />
