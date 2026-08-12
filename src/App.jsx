@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router";
+import { NavLink, Link, Outlet } from "react-router";
 import styles from "./App.module.css";
 import LogoLarge from "./assets/icons/logo-devlinks-large.svg";
 import LogoSmall from "./assets/icons/logo-devlinks-small.svg";
@@ -24,17 +24,14 @@ function App() {
           />
         </div>
         <nav className={styles.navList}>
-          <Link
-            to="preview"
-            className={`row ${styles.navLink} ${styles.activeLink}`}
-          >
+          <NavLink to="preview" className={`row ${styles.navLink}`}>
             <img src={LinkIcon} alt="" aria-hidden="true" />
             <span className={styles.hideOnMobile}>Links</span>
-          </Link>
-          <Link to="profile" className={`row ${styles.navLink}`}>
+          </NavLink>
+          <NavLink to="profile" className={`row ${styles.navLink}`}>
             <img src={ProfileIcon} alt="" aria-hidden="true" />
             <span className={styles.hideOnMobile}>Profile Details</span>
-          </Link>
+          </NavLink>
         </nav>
         <button className="btn btn--secondary">
           <span className={styles.hideOnMobile}>Preview</span>
