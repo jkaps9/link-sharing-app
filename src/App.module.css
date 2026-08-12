@@ -1,22 +1,38 @@
 .navList {
   display: flex;
-  gap: 1rem;
+}
+.navLink {
+  padding: 1rem 1.5rem;
 }
 
-.logoLarge {
+.hideOnMobile {
   display: none;
 }
 
-.logoSmall {
+.mobileOnly {
   display: block;
 }
 
+.header {
+  padding-block: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
+}
+
 @media (min-width: 48rem) {
-  .logoLarge {
+  .hideOnMobile {
     display: block;
   }
 
-  .logoSmall {
+  .mobileOnly {
     display: none;
+  }
+
+  .navLink {
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .navList {
+    gap: 1rem;
   }
 }
