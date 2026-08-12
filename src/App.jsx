@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, Outlet } from "react-router";
 import styles from "./App.module.css";
 import LogoLarge from "./assets/icons/logo-devlinks-large.svg";
 import LogoSmall from "./assets/icons/logo-devlinks-small.svg";
@@ -41,7 +41,9 @@ function App() {
           <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
         </button>
       </header>
-      <main></main>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }
