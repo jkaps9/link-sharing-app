@@ -32,7 +32,7 @@ const Profile = () => {
               />
             </div>
             <div class="input-group">
-              <label for="lastName">Last Name:</label>
+              <label for="lastName">Last Name</label>
               <input
                 name="lastName"
                 id="lastName"
@@ -43,7 +43,7 @@ const Profile = () => {
               />
             </div>
             <div class="input-group">
-              <label for="email">Email:</label>
+              <label for="email">Email</label>
               <input name="email" id="email" type="email" autocomplete="off" />
             </div>
           </section>
