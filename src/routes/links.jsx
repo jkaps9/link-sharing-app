@@ -2,8 +2,14 @@ import { useState } from "react";
 import UserLink from "../components/UserLink.jsx";
 
 const initialState = [
-  { order: 1, platform: "GitHub", url: "https://www.github.com/jkaps9" },
   {
+    id: "000001",
+    order: 1,
+    platform: "GitHub",
+    url: "https://www.github.com/jkaps9",
+  },
+  {
+    id: "000002",
     order: 2,
     platform: "Frontend Mentor",
     url: "https://www.frontendmentor.io/jkaps9",
@@ -11,6 +17,7 @@ const initialState = [
 ];
 const Links = () => {
   const [userLinks, setUserLinks] = useState(initialState);
+  console.log(userLinks);
   return (
     <>
       <header>
@@ -25,16 +32,15 @@ const Links = () => {
           + Add new link
         </button>
         <ul>
-          {userLinks.map((link) => {
-            <li>
-              {link.url}
-              {/* <UserLink */}
-              {/*   order={link.order} */}
-              {/*   platform={link.platform} */}
-              {/*   url={link.url} */}
-              {/* ></UserLink> */}
-            </li>;
-          })}
+          {userLinks.map((link) => (
+            <li key={link.id}>
+              <UserLink
+                order={link.order}
+                platform={link.platform}
+                url={link.url}
+              ></UserLink>
+            </li>
+          ))}
         </ul>
       </section>
       <footer>
