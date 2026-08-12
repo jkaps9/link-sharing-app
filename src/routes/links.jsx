@@ -22,6 +22,10 @@ const Links = () => {
     setUserLinks((prev) => [...prev, newLink]);
   };
 
+  const removeLink = (linkId) => {
+    setUserLinks((prev) => prev.filter((link) => link.id !== linkId));
+  };
+
   return (
     <>
       <header>
@@ -50,9 +54,8 @@ const Links = () => {
           {userLinks.map((link) => (
             <li key={link.id}>
               <UserLink
-                order={link.order}
-                platform={link.platform}
-                url={link.url}
+                userLink={link}
+                onDelete={() => removeLink(link.id)}
               ></UserLink>
             </li>
           ))}

@@ -1,13 +1,13 @@
 // const platforms = ["GitHub", "YouTube", "Twitter", "LinkedIn"];
-const UserLink = ({ order, platform, url }) => {
+const UserLink = ({ userLink, onDelete }) => {
   return (
     <>
       <div>
         <header>
           <div>
-            <h2>Link #{order}</h2>
+            <h2>Link #{userLink?.order}</h2>
           </div>
-          <button type="button" className="btn">
+          <button type="button" className="btn" onClick={onDelete}>
             Remove
           </button>
         </header>
@@ -23,7 +23,7 @@ const UserLink = ({ order, platform, url }) => {
         {/* </div> */}
         <div className="input-group">
           <label htmlFor="url">Link</label>
-          <input type="text" name="url" id="url" value={url || ""} />
+          <input type="text" name="url" id="url" value={userLink?.url} />
         </div>
       </div>
     </>
