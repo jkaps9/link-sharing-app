@@ -17,7 +17,11 @@ const initialState = [
 ];
 const Links = () => {
   const [userLinks, setUserLinks] = useState(initialState);
-  console.log(userLinks);
+
+  const addLink = (newLink) => {
+    setUserLinks((prev) => [...prev, newLink]);
+  };
+
   return (
     <>
       <header>
@@ -28,7 +32,18 @@ const Links = () => {
         </p>
       </header>
       <section>
-        <button type="button" className="btn btn--secondary">
+        <button
+          type="button"
+          className="btn btn--secondary"
+          onClick={() =>
+            addLink({
+              id: "000003",
+              order: 3,
+              platform: "YouTube",
+              url: "https://youtube.com/jkaps9",
+            })
+          }
+        >
           + Add new link
         </button>
         <ul>
