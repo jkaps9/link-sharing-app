@@ -33,7 +33,7 @@ const Links = () => {
   };
 
   return (
-    <>
+    <section className="card">
       <header>
         <h1>Customize your links</h1>
         <p>
@@ -72,7 +72,7 @@ const Links = () => {
           Save
         </button>
       </footer>
-    </>
+    </section>
   );
 };
 
