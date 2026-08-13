@@ -31,7 +31,7 @@ const UserLink = ({ userLink, onDelete }) => {
                 <button>
                   <selectedcontent></selectedcontent>
                 </button>
-                <div className="list">
+                <div className={styles.selectList}>
                   <option value="" selected={userLink.platform === ""}></option>
                   {platforms.map((p) => (
                     <option
