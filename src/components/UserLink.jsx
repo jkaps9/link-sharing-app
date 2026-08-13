@@ -27,6 +27,7 @@ const UserLink = ({ userLink, onDelete }) => {
             <div className="input-group">
               <label htmlFor="platform">Platform</label>
               <select id="platform" name="platform">
+                <option value="" selected={userLink.platform === ""}></option>
                 {platforms.map((p) => (
                   <option
                     value={p.toLowerCase().replace(" ", "_")}
