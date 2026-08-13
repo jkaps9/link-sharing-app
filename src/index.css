@@ -244,6 +244,12 @@ form {
     content: "*";
   }
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 /*~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~>
 <~~         Utilities          ~~>
 <~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~*/
@@ -258,6 +264,7 @@ form {
   align-items: center;
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
+  color: inherit;
   cursor: pointer;
   display: inline-flex;
   font-size: 1rem;
@@ -290,4 +297,9 @@ form {
   &:focus-visible {
     background-color: var(--colors-purple-200);
   }
+}
+
+.btn--text {
+  font-weight: 400;
+  padding: 0;
 }
