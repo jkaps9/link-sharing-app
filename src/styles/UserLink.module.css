@@ -40,6 +40,10 @@
     gap: 1rem;
   }
 
+  option {
+    padding-block: 0.5rem;
+  }
+
   option:not(:last-of-type) {
     border-bottom: 1px solid var(--color-border);
   }
@@ -71,7 +75,7 @@
 
 .selectList {
   container-type: scroll-state;
-  max-block-size: min(12rem, 80dvh);
+  max-block-size: min(24rem, 80dvh);
   min-inline-size: max-content;
   overflow: hidden auto;
   overscroll-behavior-block: contain;
