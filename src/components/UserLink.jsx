@@ -1,5 +1,7 @@
 import { platforms } from "../data/platforms";
 
+import styles from "../styles/UserLink.module.css";
+
 const UserLink = ({ userLink, onDelete }) => {
   return (
     <>
@@ -21,17 +23,32 @@ const UserLink = ({ userLink, onDelete }) => {
 
             <div className="input-group">
               <label htmlFor="platform">Platform</label>
-              <select id="platform" name="platform">
-                <option value="" selected={userLink.platform === ""}></option>
-                {platforms.map((p) => (
-                  <option
-                    key={p.id}
-                    value={p.id}
-                    selected={userLink.platform === p.name}
-                  >
-                    {p.name}
-                  </option>
-                ))}
+              <select
+                id="platform"
+                name="platform"
+                className={styles.customSelect}
+              >
+                <button>
+                  <selectedcontent></selectedcontent>
+                </button>
+                <div className="list">
+                  <option value="" selected={userLink.platform === ""}></option>
+                  {platforms.map((p) => (
+                    <option
+                      key={p.id}
+                      value={p.id}
+                      selected={userLink.platform === p.name}
+                    >
+                      <img
+                        src={p.iconPath}
+                        alt={`${p.name} icon`}
+                        width="16"
+                        height="16"
+                      />
+                      <span>{p.name}</span>
+                    </option>
+                  ))}
+                </div>
               </select>
             </div>
             <div className="input-group">
