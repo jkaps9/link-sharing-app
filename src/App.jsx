@@ -1,4 +1,4 @@
-import { NavLink, Link, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import styles from "./App.module.css";
 import LogoLarge from "./assets/icons/logo-devlinks-large.svg";
 import LogoSmall from "./assets/icons/logo-devlinks-small.svg";
