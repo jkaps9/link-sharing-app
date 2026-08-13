@@ -3,13 +3,13 @@ import UserLink from "../components/UserLink.jsx";
 
 const initialState = [
   {
-    id: "000001",
+    id: crypto.randomUUID(),
     order: 1,
     platform: "GitHub",
     url: "https://www.github.com/jkaps9",
   },
   {
-    id: "000002",
+    id: crypto.randomUUID(),
     order: 2,
     platform: "Frontend Mentor",
     url: "https://www.frontendmentor.io/jkaps9",
@@ -19,7 +19,13 @@ const Links = () => {
   const [userLinks, setUserLinks] = useState(initialState);
 
   const addLink = (newLink) => {
-    setUserLinks((prev) => [...prev, newLink]);
+    setUserLinks((prev) => {
+      const maxItem = prev.reduce((previous, current) =>
+        previous.order > current.order ? previous : current,
+      );
+      newLink.order = maxItem.order + 1;
+      return [...prev, newLink];
+    });
   };
 
   const removeLink = (linkId) => {
@@ -41,10 +47,10 @@ const Links = () => {
           className="btn btn--secondary"
           onClick={() =>
             addLink({
-              id: "000003",
-              order: 3,
-              platform: "YouTube",
-              url: "https://youtube.com/jkaps9",
+              id: crypto.randomUUID(),
+              order: 0,
+              platform: "",
+              url: "",
             })
           }
         >
