@@ -1,10 +1,5 @@
-const platforms = [
-  "GitHub",
-  "YouTube",
-  "Twitter",
-  "LinkedIn",
-  "Frontend Mentor",
-];
+import { platforms } from "../data/platforms";
+
 const UserLink = ({ userLink, onDelete }) => {
   return (
     <>
@@ -30,10 +25,11 @@ const UserLink = ({ userLink, onDelete }) => {
                 <option value="" selected={userLink.platform === ""}></option>
                 {platforms.map((p) => (
                   <option
-                    value={p.toLowerCase().replace(" ", "_")}
-                    selected={userLink.platform === p}
+                    key={p.id}
+                    value={p.id}
+                    selected={userLink.platform === p.name}
                   >
-                    {p}
+                    {p.name}
                   </option>
                 ))}
               </select>
