@@ -1,0 +1,17 @@
+.previewLink {
+  align-items: center;
+  color: var(--color-text-on-primary);
+
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  &[data-id="github"] {
+    background-color: var(--color-github);
+  }
+}
+
+.previewPlatform {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
