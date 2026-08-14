@@ -1,4 +1,44 @@
+import { useState } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage.js";
+
 const Profile = () => {
+  const [profileData, setProfileData] = useLocalStorage("profileData", {});
+
+  const [formData, setFormData] = useState({
+    firstName: profileData.firstName,
+    lastName: profileData.lastName,
+    email: profileData.email,
+  });
+
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
+
+  const validateForm = () => {
+    let isValid = true;
+
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      setProfileData(formData);
+      alert("Saved");
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <section className="card">
       <header>
@@ -6,7 +46,7 @@ const Profile = () => {
         <p>Add your details to create a personal touch to your profile</p>
       </header>
       <section>
-        <form>
+        <form onSubmit={handleSubmit}>
           <section>
             <label for="avatar">Profile picture</label>
 
@@ -27,7 +67,8 @@ const Profile = () => {
                 id="firstName"
                 name="firstName"
                 placeholder="e.g. John"
-                autocomplete="given-name"
+                value={formData.firstName}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -38,13 +79,21 @@ const Profile = () => {
                 id="lastName"
                 type="text"
                 placeholder="e.g. Appleseed"
-                autocomplete="family-name"
+                value={formData.lastName}
                 required
+                onChange={handleChange}
               />
             </div>
             <div class="input-group">
               <label for="email">Email</label>
-              <input name="email" id="email" type="email" autocomplete="off" />
+              <input
+                name="email"
+                id="email"
+                type="email"
+                autocomplete="off"
+                onChange={handleChange}
+                value={formData.email}
+              />
             </div>
           </section>
           <footer>
