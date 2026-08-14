@@ -30,11 +30,15 @@ const Links = () => {
     setFormData((prev) => {
       return [...prev, newLink];
     });
+    setErrors((prev) => {
+      return [...prev, { id: newLink.id, message: "" }];
+    });
   };
 
   const removeLink = (linkId) => {
     setUserLinks((prev) => prev.filter((link) => link.id !== linkId));
     setFormData((prev) => prev.filter((link) => link.id !== linkId));
+    setErrors((prev) => prev.filter((link) => link.id !== linkId));
   };
 
   const validateForm = () => {
@@ -70,8 +74,6 @@ const Links = () => {
     if (validateForm()) {
       setUserLinks([...formData]);
       alert("Saved");
-    } else {
-      alert("Form is not valid");
     }
   };
 
@@ -119,7 +121,7 @@ const Links = () => {
               userLink={link}
               onDelete={removeLink}
               onChange={handleChange}
-              error={errors.filter((error) => error.id === link.id)}
+              error={errors.filter((error) => error.id === link.id)[0]}
             ></UserLink>
           ))}
 
