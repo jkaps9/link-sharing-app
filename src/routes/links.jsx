@@ -3,9 +3,18 @@ import { useLocalStorage } from "../hooks/useLocalStorage.js";
 import UserLink from "../components/UserLink.jsx";
 
 const Links = () => {
+  const urlRegex =
+    /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)/g;
+
   const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
 
   const [formData, setFormData] = useState([...userLinks]);
+
+  const [errors, setErrors] = useState(
+    userLinks.map((link) => {
+      return { id: link.id, message: "" };
+    }),
+  );
 
   const addLink = (newLink) => {
     const maxItem =
@@ -28,9 +37,39 @@ const Links = () => {
     setFormData((prev) => prev.filter((link) => link.id !== linkId));
   };
 
+  const setError = (id, message) => {
+    setErrors((prevErrors) =>
+      prevErrors.map((error) => {
+        if (error.id === id) {
+          return { ...error, message: message };
+        }
+        return error;
+      }),
+    );
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    formData.map((link) => {
+      if (link.url === "") {
+        setError(link.id, "Can't be empty");
+        isValid = false;
+      } else if (!link.url.match(urlRegex)) {
+        setError(link.id, "Please check the URL");
+        isValid = false;
+      }
+    });
+    return isValid;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUserLinks([...formData]);
+    if (validateForm()) {
+      setUserLinks([...formData]);
+      alert("Saved");
+    } else {
+      alert("Form is not valid");
+    }
   };
 
   const handleChange = (e) => {
