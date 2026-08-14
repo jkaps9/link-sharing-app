@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
 import UserLink from "../components/UserLink.jsx";
 
 const Links = () => {
   const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
+
+  const [formData, setFormData] = useState([...userLinks]);
 
   const addLink = (newLink) => {
     setUserLinks((prev) => {
@@ -19,6 +22,23 @@ const Links = () => {
 
   const removeLink = (linkId) => {
     setUserLinks((prev) => prev.filter((link) => link.id !== linkId));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleChange = (e) => {
+    const { name, value, id } = e.target;
+
+    setFormData((prevData) =>
+      prevData.map((link) => {
+        if (link.id === id.replace(`${name}-`, "")) {
+          return { ...link, [name]: value };
+        }
+        return link;
+      }),
+    );
   };
 
   return (
@@ -45,12 +65,13 @@ const Links = () => {
         </button>
       </header>
       <section>
-        <form>
-          {userLinks.map((link) => (
+        <form onSubmit={handleSubmit}>
+          {formData.map((link) => (
             <UserLink
               key={link.id}
               userLink={link}
-              onDelete={() => removeLink(link.id)}
+              onDelete={removeLink}
+              onChange={handleChange}
             ></UserLink>
           ))}
 

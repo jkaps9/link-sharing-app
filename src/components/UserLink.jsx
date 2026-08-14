@@ -1,55 +1,42 @@
-import { useState } from "react";
 import { platforms } from "../data/platforms";
 
 import styles from "../styles/UserLink.module.css";
 
-const UserLink = ({ userLink, onDelete }) => {
-  const [formData, setFormData] = useState({
-    id: userLink?.id,
-    order: userLink?.order,
-    platform: userLink?.platform,
-    url: userLink?.url,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
+const UserLink = ({ userLink, onDelete, onChange }) => {
   return (
     <>
       <section>
         <header className="row">
           <div>
-            <h2>Link #{formData.order}</h2>
+            <h2>Link #{userLink.order}</h2>
           </div>
-          <button type="button" className="btn btn--text" onClick={onDelete}>
+          <button
+            type="button"
+            className="btn btn--text"
+            onClick={() => onDelete(userLink.id)}
+          >
             Remove
           </button>
         </header>
 
         <div className="input-group">
-          <label htmlFor="platform">Platform</label>
+          <label htmlFor={`platform-${userLink.id}`}>Platform</label>
           <select
-            id="platform"
+            id={`platform-${userLink.id}`}
             name="platform"
             className={styles.customSelect}
-            onChange={handleChange}
+            onChange={onChange}
           >
             <button>
               <selectedcontent></selectedcontent>
             </button>
             <div className={styles.selectList}>
-              <option value="" selected={formData.platform === ""}></option>
+              <option value="" selected={userLink.platform === ""}></option>
               {platforms.map((p) => (
                 <option
                   key={p.id}
                   value={p.id}
-                  selected={formData.platform === p.name}
+                  selected={userLink.platform === p.name}
                 >
                   <img
                     src={p.iconPath}
@@ -64,13 +51,13 @@ const UserLink = ({ userLink, onDelete }) => {
           </select>
         </div>
         <div className="input-group">
-          <label htmlFor="url">Link</label>
+          <label htmlFor={`url-${userLink.id}`}>Link</label>
           <input
             type="text"
             name="url"
-            id="url"
-            value={formData.url}
-            onChange={handleChange}
+            id={`url-${userLink.id}`}
+            value={userLink.url}
+            onChange={onChange}
           />
         </div>
       </section>
