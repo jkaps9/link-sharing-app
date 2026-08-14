@@ -1,6 +1,6 @@
 const Profile = () => {
   return (
-    <>
+    <section className="card">
       <header>
         <h1>Profile Details</h1>
         <p>Add your details to create a personal touch to your profile</p>
@@ -55,7 +55,7 @@ const Profile = () => {
           Save
         </button>
       </footer>
-    </>
+    </section>
   );
 };
 
