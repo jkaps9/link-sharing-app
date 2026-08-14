@@ -31,12 +31,11 @@ const UserLink = ({ userLink, onDelete, onChange }) => {
               <selectedcontent></selectedcontent>
             </button>
             <div className={styles.selectList}>
-              <option value="" selected={userLink.platform === ""}></option>
               {platforms.map((p) => (
                 <option
                   key={p.id}
                   value={p.id}
-                  selected={userLink.platform === p.name}
+                  selected={userLink.platform === p.id}
                 >
                   <img
                     src={p.iconPath}
