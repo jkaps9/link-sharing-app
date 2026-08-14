@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import styles from "../styles/Profile.module.css";
 
 const Profile = () => {
   const [profileData, setProfileData] = useLocalStorage("profileData", {});
@@ -73,9 +74,7 @@ const Profile = () => {
         <form onSubmit={handleSubmit}>
           <section>
             <label for="avatar">Profile picture</label>
-
-            <img src={`${formData.avatar}`} alt="" />
-            {/* <p>{`data:image/png;base64,${profileData.avatar}`}</p> */}
+            <img src={`${formData.avatar}`} alt="" className={styles.avatar} />
             <input
               type="file"
               id="avatar"
@@ -83,7 +82,6 @@ const Profile = () => {
               onChange={handleChange}
               accept="image/png, image/jpeg"
             />
-
             <p>Image must be below 1024x1024px. Use PNG or JPG format.</p>
           </section>
           <section>
