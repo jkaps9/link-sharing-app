@@ -29,6 +29,14 @@ const Preview = () => {
               {profileData.firstName} {profileData.lastName}
             </p>
             <p>{profileData.email}</p>
+
+            <ul>
+              {userLinks.map((link) => (
+                <li>
+                  <Link to={link.url}>{link.platform}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       </main>

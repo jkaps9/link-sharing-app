@@ -105,7 +105,7 @@ const Links = () => {
             addLink({
               id: crypto.randomUUID(),
               order: 0,
-              platform: "",
+              platform: "github",
               url: "",
             })
           }
