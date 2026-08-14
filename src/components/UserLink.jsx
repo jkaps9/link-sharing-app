@@ -1,8 +1,25 @@
+import { useState } from "react";
 import { platforms } from "../data/platforms";
 
 import styles from "../styles/UserLink.module.css";
 
 const UserLink = ({ userLink, onDelete }) => {
+  const [formData, setFormData] = useState({
+    id: userLink?.id,
+    order: userLink?.order,
+    platform: userLink?.platform,
+    url: userLink?.url,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
       <div>
@@ -10,7 +27,7 @@ const UserLink = ({ userLink, onDelete }) => {
           <section>
             <header className="row">
               <div>
-                <h2>Link #{userLink?.order}</h2>
+                <h2>Link #{formData.order}</h2>
               </div>
               <button
                 type="button"
@@ -27,17 +44,18 @@ const UserLink = ({ userLink, onDelete }) => {
                 id="platform"
                 name="platform"
                 className={styles.customSelect}
+                onChange={handleChange}
               >
                 <button>
                   <selectedcontent></selectedcontent>
                 </button>
                 <div className={styles.selectList}>
-                  <option value="" selected={userLink.platform === ""}></option>
+                  <option value="" selected={formData.platform === ""}></option>
                   {platforms.map((p) => (
                     <option
                       key={p.id}
                       value={p.id}
-                      selected={userLink.platform === p.name}
+                      selected={formData.platform === p.name}
                     >
                       <img
                         src={p.iconPath}
@@ -53,7 +71,13 @@ const UserLink = ({ userLink, onDelete }) => {
             </div>
             <div className="input-group">
               <label htmlFor="url">Link</label>
-              <input type="text" name="url" id="url" value={userLink?.url} />
+              <input
+                type="text"
+                name="url"
+                id="url"
+                value={formData.url}
+                onChange={handleChange}
+              />
             </div>
           </section>
         </form>
