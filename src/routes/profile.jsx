@@ -47,14 +47,13 @@ const Profile = () => {
               <input name="email" id="email" type="email" autocomplete="off" />
             </div>
           </section>
+          <footer>
+            <button type="submit" className="btn btn--primary">
+              Save
+            </button>
+          </footer>
         </form>
       </section>
-
-      <footer>
-        <button type="button" className="btn btn--primary">
-          Save
-        </button>
-      </footer>
     </section>
   );
 };
