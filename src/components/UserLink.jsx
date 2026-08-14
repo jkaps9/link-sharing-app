@@ -2,7 +2,7 @@ import { platforms } from "../data/platforms";
 
 import styles from "../styles/UserLink.module.css";
 
-const UserLink = ({ userLink, onDelete, onChange }) => {
+const UserLink = ({ userLink, onDelete, onChange, error }) => {
   return (
     <>
       <section>
@@ -57,7 +57,10 @@ const UserLink = ({ userLink, onDelete, onChange }) => {
             id={`url-${userLink.id}`}
             value={userLink.url}
             onChange={onChange}
+            aria-describedby={`linkError-${userLink.id}`}
+            aria-invalid={error.message !== ""}
           />
+          <p id={`linkError-${userLink.id}`}>{error.message}</p>
         </div>
       </section>
     </>

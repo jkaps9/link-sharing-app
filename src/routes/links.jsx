@@ -11,7 +11,7 @@ const Links = () => {
   const [formData, setFormData] = useState([...userLinks]);
 
   const [errors, setErrors] = useState(
-    userLinks.map((link) => {
+    formData.map((link) => {
       return { id: link.id, message: "" };
     }),
   );
@@ -37,28 +37,31 @@ const Links = () => {
     setFormData((prev) => prev.filter((link) => link.id !== linkId));
   };
 
-  const setError = (id, message) => {
-    setErrors((prevErrors) =>
-      prevErrors.map((error) => {
-        if (error.id === id) {
-          return { ...error, message: message };
-        }
-        return error;
-      }),
-    );
-  };
-
   const validateForm = () => {
     let isValid = true;
+    const newErrors = formData.map((link) => {
+      return { id: link.id, message: "" };
+    });
+
     formData.map((link) => {
       if (link.url === "") {
-        setError(link.id, "Can't be empty");
+        newErrors.forEach((error, index) => {
+          if (error.id === link.id) {
+            newErrors[index].message = "Can't be empty";
+          }
+        });
         isValid = false;
       } else if (!link.url.match(urlRegex)) {
-        setError(link.id, "Please check the URL");
+        newErrors.forEach((error, index) => {
+          if (error.id === link.id) {
+            newErrors[index].message = "Please check the URL";
+          }
+        });
         isValid = false;
       }
     });
+
+    setErrors(newErrors);
     return isValid;
   };
 
@@ -116,6 +119,7 @@ const Links = () => {
               userLink={link}
               onDelete={removeLink}
               onChange={handleChange}
+              error={errors.filter((error) => error.id === link.id)}
             ></UserLink>
           ))}
 
