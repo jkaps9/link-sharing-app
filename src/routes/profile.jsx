@@ -5,12 +5,14 @@ const Profile = () => {
   const [profileData, setProfileData] = useLocalStorage("profileData", {});
 
   const [formData, setFormData] = useState({
+    avatar: profileData.avatar,
     firstName: profileData.firstName,
     lastName: profileData.lastName,
     email: profileData.email,
   });
 
   const [errors, setErrors] = useState({
+    avatar: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -31,12 +33,34 @@ const Profile = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
+    let parsedValue = value;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    if (files) {
+      const file = files[0];
+      if (file.size > 2097152) {
+        alert("file is too large");
+        return;
+      }
+
+      const reader = new FileReader();
+      let base64String = "";
+      reader.onload = function () {
+        base64String = reader.result;
+        parsedValue = base64String;
+        setFormData((prev) => ({
+          ...prev,
+          [name]: parsedValue,
+        }));
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: parsedValue,
+      }));
+    }
   };
 
   return (
@@ -50,10 +74,13 @@ const Profile = () => {
           <section>
             <label for="avatar">Profile picture</label>
 
+            <img src={`${formData.avatar}`} alt="" />
+            {/* <p>{`data:image/png;base64,${profileData.avatar}`}</p> */}
             <input
               type="file"
               id="avatar"
               name="avatar"
+              onChange={handleChange}
               accept="image/png, image/jpeg"
             />
 
