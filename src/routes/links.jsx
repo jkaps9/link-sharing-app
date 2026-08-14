@@ -8,24 +8,29 @@ const Links = () => {
   const [formData, setFormData] = useState([...userLinks]);
 
   const addLink = (newLink) => {
+    const maxItem =
+      userLinks.length === 0
+        ? { order: 0 }
+        : userLinks.reduce((previous, current) =>
+            previous.order > current.order ? previous : current,
+          );
+    newLink.order = maxItem.order + 1;
     setUserLinks((prev) => {
-      const maxItem =
-        prev.length === 0
-          ? { order: 0 }
-          : prev.reduce((previous, current) =>
-              previous.order > current.order ? previous : current,
-            );
-      newLink.order = maxItem.order + 1;
+      return [...prev, newLink];
+    });
+    setFormData((prev) => {
       return [...prev, newLink];
     });
   };
 
   const removeLink = (linkId) => {
     setUserLinks((prev) => prev.filter((link) => link.id !== linkId));
+    setFormData((prev) => prev.filter((link) => link.id !== linkId));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setUserLinks([...formData]);
   };
 
   const handleChange = (e) => {
