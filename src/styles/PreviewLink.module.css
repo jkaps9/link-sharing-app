@@ -1,13 +1,20 @@
 .previewLink {
   align-items: center;
+  border-radius: var(--radius-xs);
   color: var(--color-text-on-primary);
-
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   &[data-id="github"] {
     background-color: var(--color-github);
   }
+&[data-id="youtube"] {
+    background-color: var(--color-youtube);
+  }
+&[data-id="linkedin"] {
+    background-color: var(--color-linkedin);
+  }
+
 }
 
 .previewPlatform {
