@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import PreviewLink from "../components/PreviewLink.jsx";
 
 const Preview = () => {
   const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
@@ -33,7 +34,7 @@ const Preview = () => {
             <ul>
               {userLinks.map((link) => (
                 <li>
-                  <Link to={link.url}>{link.platform}</Link>
+                  <PreviewLink link={link}></PreviewLink>
                 </li>
               ))}
             </ul>
