@@ -1,15 +1,16 @@
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 const Preview = () => {
   return (
     <>
-      <header>
-        <nav>
-          <button type="button" classNamr="btn btn--primary">
-            <NavLink to={`${import.meta.env.BASE_URL}links`}>
-              <span>Back to Editor</span>
-            </NavLink>
-          </button>
-        </nav>
+      <header className="row">
+        <button type="button" className="btn btn--secondary">
+          <Link to={`${import.meta.env.BASE_URL}links`}>
+            <span>Back to Editor</span>
+          </Link>
+        </button>
+        <button type="button" className="btn btn--primary">
+          <span>Share Link</span>
+        </button>
       </header>
       <h1>Preview</h1>
     </>
