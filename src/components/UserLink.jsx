@@ -1,13 +1,15 @@
 import { platforms } from "../data/platforms";
 import { getPlatformIcon } from "../utils/iconLoader";
 import styles from "../styles/UserLink.module.css";
+import DragAndDropIcon from "../assets/icons/icon-drag-and-drop.svg?react";
 
 const UserLink = ({ userLink, onDelete, onChange, error }) => {
   return (
     <>
       <section>
         <header className="row">
-          <div>
+          <div className={styles.cardHeaderLeft}>
+            <DragAndDropIcon></DragAndDropIcon>
             <h2>Link #{userLink.order}</h2>
           </div>
           <button

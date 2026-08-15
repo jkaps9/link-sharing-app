@@ -84,3 +84,9 @@
   scrollbar-color: var(--color-border);
   transition: scrollbar-color 0.5s ease;
 }
+
+.cardHeaderLeft {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
