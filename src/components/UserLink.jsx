@@ -1,5 +1,5 @@
 import { platforms } from "../data/platforms";
-
+import { getPlatformIcon } from "../utils/iconLoader";
 import styles from "../styles/UserLink.module.css";
 
 const UserLink = ({ userLink, onDelete, onChange, error }) => {
@@ -31,21 +31,23 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
               <selectedcontent></selectedcontent>
             </button>
             <div className={styles.selectList}>
-              {platforms.map((p) => (
-                <option
-                  key={p.id}
-                  value={p.id}
-                  selected={userLink.platform === p.id}
-                >
-                  <img
-                    src={p.iconPath}
-                    alt={`${p.name} icon`}
-                    width="16"
-                    height="16"
-                  />
-                  <span>{p.name}</span>
-                </option>
-              ))}
+              {platforms.map((p) => {
+                const PlatformIcon = getPlatformIcon(p.iconFilename);
+                return (
+                  <option
+                    key={p.id}
+                    value={p.id}
+                    selected={userLink.platform === p.id}
+                  >
+                    <PlatformIcon
+                      fill="currentColor"
+                      width="16"
+                      height="16"
+                    ></PlatformIcon>
+                    <span>{p.name}</span>
+                  </option>
+                );
+              })}
             </div>
           </select>
         </div>
