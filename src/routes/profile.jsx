@@ -92,7 +92,9 @@ const Profile = () => {
                     }}
                   >
                     <ImageIcon height="40" width="40"></ImageIcon>
-                    <span>+ Upload Image</span>
+                    <span>
+                      {formData.avatar ? "Change Image" : "+ Upload Image"}
+                    </span>
                   </div>
                 </label>
 
