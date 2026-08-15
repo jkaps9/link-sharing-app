@@ -1,11 +1,16 @@
 import { platforms } from "../data/platforms";
 import { getPlatformIcon } from "../utils/iconLoader";
+import { useSortable } from "@dnd-kit/react";
+
 import styles from "../styles/UserLink.module.css";
 import DragAndDropIcon from "../assets/icons/icon-drag-and-drop.svg?react";
 
 const UserLink = ({ userLink, onDelete, onChange, error }) => {
+  const id = userLink.id;
+  const { ref, attributes, listeners, isDragging } = useSortable({ id });
+
   return (
-    <>
+    <div ref={ref} {...attributes} {...listeners}>
       <section>
         <header className="row">
           <div className={styles.cardHeaderLeft}>
@@ -67,7 +72,7 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
           <p id={`linkError-${userLink.id}`}>{error.message}</p>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import { DndContext } from "@dnd-kit/react";
+import { move } from "@dnd-kit/helpers";
 import UserLink from "../components/UserLink.jsx";
 
 const Links = () => {
@@ -15,6 +17,8 @@ const Links = () => {
       return { id: link.id, message: "" };
     }),
   );
+
+  const [target, setTarget] = useState();
 
   const addLink = (newLink) => {
     const maxItem =
@@ -90,6 +94,14 @@ const Links = () => {
     );
   };
 
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      setUserLinks((prevItems) => move(prevItems, event));
+    }
+  };
+
   return (
     <section className="card">
       <header>
@@ -115,16 +127,19 @@ const Links = () => {
       </header>
       <section>
         <form onSubmit={handleSubmit}>
-          {formData.map((link) => (
-            <UserLink
-              key={link.id}
-              userLink={link}
-              onDelete={removeLink}
-              onChange={handleChange}
-              error={errors.filter((error) => error.id === link.id)[0]}
-            ></UserLink>
-          ))}
-
+          <DndContext onDragEnd={handleDragEnd}>
+            <ul>
+              {formData.map((link) => (
+                <UserLink
+                  key={link.id}
+                  userLink={link}
+                  onDelete={removeLink}
+                  onChange={handleChange}
+                  error={errors.filter((error) => error.id === link.id)[0]}
+                ></UserLink>
+              ))}
+            </ul>
+          </DndContext>
           <footer>
             <button type="submit" className="btn btn--primary">
               Save
