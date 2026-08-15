@@ -34,7 +34,7 @@ const Preview = () => {
 
             <ul className={styles.linkList}>
               {userLinks.map((link) => (
-                <li>
+                <li key={link.id}>
                   <PreviewLink link={link}></PreviewLink>
                 </li>
               ))}
