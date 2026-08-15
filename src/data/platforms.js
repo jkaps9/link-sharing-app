@@ -3,19 +3,19 @@ export const platforms = [
     id: "github",
     name: "GitHub",
     iconFilename: "icon-github.svg",
-    color: "var(--colors-black)",
+    color: "var(--colors-grey-950)",
   },
   {
     id: "frontendmentor",
     name: "Frontend Mentor",
     iconFilename: "icon-frontend-mentor.svg",
-    color: "var(--colors-white)", // Typically features dark text and a border
+    color: "var(--colors-white)",
   },
   {
     id: "twitter",
     name: "Twitter",
     iconFilename: "icon-twitter.svg",
-    color: "var(--colors-blue-500)",
+    color: "var(--colors-blue-200)",
   },
   {
     id: "linkedin",
@@ -33,7 +33,7 @@ export const platforms = [
     id: "facebook",
     name: "Facebook",
     iconFilename: "icon-facebook.svg",
-    color: "var(--colors-blue-800)",
+    color: "var(--colors-blue-600)",
   },
   {
     id: "twitch",
