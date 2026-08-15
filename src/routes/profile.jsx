@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import ImageIcon from "../assets/icons/icon-upload-image.svg?react";
 import styles from "../styles/Profile.module.css";
 
 const Profile = () => {
@@ -73,14 +74,34 @@ const Profile = () => {
       <section>
         <form onSubmit={handleSubmit}>
           <section>
-            <label for="avatar">Profile picture</label>
-            <img src={`${formData.avatar}`} alt="" className={styles.avatar} />
+            <p>Profile picture</p>
+
+            <label for="avatar" style={{ width: "fit-content" }}>
+              <div
+                className={`${styles.avatarLabel}`}
+                style={{
+                  backgroundImage: formData.avatar
+                    ? `linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${formData.avatar})`
+                    : "none",
+                  color: `${
+                    formData.avatar
+                      ? "var(--colors-white)"
+                      : "var(--color-primary)"
+                  }`,
+                }}
+              >
+                <ImageIcon height="40" width="40"></ImageIcon>
+                <span>+ Upload Image</span>
+              </div>
+            </label>
+
             <input
               type="file"
               id="avatar"
               name="avatar"
               onChange={handleChange}
               accept="image/png, image/jpeg"
+              className="sr-only"
             />
             <p>Image must be below 1024x1024px. Use PNG or JPG format.</p>
           </section>

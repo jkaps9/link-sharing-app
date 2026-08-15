@@ -5,3 +5,21 @@
   margin-inline: auto;
   width: 5rem;
 }
+
+.avatarLabel {
+  align-items: center;
+  background-color: var(--colors-grey-100);
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 0.75rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2.5rem 1rem;
+  position: relative;
+  width: fit-content;
+  z-index: 1;
+}
