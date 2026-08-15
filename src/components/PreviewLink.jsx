@@ -5,7 +5,22 @@ import styles from "../styles/PreviewLink.module.css";
 const PreviewLink = ({ link }) => {
   const platform = platforms.find((item) => item.id === link.platform);
   return (
-    <Link to={link.url} className={styles.previewLink} data-id={link.platform}>
+    <Link
+      to={link.url}
+      className={styles.previewLink}
+      style={{
+        backgroundColor: platform.color,
+        borderColor:
+          platform.id === "frontendmentor"
+            ? "var(--color-border)"
+            : "transparent",
+
+        color:
+          platform.id === "frontendmentor"
+            ? "var(--colors-black)"
+            : "var(--colors-white)",
+      }}
+    >
       <div className={styles.previewPlatform}>
         <img
           src={platform.iconPath}

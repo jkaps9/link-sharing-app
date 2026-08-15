@@ -84,10 +84,6 @@
   --color-border: var(--colors-grey-200);
   --color-bg-surface: var(--colors-white);
 
-  --color-github: var(--colors-black);
-  --color-youtube: var(--colors-red-550);
-  --color-linkedin: var(--colors-blue-500);
-
   /* TYPOGRAPHY */
   --font-header: "Instrument Sans", Arial, Helvetica, sans-serif;
   --font-body: "Instrument Sans", Arial, Helvetica, sans-serif;

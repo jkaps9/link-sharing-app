@@ -1,0 +1,16 @@
+.previewCard {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-inline: auto;
+  max-width: 350px;
+  text-align: center;
+}
+
+.linkList {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

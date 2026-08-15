@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
 import PreviewLink from "../components/PreviewLink.jsx";
+import styles from "../styles/Preview.module.css";
 
 const Preview = () => {
   const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
@@ -20,7 +21,7 @@ const Preview = () => {
       </header>
       <main>
         <section>
-          <div class="card">
+          <div className={`${styles.previewCard} card`}>
             <img
               src={`${profileData.avatar}`}
               alt="user avatar"
@@ -31,7 +32,7 @@ const Preview = () => {
             </p>
             <p>{profileData.email}</p>
 
-            <ul>
+            <ul className={styles.linkList}>
               {userLinks.map((link) => (
                 <li>
                   <PreviewLink link={link}></PreviewLink>
