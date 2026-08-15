@@ -339,3 +339,19 @@ ul {
   white-space: nowrap;
   border: 0;
 }
+
+@media (min-width: 48rem) {
+  form {
+    section {
+      .input-group {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      input {
+        max-width: 60%;
+      }
+    }
+  }
+}
