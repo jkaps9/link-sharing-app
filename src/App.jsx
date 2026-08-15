@@ -25,11 +25,15 @@ function App() {
         </div>
         <nav className={styles.navList}>
           <NavLink to="links" className={`row ${styles.navLink}`}>
-            <LinkIcon aria-hidden="true"></LinkIcon>
+            <LinkIcon aria-hidden="true" width="16" height="16"></LinkIcon>
             <span className={styles.hideOnMobile}>Links</span>
           </NavLink>
           <NavLink to="profile" className={`row ${styles.navLink}`}>
-            <ProfileIcon aria-hidden="true"></ProfileIcon>
+            <ProfileIcon
+              aria-hidden="true"
+              width="16"
+              height="16"
+            ></ProfileIcon>
             <span className={styles.hideOnMobile}>Profile Details</span>
           </NavLink>
         </nav>
