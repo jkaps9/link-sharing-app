@@ -17,11 +17,12 @@ const Preview = () => {
           justifyContent: "space-between",
         }}
       >
-        <button type="button" className="btn btn--secondary">
-          <Link to={`${import.meta.env.BASE_URL}links`}>
-            <span>Back to Editor</span>
-          </Link>
-        </button>
+        <Link
+          to={`${import.meta.env.BASE_URL}links`}
+          className="btn btn--secondary"
+        >
+          <span>Back to Editor</span>
+        </Link>
         <button type="button" className="btn btn--primary">
           <span>Share Link</span>
         </button>

@@ -37,12 +37,11 @@ function App() {
             <span className={styles.hideOnMobile}>Profile Details</span>
           </NavLink>
         </nav>
-        <button className="btn btn--secondary">
-          <NavLink to="preview">
-            <span className={styles.hideOnMobile}>Preview</span>
-            <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
-          </NavLink>
-        </button>
+
+        <NavLink to="preview" className="btn btn--secondary">
+          <span className={styles.hideOnMobile}>Preview</span>
+          <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
+        </NavLink>
       </header>
       <main>
         <Outlet />
