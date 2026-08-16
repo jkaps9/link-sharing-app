@@ -9,6 +9,7 @@ const Preview = () => {
 
   return (
     <>
+      <div className={styles.backgroundShape}></div>
       <header
         className="card"
         style={{

@@ -1,3 +1,14 @@
+.backgroundShape {
+  border-radius: 0 0 2rem 2rem;
+  height: 357px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: -1;
+}
+
 .previewCard {
   align-items: center;
   display: flex;
@@ -26,4 +37,10 @@
   flex-direction: column;
   gap: 1.5rem;
   text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .backgroundShape {
+    background-color: var(--color-primary);
+  }
 }
