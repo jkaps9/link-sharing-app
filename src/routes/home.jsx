@@ -11,7 +11,7 @@ const Home = () => {
           style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
         >
           <Link to="auth/login">Login</Link>
-          <Link to="auth/register">Sign Up</Link>
+          <Link to="auth/signup">Create Account</Link>
         </div>
       </section>
     </>
