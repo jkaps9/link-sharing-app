@@ -10,9 +10,9 @@ function Sortable({ id, index, children }) {
   const { ref } = useSortable({ id, index });
 
   return (
-    <li ref={ref} className="item">
+    <div ref={ref} className="item">
       {children}
-    </li>
+    </div>
   );
 }
 
@@ -145,19 +145,17 @@ const Links = () => {
               });
             }}
           >
-            <ul className="list">
-              {formData.map((link) => (
-                <Sortable key={link.id} id={link.id} index={link.order}>
-                  <UserLink
-                    key={link.id}
-                    userLink={link}
-                    onDelete={removeLink}
-                    onChange={handleChange}
-                    error={errors.filter((error) => error.id === link.id)[0]}
-                  ></UserLink>
-                </Sortable>
-              ))}
-            </ul>
+            {formData.map((link) => (
+              <Sortable key={link.id} id={link.id} index={link.order}>
+                <UserLink
+                  key={link.id}
+                  userLink={link}
+                  onDelete={removeLink}
+                  onChange={handleChange}
+                  error={errors.filter((error) => error.id === link.id)[0]}
+                ></UserLink>
+              </Sortable>
+            ))}
           </DragDropProvider>
           <footer>
             <button type="submit" className="btn btn--primary">
