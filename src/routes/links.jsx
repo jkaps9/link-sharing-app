@@ -116,16 +116,14 @@ const Links = () => {
   return (
     <>
       <section
-        className="card"
+        className="card hide-on-mobile"
         style={{
-          minWidth: "35rem",
+          display: "grid",
+          placeContent: "center",
+          width: "40%",
         }}
       >
-        <PhoneMockup
-          style={{
-            margin: "auto",
-          }}
-        ></PhoneMockup>
+        <PhoneMockup></PhoneMockup>
       </section>
       <section className="card" style={{ flex: "1" }}>
         <header>

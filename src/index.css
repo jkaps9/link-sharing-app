@@ -367,6 +367,10 @@ ul {
   color: var(--colors-red-500);
 }
 
+.hide-on-mobile {
+  display: none;
+}
+
 @media (min-width: 48rem) {
   form {
     section {
@@ -407,5 +411,9 @@ ul {
     display: flex;
     justify-content: space-between;
     gap: 1.5rem;
+  }
+
+  .hide-on-mobile {
+    display: block;
   }
 }
