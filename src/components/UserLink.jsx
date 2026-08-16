@@ -63,7 +63,7 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
             value={userLink.url}
             onChange={onChange}
             aria-describedby={`linkError-${userLink.id}`}
-            aria-invalid={error.message != ""}
+            aria-invalid={error.message !== ""}
           />
           <p id={`linkError-${userLink.id}`} className="error-message">
             {error.message}

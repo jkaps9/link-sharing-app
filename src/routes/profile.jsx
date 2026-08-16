@@ -14,15 +14,28 @@ const Profile = () => {
   });
 
   const [errors, setErrors] = useState({
-    avatar: "",
     firstName: "",
     lastName: "",
-    email: "",
   });
 
   const validateForm = () => {
     let isValid = true;
+    const newErrors = {
+      firstName: "",
+      lastName: "",
+    };
 
+    if (formData.firstName === "") {
+      newErrors.firstName = "Can't be empty";
+      isValid = false;
+    }
+
+    if (formData.lastName === "") {
+      newErrors.lastName = "Can't be empty";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
     return isValid;
   };
 
@@ -120,8 +133,12 @@ const Profile = () => {
                 placeholder="e.g. John"
                 value={formData.firstName}
                 onChange={handleChange}
-                required
+                aria-describedby="fn-error-message"
+                aria-invalid={errors.firstName !== ""}
               />
+              <p id="fn-error-message" className="error-message">
+                {errors.firstName}
+              </p>
             </div>
             <div class="input-group">
               <label for="lastName">Last Name</label>
@@ -131,9 +148,13 @@ const Profile = () => {
                 type="text"
                 placeholder="e.g. Appleseed"
                 value={formData.lastName}
-                required
                 onChange={handleChange}
+                aria-describedby="ln-error-message"
+                aria-invalid={errors.lastName !== ""}
               />
+              <p id="ln-error-message" className="error-message">
+                {errors.lastName}
+              </p>
             </div>
             <div class="input-group">
               <label for="email">Email</label>

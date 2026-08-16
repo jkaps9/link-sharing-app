@@ -228,6 +228,10 @@ input {
   border-radius: var(--radius-sm);
   padding: 1rem;
   width: 100%;
+
+  &[aria-invalid="true"] {
+    border-color: var(--colors-red-500);
+  }
 }
 
 form {
