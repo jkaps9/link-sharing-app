@@ -20,7 +20,7 @@ const Login = () => {
           </p>
         </div>
         <div className="input-group">
-          <label htmlFor="email">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
