@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Login = () => {
   return (
     <>
@@ -31,6 +33,13 @@ const Login = () => {
             Please check again
           </p>
         </div>
+
+        <footer>
+          <button type="submit">Create new account</button>
+          <p>
+            Don't have an account? <Link to="../signup">Create account</Link>
+          </p>
+        </footer>
       </form>
     </>
   );
