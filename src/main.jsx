@@ -4,11 +4,14 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import "./index.css";
 import App from "./App.jsx";
 import Home from "./routes/home.jsx";
+import Profile from "./routes/profile.jsx";
+import Links from "./routes/links.jsx";
+
+import Preview from "./routes/preview.jsx";
+
+import Auth from "./Auth.jsx";
 import Login from "./routes/login.jsx";
 import Register from "./routes/register.jsx";
-import Profile from "./routes/profile.jsx";
-import Preview from "./routes/preview.jsx";
-import Links from "./routes/links.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,11 +21,17 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "links", Component: Links },
       { path: "profile", Component: Profile },
-      { path: "login", Component: Login },
-      { path: "register", Component: Register },
     ],
   },
-{path:`${import.meta.env.BASE_URL}preview`, Component: Preview},
+  { path: `${import.meta.env.BASE_URL}preview`, Component: Preview },
+  {
+    path: `${import.meta.env.BASE_URL}auth`,
+    Component: Auth,
+    children: [
+      { path: "login", Component: Login },
+      { path: "signup", Component: Register },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

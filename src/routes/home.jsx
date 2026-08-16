@@ -3,9 +3,17 @@ import { Link } from "react-router";
 const Home = () => {
   return (
     <>
-      <h1>Home</h1>
-      <Link to="login">Login</Link>
-      <Link to="register">Sign Up</Link>
+      <section
+        style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+      >
+        <h1>Home</h1>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+        >
+          <Link to="auth/login">Login</Link>
+          <Link to="auth/register">Sign Up</Link>
+        </div>
+      </section>
     </>
   );
 };
