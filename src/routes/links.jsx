@@ -52,8 +52,16 @@ const Links = () => {
   };
 
   const removeLink = (linkId) => {
-    setUserLinks((prev) => prev.filter((link) => link.id !== linkId));
-    setFormData((prev) => prev.filter((link) => link.id !== linkId));
+    setFormData((prev) => {
+      const updatedArray = prev.filter((link) => link.id !== linkId);
+
+      return updatedArray.map((link, index) => {
+        return {
+          ...link,
+          order: index + 1,
+        };
+      });
+    });
     setErrors((prev) => prev.filter((link) => link.id !== linkId));
   };
 
