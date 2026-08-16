@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import PhoneMockup from "../components/PhoneMockup.jsx";
+
 import ImageIcon from "../assets/icons/icon-upload-image.svg?react";
 import styles from "../styles/Profile.module.css";
 
 const Profile = () => {
   const [profileData, setProfileData] = useLocalStorage("profileData", {});
+  const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
 
   const [formData, setFormData] = useState({
     avatar: profileData.avatar,
@@ -79,103 +82,108 @@ const Profile = () => {
   };
 
   return (
-    <section className="card">
-      <header>
-        <h1>Profile Details</h1>
-        <p>Add your details to create a personal touch to your profile</p>
-      </header>
-      <section>
-        <form onSubmit={handleSubmit}>
-          <section>
-            <div className="input-group">
-              <p>Profile picture</p>
-              <div className={styles.avatarInput}>
-                <label for="avatar" style={{ width: "fit-content" }}>
-                  <div
-                    className={`${styles.avatarLabel}`}
-                    style={{
-                      backgroundImage: formData.avatar
-                        ? `linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${formData.avatar})`
-                        : "none",
-                      color: `${
-                        formData.avatar
-                          ? "var(--colors-white)"
-                          : "var(--color-primary)"
-                      }`,
-                    }}
-                  >
-                    <ImageIcon height="40" width="40"></ImageIcon>
-                    <span>
-                      {formData.avatar ? "Change Image" : "+ Upload Image"}
-                    </span>
-                  </div>
-                </label>
-
-                <input
-                  type="file"
-                  id="avatar"
-                  name="avatar"
-                  onChange={handleChange}
-                  accept="image/png, image/jpeg"
-                  className="sr-only"
-                />
-                <p>Image must be below 1024x1024px. Use PNG or JPG format.</p>
-              </div>
-            </div>
-          </section>
-          <section>
-            <div class="input-group">
-              <label for="firstName">First name*</label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="e.g. John"
-                value={formData.firstName}
-                onChange={handleChange}
-                aria-describedby="fn-error-message"
-                aria-invalid={errors.firstName !== ""}
-              />
-              <p id="fn-error-message" className="error-message">
-                {errors.firstName}
-              </p>
-            </div>
-            <div class="input-group">
-              <label for="lastName">Last Name*</label>
-              <input
-                name="lastName"
-                id="lastName"
-                type="text"
-                placeholder="e.g. Appleseed"
-                value={formData.lastName}
-                onChange={handleChange}
-                aria-describedby="ln-error-message"
-                aria-invalid={errors.lastName !== ""}
-              />
-              <p id="ln-error-message" className="error-message">
-                {errors.lastName}
-              </p>
-            </div>
-            <div class="input-group">
-              <label for="email">Email</label>
-              <input
-                name="email"
-                id="email"
-                type="email"
-                autocomplete="off"
-                onChange={handleChange}
-                value={formData.email}
-              />
-            </div>
-          </section>
-          <footer>
-            <button type="submit" className="btn btn--primary">
-              Save
-            </button>
-          </footer>
-        </form>
+    <>
+      <section className="card hide-on-mobile preview-card">
+        <PhoneMockup userLinks={userLinks}></PhoneMockup>
       </section>
-    </section>
+      <section className="card">
+        <header>
+          <h1>Profile Details</h1>
+          <p>Add your details to create a personal touch to your profile</p>
+        </header>
+        <section>
+          <form onSubmit={handleSubmit}>
+            <section>
+              <div className="input-group">
+                <p>Profile picture</p>
+                <div className={styles.avatarInput}>
+                  <label for="avatar" style={{ width: "fit-content" }}>
+                    <div
+                      className={`${styles.avatarLabel}`}
+                      style={{
+                        backgroundImage: formData.avatar
+                          ? `linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${formData.avatar})`
+                          : "none",
+                        color: `${
+                          formData.avatar
+                            ? "var(--colors-white)"
+                            : "var(--color-primary)"
+                        }`,
+                      }}
+                    >
+                      <ImageIcon height="40" width="40"></ImageIcon>
+                      <span>
+                        {formData.avatar ? "Change Image" : "+ Upload Image"}
+                      </span>
+                    </div>
+                  </label>
+
+                  <input
+                    type="file"
+                    id="avatar"
+                    name="avatar"
+                    onChange={handleChange}
+                    accept="image/png, image/jpeg"
+                    className="sr-only"
+                  />
+                  <p>Image must be below 1024x1024px. Use PNG or JPG format.</p>
+                </div>
+              </div>
+            </section>
+            <section>
+              <div class="input-group">
+                <label for="firstName">First name*</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="e.g. John"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  aria-describedby="fn-error-message"
+                  aria-invalid={errors.firstName !== ""}
+                />
+                <p id="fn-error-message" className="error-message">
+                  {errors.firstName}
+                </p>
+              </div>
+              <div class="input-group">
+                <label for="lastName">Last Name*</label>
+                <input
+                  name="lastName"
+                  id="lastName"
+                  type="text"
+                  placeholder="e.g. Appleseed"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  aria-describedby="ln-error-message"
+                  aria-invalid={errors.lastName !== ""}
+                />
+                <p id="ln-error-message" className="error-message">
+                  {errors.lastName}
+                </p>
+              </div>
+              <div class="input-group">
+                <label for="email">Email</label>
+                <input
+                  name="email"
+                  id="email"
+                  type="email"
+                  autocomplete="off"
+                  onChange={handleChange}
+                  value={formData.email}
+                />
+              </div>
+            </section>
+            <footer>
+              <button type="submit" className="btn btn--primary">
+                Save
+              </button>
+            </footer>
+          </form>
+        </section>
+      </section>
+    </>
   );
 };
 
