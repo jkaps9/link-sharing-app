@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
-import { DndContext } from "@dnd-kit/react";
-import { move } from "@dnd-kit/helpers";
+import { DragDropProvider } from "@dnd-kit/react";
+import { useSortable } from "@dnd-kit/react/sortable";
+
 import UserLink from "../components/UserLink.jsx";
+
+function Sortable({ id, index, children }) {
+  const { ref } = useSortable({ id, index });
+
+  return (
+    <li ref={ref} className="item">
+      {children}
+    </li>
+  );
+}
 
 const Links = () => {
   const urlRegex =
@@ -18,7 +29,7 @@ const Links = () => {
     }),
   );
 
-  const [target, setTarget] = useState();
+  // const [target, setTarget] = useState();
 
   const addLink = (newLink) => {
     const maxItem =
@@ -94,14 +105,6 @@ const Links = () => {
     );
   };
 
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-
-    if (over && active.id !== over.id) {
-      setUserLinks((prevItems) => move(prevItems, event));
-    }
-  };
-
   return (
     <section className="card">
       <header>
@@ -127,19 +130,21 @@ const Links = () => {
       </header>
       <section>
         <form onSubmit={handleSubmit}>
-          <DndContext onDragEnd={handleDragEnd}>
-            <ul>
+          <DragDropProvider>
+            <ul className="list">
               {formData.map((link) => (
-                <UserLink
-                  key={link.id}
-                  userLink={link}
-                  onDelete={removeLink}
-                  onChange={handleChange}
-                  error={errors.filter((error) => error.id === link.id)[0]}
-                ></UserLink>
+                <Sortable key={link.id} id={link.id} index={link.order}>
+                  <UserLink
+                    key={link.id}
+                    userLink={link}
+                    onDelete={removeLink}
+                    onChange={handleChange}
+                    error={errors.filter((error) => error.id === link.id)[0]}
+                  ></UserLink>
+                </Sortable>
               ))}
             </ul>
-          </DndContext>
+          </DragDropProvider>
           <footer>
             <button type="submit" className="btn btn--primary">
               Save
