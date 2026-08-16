@@ -270,6 +270,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 /*~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~>
 <~~         Utilities          ~~>
 <~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~*/
@@ -419,10 +420,11 @@ ul {
     padding: 1.5rem;
   }
   main {
-    display: flex;
+    display: grid;
     flex: 1;
     justify-content: space-between;
     gap: 1.5rem;
+    grid-template-columns: 2fr 3fr;
   }
 
   form {
@@ -442,6 +444,5 @@ ul {
   .preview-card {
     display: grid;
     place-content: center;
-    width: 40%;
   }
 }
