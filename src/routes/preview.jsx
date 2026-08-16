@@ -9,7 +9,14 @@ const Preview = () => {
 
   return (
     <>
-      <header className="row card">
+      <header
+        className="card"
+        style={{
+          flexDirection: "row",
+          gap: "1rem",
+          justifyContent: "space-between",
+        }}
+      >
         <button type="button" className="btn btn--secondary">
           <Link to={`${import.meta.env.BASE_URL}links`}>
             <span>Back to Editor</span>
@@ -19,19 +26,28 @@ const Preview = () => {
           <span>Share Link</span>
         </button>
       </header>
-      <main>
+      <main style={{ display: "flex", marginInline: "auto" }}>
         <section>
           <div className={`${styles.previewCard} card`}>
-            <img
-              src={`${profileData.avatar}`}
-              alt="user avatar"
-              className="avatar"
-            />
-            <p>
-              {profileData.firstName} {profileData.lastName}
-            </p>
-            <p>{profileData.email}</p>
-
+            <div className={styles.profileWrapper}>
+              <img
+                src={`${profileData.avatar}`}
+                alt="user avatar"
+                className="avatar"
+              />
+              <div className={styles.profileInfo}>
+                <p
+                  style={{
+                    color: "var(--color-text-header)",
+                    fontSize: "2rem",
+                    fontWeight: "600",
+                  }}
+                >
+                  {profileData.firstName} {profileData.lastName}
+                </p>
+                <p>{profileData.email}</p>
+              </div>
+            </div>
             <ul className={styles.linkList}>
               {userLinks.map((link) => (
                 <li key={link.id}>
