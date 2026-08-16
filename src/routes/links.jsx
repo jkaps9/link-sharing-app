@@ -30,8 +30,6 @@ const Links = () => {
     }),
   );
 
-  // const [target, setTarget] = useState();
-
   const addLink = (newLink) => {
     const maxItem =
       userLinks.length === 0
