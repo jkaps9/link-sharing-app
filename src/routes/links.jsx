@@ -5,6 +5,7 @@ import { useSortable } from "@dnd-kit/react/sortable";
 import { move } from "@dnd-kit/helpers";
 
 import UserLink from "../components/UserLink.jsx";
+import PhoneMockup from "../assets/icons/illustration-phone-mockup.svg?react";
 
 function Sortable({ id, index, children }) {
   const { ref } = useSortable({ id, index });
@@ -113,64 +114,78 @@ const Links = () => {
   };
 
   return (
-    <section className="card">
-      <header>
-        <h1>Customize your links</h1>
-        <p>
-          Add/edit/remove links below and then share all your profiles with the
-          world!
-        </p>
-      </header>
-      <section>
-        <button
-          type="button"
-          className="btn btn--secondary"
-          onClick={() =>
-            addLink({
-              id: crypto.randomUUID(),
-              order: 0,
-              platform: "github",
-              url: "",
-            })
-          }
-        >
-          + Add new link
-        </button>
-        <form onSubmit={handleSubmit}>
-          <DragDropProvider
-            onDragEnd={(event) => {
-              if (event.canceled) return;
-              setFormData((prev) => {
-                const movedArray = move(prev, event);
-                return movedArray.map((link, index) => {
-                  return {
-                    ...link,
-                    order: index + 1,
-                  };
-                });
-              });
-            }}
-          >
-            {formData.map((link) => (
-              <Sortable key={link.id} id={link.id} index={link.order}>
-                <UserLink
-                  key={link.id}
-                  userLink={link}
-                  onDelete={removeLink}
-                  onChange={handleChange}
-                  error={errors.filter((error) => error.id === link.id)[0]}
-                ></UserLink>
-              </Sortable>
-            ))}
-          </DragDropProvider>
-          <footer>
-            <button type="submit" className="btn btn--primary">
-              Save
-            </button>
-          </footer>
-        </form>
+    <>
+      <section
+        className="card"
+        style={{
+          minWidth: "35rem",
+        }}
+      >
+        <PhoneMockup
+          style={{
+            margin: "auto",
+          }}
+        ></PhoneMockup>
       </section>
-    </section>
+      <section className="card" style={{ flex: "1" }}>
+        <header>
+          <h1>Customize your links</h1>
+          <p>
+            Add/edit/remove links below and then share all your profiles with
+            the world!
+          </p>
+        </header>
+        <section>
+          <button
+            type="button"
+            className="btn btn--secondary"
+            onClick={() =>
+              addLink({
+                id: crypto.randomUUID(),
+                order: 0,
+                platform: "github",
+                url: "",
+              })
+            }
+          >
+            + Add new link
+          </button>
+          <form onSubmit={handleSubmit}>
+            <DragDropProvider
+              onDragEnd={(event) => {
+                if (event.canceled) return;
+                setFormData((prev) => {
+                  const movedArray = move(prev, event);
+                  return movedArray.map((link, index) => {
+                    return {
+                      ...link,
+                      order: index + 1,
+                    };
+                  });
+                });
+              }}
+            >
+              {formData.map((link) => (
+                <Sortable key={link.id} id={link.id} index={link.order}>
+                  <UserLink
+                    key={link.id}
+                    userLink={link}
+                    onDelete={removeLink}
+                    onChange={handleChange}
+                    error={errors.filter((error) => error.id === link.id)[0]}
+                  ></UserLink>
+                </Sortable>
+              ))}
+            </DragDropProvider>
+            <footer>
+              <button type="submit" className="btn btn--primary">
+                Save
+              </button>
+            </footer>
+          </form>
+        </section>
+      </section>
+    </>
   );
 };
 
