@@ -414,8 +414,13 @@ ul {
 }
 
 @media (min-width: 64rem) {
+  #root {
+    display: flex;
+    padding: 1.5rem;
+  }
   main {
     display: flex;
+    flex: 1;
     justify-content: space-between;
     gap: 1.5rem;
   }
