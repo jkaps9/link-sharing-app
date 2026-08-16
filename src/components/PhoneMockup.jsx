@@ -9,7 +9,13 @@ const PhoneMockup = ({ userLinks }) => {
       <div className={styles.screenOverlay}>
         <div className={styles.linksWrapper}>
           {userLinks.map((link) => (
-            <PreviewLink key={link.id} link={link}></PreviewLink>
+            <div className={styles.link}>
+              <PreviewLink
+                key={link.id}
+                link={link}
+                isMockup={true}
+              ></PreviewLink>
+            </div>
           ))}
         </div>
       </div>

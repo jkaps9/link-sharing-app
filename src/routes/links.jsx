@@ -149,32 +149,34 @@ const Links = () => {
             + Add new link
           </button>
           <form onSubmit={handleSubmit}>
-            <DragDropProvider
-              onDragEnd={(event) => {
-                if (event.canceled) return;
-                setFormData((prev) => {
-                  const movedArray = move(prev, event);
-                  return movedArray.map((link, index) => {
-                    return {
-                      ...link,
-                      order: index + 1,
-                    };
+            <div className="form-container">
+              <DragDropProvider
+                onDragEnd={(event) => {
+                  if (event.canceled) return;
+                  setFormData((prev) => {
+                    const movedArray = move(prev, event);
+                    return movedArray.map((link, index) => {
+                      return {
+                        ...link,
+                        order: index + 1,
+                      };
+                    });
                   });
-                });
-              }}
-            >
-              {formData.map((link) => (
-                <Sortable key={link.id} id={link.id} index={link.order}>
-                  <UserLink
-                    key={link.id}
-                    userLink={link}
-                    onDelete={removeLink}
-                    onChange={handleChange}
-                    error={errors.filter((error) => error.id === link.id)[0]}
-                  ></UserLink>
-                </Sortable>
-              ))}
-            </DragDropProvider>
+                }}
+              >
+                {formData.map((link) => (
+                  <Sortable key={link.id} id={link.id} index={link.order}>
+                    <UserLink
+                      key={link.id}
+                      userLink={link}
+                      onDelete={removeLink}
+                      onChange={handleChange}
+                      error={errors.filter((error) => error.id === link.id)[0]}
+                    ></UserLink>
+                  </Sortable>
+                ))}
+              </DragDropProvider>
+            </div>
             <footer>
               <button type="submit" className="btn btn--primary">
                 Save

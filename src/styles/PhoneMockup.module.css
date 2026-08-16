@@ -28,3 +28,9 @@
   gap: 16px; /* Spacing between the links */
   width: 100%;
 }
+
+.link {
+  display: flex;
+  flex-direction: column;
+  height: 44px;
+}

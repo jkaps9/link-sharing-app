@@ -4,14 +4,14 @@ import { getPlatformIcon } from "../utils/iconLoader";
 import ArrowIcon from "../assets/icons/icon-arrow-right.svg?react";
 import styles from "../styles/PreviewLink.module.css";
 
-const PreviewLink = ({ link }) => {
+const PreviewLink = ({ link, isMockup = false }) => {
   const platform = platforms.find((item) => item.id === link.platform);
   if (!platform) return null;
   const PlatformIcon = getPlatformIcon(platform.iconFilename);
   return (
     <Link
       to={link.url}
-      className={styles.previewLink}
+      className={`${styles.previewLink} ${isMockup ? styles.mockupModifier : ""}`}
       style={{
         backgroundColor: platform.color,
         borderColor:
