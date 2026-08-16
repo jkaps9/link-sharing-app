@@ -243,6 +243,15 @@ form {
     gap: 1rem;
     padding: 1.5rem 1rem;
   }
+
+  footer {
+    align-items: stretch;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem)
+      clamp(1rem, 0.4718rem + 2.2535vw, 2.5rem);
+  }
 }
 .input-group:has(input:required) {
   label::after {
@@ -317,7 +326,22 @@ ul {
 .card {
   background-color: var(--color-bg-surface);
   border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
   padding: 1.5rem;
+
+  & > header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  & > section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }
 
 .avatar {
@@ -369,6 +393,12 @@ ul {
           right: 1rem;
         }
       }
+    }
+
+    footer {
+      align-items: flex-end;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 }

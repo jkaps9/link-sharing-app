@@ -114,6 +114,8 @@ const Links = () => {
           Add/edit/remove links below and then share all your profiles with the
           world!
         </p>
+      </header>
+      <section>
         <button
           type="button"
           className="btn btn--secondary"
@@ -128,8 +130,6 @@ const Links = () => {
         >
           + Add new link
         </button>
-      </header>
-      <section>
         <form onSubmit={handleSubmit}>
           <DragDropProvider
             onDragEnd={(event) => {
