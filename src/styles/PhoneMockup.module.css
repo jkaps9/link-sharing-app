@@ -1,0 +1,30 @@
+/* PhoneMockup.module.css */
+
+.mockupContainer {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 308px;
+  position: relative;
+}
+
+.screenOverlay {
+  height: 48%;
+  left: 11%;
+  overflow-y: auto;
+  position: absolute;
+  scrollbar-width: none;
+  top: 44%;
+  width: 77%;
+}
+
+.screenOverlay::-webkit-scrollbar {
+  display: none;
+}
+
+.linksWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Spacing between the links */
+  width: 100%;
+}

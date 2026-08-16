@@ -5,7 +5,7 @@ import { useSortable } from "@dnd-kit/react/sortable";
 import { move } from "@dnd-kit/helpers";
 
 import UserLink from "../components/UserLink.jsx";
-import PhoneMockup from "../assets/icons/illustration-phone-mockup.svg?react";
+import PhoneMockup from "../components/PhoneMockup.jsx";
 
 function Sortable({ id, index, children }) {
   const { ref } = useSortable({ id, index });
@@ -123,7 +123,7 @@ const Links = () => {
           width: "40%",
         }}
       >
-        <PhoneMockup></PhoneMockup>
+        <PhoneMockup userLinks={formData}></PhoneMockup>
       </section>
       <section className="card" style={{ flex: "1" }}>
         <header>
