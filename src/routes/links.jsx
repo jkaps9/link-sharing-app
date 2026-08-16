@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
 import { DragDropProvider } from "@dnd-kit/react";
 import { useSortable } from "@dnd-kit/react/sortable";
+import { move } from "@dnd-kit/helpers";
 
 import UserLink from "../components/UserLink.jsx";
 
@@ -130,7 +131,20 @@ const Links = () => {
       </header>
       <section>
         <form onSubmit={handleSubmit}>
-          <DragDropProvider>
+          <DragDropProvider
+            onDragEnd={(event) => {
+              if (event.canceled) return;
+              setFormData((prev) => {
+                const movedArray = move(prev, event);
+                return movedArray.map((link, index) => {
+                  return {
+                    ...link,
+                    order: index + 1,
+                  };
+                });
+              });
+            }}
+          >
             <ul className="list">
               {formData.map((link) => (
                 <Sortable key={link.id} id={link.id} index={link.order}>
