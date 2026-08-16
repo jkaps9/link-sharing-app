@@ -125,7 +125,7 @@ const Profile = () => {
           </section>
           <section>
             <div class="input-group">
-              <label for="firstName">First name</label>
+              <label for="firstName">First name*</label>
               <input
                 type="text"
                 id="firstName"
@@ -141,7 +141,7 @@ const Profile = () => {
               </p>
             </div>
             <div class="input-group">
-              <label for="lastName">Last Name</label>
+              <label for="lastName">Last Name*</label>
               <input
                 name="lastName"
                 id="lastName"

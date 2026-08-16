@@ -257,11 +257,6 @@ form {
       clamp(1rem, 0.4718rem + 2.2535vw, 2.5rem);
   }
 }
-.input-group:has(input:required) {
-  label::after {
-    content: "*";
-  }
-}
 
 ul {
   list-style-type: none;
