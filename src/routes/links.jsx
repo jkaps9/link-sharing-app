@@ -115,14 +115,7 @@ const Links = () => {
 
   return (
     <>
-      <section
-        className="card hide-on-mobile"
-        style={{
-          display: "grid",
-          placeContent: "center",
-          width: "40%",
-        }}
-      >
+      <section className="card hide-on-mobile preview-card">
         <PhoneMockup userLinks={formData}></PhoneMockup>
       </section>
       <section className="card" style={{ flex: "1" }}>
