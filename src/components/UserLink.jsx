@@ -22,7 +22,7 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
           </button>
         </header>
 
-        <div className="input-group">
+        <div className="input-group flex-col">
           <label htmlFor={`platform-${userLink.id}`}>Platform</label>
           <select
             id={`platform-${userLink.id}`}
@@ -54,7 +54,7 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
             </div>
           </select>
         </div>
-        <div className="input-group">
+        <div className="input-group flex-col">
           <label htmlFor={`url-${userLink.id}`}>Link</label>
           <input
             type="text"
@@ -65,7 +65,9 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
             aria-describedby={`linkError-${userLink.id}`}
             aria-invalid={error.message != ""}
           />
-          <p id={`linkError-${userLink.id}`}>{error.message}</p>
+          <p id={`linkError-${userLink.id}`} className="error-message">
+            {error.message}
+          </p>
         </div>
       </section>
     </>

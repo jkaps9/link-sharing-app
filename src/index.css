@@ -340,6 +340,10 @@ ul {
   border: 0;
 }
 
+.error-message {
+  color: var(--colors-red-500);
+}
+
 @media (min-width: 48rem) {
   form {
     section {
@@ -347,10 +351,23 @@ ul {
         align-items: center;
         display: flex;
         justify-content: space-between;
-      }
-
-      input {
-        max-width: 60%;
+        position: relative;
+        input,
+        select {
+          max-width: 60%;
+        }
+        &.flex-col {
+          align-items: flex-start;
+          flex-direction: column;
+          input,
+          select {
+            max-width: 100%;
+          }
+        }
+        .error-message {
+          position: absolute;
+          right: 1rem;
+        }
       }
     }
   }
