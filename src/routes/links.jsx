@@ -22,6 +22,7 @@ const Links = () => {
     /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)/g;
 
   const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
+  const [profileData, setProfileData] = useLocalStorage("profileData", {});
 
   const [formData, setFormData] = useState([...userLinks]);
 
@@ -116,7 +117,10 @@ const Links = () => {
   return (
     <>
       <section className="card hide-on-mobile preview-card">
-        <PhoneMockup userLinks={formData}></PhoneMockup>
+        <PhoneMockup
+          userLinks={formData}
+          profileData={profileData}
+        ></PhoneMockup>
       </section>
       <section className="card" style={{ flex: "1" }}>
         <header>

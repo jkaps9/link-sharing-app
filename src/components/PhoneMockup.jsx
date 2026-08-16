@@ -2,11 +2,30 @@ import PhoneSVG from "../assets/icons/illustration-phone-mockup.svg?react";
 import PreviewLink from "../components/PreviewLink.jsx";
 import styles from "../styles/PhoneMockup.module.css";
 
-const PhoneMockup = ({ userLinks }) => {
+const PhoneMockup = ({ userLinks, profileData }) => {
   return (
     <div className={styles.mockupContainer}>
       <PhoneSVG className={styles.phoneImage} aria-hidden="true" />
       <div className={styles.screenOverlay}>
+        <div className={styles.profileWrapper}>
+          <img
+            src={`${profileData.avatar}`}
+            alt="user avatar"
+            className={styles.avatar}
+          />
+          <div className={styles.profileInfo}>
+            <p
+              style={{
+                color: "var(--color-text-header)",
+                fontSize: "1.125rem",
+                fontWeight: "600",
+              }}
+            >
+              {profileData.firstName} {profileData.lastName}
+            </p>
+            <p>{profileData.email}</p>
+          </div>
+        </div>
         <div className={styles.linksWrapper}>
           {userLinks.map((link) => (
             <div className={styles.link}>

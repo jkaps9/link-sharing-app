@@ -84,7 +84,7 @@ const Profile = () => {
   return (
     <>
       <section className="card hide-on-mobile preview-card">
-        <PhoneMockup userLinks={userLinks}></PhoneMockup>
+        <PhoneMockup userLinks={userLinks} profileData={formData}></PhoneMockup>
       </section>
       <section className="card">
         <header>
