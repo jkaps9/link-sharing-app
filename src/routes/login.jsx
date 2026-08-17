@@ -1,10 +1,62 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import formStyles from "../styles/Forms.module.css";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {
+      email: "",
+      password: "",
+    };
+
+    if (formData.email === "") {
+      newErrors.email = "Can't be empty";
+      isValid = false;
+    }
+
+    if (formData.password === "") {
+      newErrors.password = "Check again";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      setFormData(() => ({ email: "", password: "" }));
+      alert("Logged In!");
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
-      <form className={`${formStyles.form} ${formStyles.authForm}`}>
+      <form
+        className={`${formStyles.form} ${formStyles.authForm}`}
+        onSubmit={handleSubmit}
+      >
         <header className={formStyles.formHeader}>
           <h1>Login</h1>
           <p>Add your details below to get back into the app</p>
@@ -22,9 +74,13 @@ const Login = () => {
               id="email"
               name="email"
               placeholder="e.g. alex@email.com"
+              onChange={handleChange}
+              value={formData.email}
+              aria-describedby="email-error"
+              aria-invalid={errors.email !== ""}
             />
             <p id="email-error" className={formStyles.formErrorMessage}>
-              Can't be empty
+              {errors.email}
             </p>
           </div>
           <div
@@ -36,9 +92,13 @@ const Login = () => {
               id="password"
               name="password"
               placeholder="Enter your password"
+              onChange={handleChange}
+              value={formData.password}
+              aria-describedby="password-error"
+              aria-invalid={errors.password !== ""}
             />
             <p id="password-error" className={formStyles.formErrorMessage}>
-              Please check again
+              {errors.password}
             </p>
           </div>
 
