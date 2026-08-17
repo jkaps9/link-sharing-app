@@ -1,10 +1,66 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import formStyles from "../styles/Forms.module.css";
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {
+      email: "",
+      password: "",
+    };
+
+    if (formData.email === "") {
+      newErrors.email = "Can't be empty";
+      isValid = false;
+    }
+
+    if (formData.password === "") {
+      newErrors.password = "Check again";
+      isValid = false;
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.password = "Passwords must match";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      setFormData(() => ({ email: "", password: "", confirmPassword: "" }));
+      alert("Account Created!");
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
-      <form className={`${formStyles.form} ${formStyles.authForm}`}>
+      <form
+        className={`${formStyles.form} ${formStyles.authForm}`}
+        onSubmit={handleSubmit}
+      >
         <header className={formStyles.formHeader}>
           <h1>Create account</h1>
           <p>Let’s get you started sharing your links!</p>
@@ -22,9 +78,13 @@ const Register = () => {
               id="email"
               name="email"
               placeholder="e.g. alex@email.com"
+              onChange={handleChange}
+              value={formData.email}
+              aria-describedby="email-error"
+              aria-invalid={errors.email !== ""}
             />
             <p id="email-error" className={formStyles.formErrorMessage}>
-              Can't be empty
+              {errors.email}
             </p>
           </div>
           <div
@@ -36,9 +96,13 @@ const Register = () => {
               id="password"
               name="password"
               placeholder="At least 8 characters"
+              onChange={handleChange}
+              value={formData.password}
+              aria-describedby="password-error"
+              aria-invalid={errors.password !== ""}
             />
             <p id="password-error" className={formStyles.formErrorMessage}>
-              Please check again
+              {errors.password}
             </p>
           </div>
           <div
@@ -50,6 +114,9 @@ const Register = () => {
               id="confirmPassword"
               name="confirmPassword"
               placeholder="At least 8 characters"
+              onChange={handleChange}
+              value={formData.confirmPassword}
+              aria-invalid={errors.password !== ""}
             />
             <p>Password must contain at least 8 characters</p>
           </div>
