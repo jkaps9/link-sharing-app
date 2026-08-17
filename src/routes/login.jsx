@@ -34,8 +34,20 @@ const Login = () => {
           </p>
         </div>
 
-        <footer>
-          <button type="submit" className="btn btn--primary">
+        <div
+          style={{
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1.5rem",
+            textAlign: "center",
+          }}
+        >
+          <button
+            type="submit"
+            className="btn btn--primary"
+            style={{ width: "100%" }}
+          >
             Login
           </button>
           <div className="footer__content">
@@ -44,7 +56,7 @@ const Login = () => {
               Create account
             </Link>
           </div>
-        </footer>
+        </div>
       </form>
     </>
   );
