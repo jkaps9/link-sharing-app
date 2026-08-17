@@ -47,9 +47,14 @@ const Register = () => {
         </div>
 
         <footer>
-          <button type="submit">Create new account</button>
+          <button type="submit" className="btn btn--primary">
+            Create new account
+          </button>
           <p>
-            Already have an account? <Link to="../login">Login</Link>
+            Already have an account?{" "}
+            <Link to="../login" className="accent-text">
+              Login
+            </Link>
           </p>
         </footer>
       </form>

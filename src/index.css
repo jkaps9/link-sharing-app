@@ -380,6 +380,10 @@ ul {
   display: none;
 }
 
+.accent-text {
+  color: var(--color-accent);
+}
+
 @media (min-width: 48rem) {
   form {
     section {
