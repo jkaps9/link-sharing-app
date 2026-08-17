@@ -27,5 +27,5 @@ dist-ssr
 .windsurf
 .agents
 .env
-/generated/prisma
+/src/generated/prisma
 skills-lock.json
