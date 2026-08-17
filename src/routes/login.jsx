@@ -38,9 +38,12 @@ const Login = () => {
           <button type="submit" className="btn btn--primary">
             Login
           </button>
-          <p>
-            Don't have an account? <Link to="../signup">Create account</Link>
-          </p>
+          <div className="footer__content">
+            <p>Don't have an account? </p>
+            <Link to="../signup" className="accent-text">
+              Create account
+            </Link>
+          </div>
         </footer>
       </form>
     </>

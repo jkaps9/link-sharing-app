@@ -50,12 +50,12 @@ const Register = () => {
           <button type="submit" className="btn btn--primary">
             Create new account
           </button>
-          <p>
-            Already have an account?{" "}
+          <div className="footer__content">
+            <p>Already have an account?</p>
             <Link to="../login" className="accent-text">
               Login
             </Link>
-          </p>
+          </div>
         </footer>
       </form>
     </>
