@@ -2,12 +2,13 @@ import { platforms } from "../data/platforms";
 import { getPlatformIcon } from "../utils/iconLoader";
 
 import styles from "../styles/UserLink.module.css";
+import formStyles from "../styles/Forms.module.css";
 import DragAndDropIcon from "../assets/icons/icon-drag-and-drop.svg?react";
 
 const UserLink = ({ userLink, onDelete, onChange, error }) => {
   return (
     <>
-      <section>
+      <section className={formStyles.formSection}>
         <header className="row">
           <div className={styles.cardHeaderLeft}>
             <DragAndDropIcon></DragAndDropIcon>
@@ -22,7 +23,9 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
           </button>
         </header>
 
-        <div className="input-group flex-col">
+        <div
+          className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
+        >
           <label htmlFor={`platform-${userLink.id}`}>Platform</label>
           <select
             id={`platform-${userLink.id}`}
@@ -54,7 +57,9 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
             </div>
           </select>
         </div>
-        <div className="input-group flex-col">
+        <div
+          className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
+        >
           <label htmlFor={`url-${userLink.id}`}>Link</label>
           <input
             type="text"

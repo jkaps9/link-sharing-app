@@ -6,6 +6,7 @@ import { move } from "@dnd-kit/helpers";
 
 import UserLink from "../components/UserLink.jsx";
 import PhoneMockup from "../components/PhoneMockup.jsx";
+import styles from "../styles/Forms.module.css";
 
 function Sortable({ id, index, children }) {
   const { ref } = useSortable({ id, index });
@@ -145,8 +146,8 @@ const Links = () => {
           >
             + Add new link
           </button>
-          <form onSubmit={handleSubmit}>
-            <div className="form-container">
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formContainer}>
               <DragDropProvider
                 onDragEnd={(event) => {
                   if (event.canceled) return;
@@ -174,7 +175,7 @@ const Links = () => {
                 ))}
               </DragDropProvider>
             </div>
-            <footer>
+            <footer className={styles.formFooter}>
               <button type="submit" className="btn btn--primary">
                 Save
               </button>
