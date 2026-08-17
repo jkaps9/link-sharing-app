@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import { useOutletContext } from "react-router";
 import { DragDropProvider } from "@dnd-kit/react";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { move } from "@dnd-kit/helpers";
@@ -22,8 +22,7 @@ const Links = () => {
   const urlRegex =
     /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)/g;
 
-  const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
-  const [profileData, setProfileData] = useLocalStorage("profileData", {});
+  const { userLinks, setUserLinks, profileData } = useOutletContext();
 
   const [formData, setFormData] = useState([...userLinks]);
 

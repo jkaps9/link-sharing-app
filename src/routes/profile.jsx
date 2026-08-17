@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import { useOutletContext } from "react-router";
 import PhoneMockup from "../components/PhoneMockup.jsx";
 
 import ImageIcon from "../assets/icons/icon-upload-image.svg?react";
@@ -7,8 +7,7 @@ import styles from "../styles/Profile.module.css";
 import formStyles from "../styles/Forms.module.css";
 
 const Profile = () => {
-  const [profileData, setProfileData] = useLocalStorage("profileData", {});
-  const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
+  const { userLinks, profileData, setProfileData } = useOutletContext();
 
   const [formData, setFormData] = useState({
     avatar: profileData.avatar,

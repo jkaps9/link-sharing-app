@@ -4,10 +4,20 @@ import LogoLarge from "./assets/icons/logo-devlinks-large.svg";
 import LogoSmall from "./assets/icons/logo-devlinks-small.svg";
 import LinkIcon from "./assets/icons/icon-link.svg?react";
 import ProfileIcon from "./assets/icons/icon-profile-details-header.svg?react";
+import { useLocalStorage } from "./hooks/useLocalStorage.js";
 
 import PreviewIcon from "./assets/icons/icon-preview-header.svg";
 
 function App() {
+  const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
+  const [profileData, setProfileData] = useLocalStorage("profileData", {});
+  const outletProps = {
+    userLinks,
+    setUserLinks,
+    profileData,
+    setProfileData,
+  };
+
   return (
     <div className={styles.app}>
       <header className={`row ${styles.header}`}>
@@ -44,7 +54,7 @@ function App() {
         </NavLink>
       </header>
       <main className={styles.main}>
-        <Outlet />
+        <Outlet context={outletProps} />
       </main>
     </div>
   );
