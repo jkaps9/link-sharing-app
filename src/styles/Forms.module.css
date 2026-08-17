@@ -29,12 +29,17 @@
     clamp(1rem, 0.4718rem + 2.2535vw, 2.5rem);
 }
 
+.formErrorMessage {
+  color: var(--colors-red-500);
+}
+
 @media (min-width: 48rem) {
   .formInputGroup {
     align-items: center;
     display: flex;
     justify-content: space-between;
     position: relative;
+
     input,
     select {
       max-width: 60%;

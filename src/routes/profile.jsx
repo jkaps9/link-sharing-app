@@ -4,6 +4,7 @@ import PhoneMockup from "../components/PhoneMockup.jsx";
 
 import ImageIcon from "../assets/icons/icon-upload-image.svg?react";
 import styles from "../styles/Profile.module.css";
+import formStyles from "../styles/Forms.module.css";
 
 const Profile = () => {
   const [profileData, setProfileData] = useLocalStorage("profileData", {});
@@ -92,9 +93,9 @@ const Profile = () => {
           <p>Add your details to create a personal touch to your profile</p>
         </header>
         <section>
-          <form onSubmit={handleSubmit}>
-            <section>
-              <div className="input-group">
+          <form onSubmit={handleSubmit} className={formStyles.form}>
+            <section className={formStyles.formSection}>
+              <div className={formStyles.formInputGroup}>
                 <p>Profile picture</p>
                 <div className={styles.avatarInput}>
                   <label for="avatar" style={{ width: "fit-content" }}>
@@ -130,8 +131,8 @@ const Profile = () => {
                 </div>
               </div>
             </section>
-            <section>
-              <div class="input-group">
+            <section className={formStyles.formSection}>
+              <div className={formStyles.formInputGroup}>
                 <label for="firstName">First name*</label>
                 <input
                   type="text"
@@ -143,11 +144,14 @@ const Profile = () => {
                   aria-describedby="fn-error-message"
                   aria-invalid={errors.firstName !== ""}
                 />
-                <p id="fn-error-message" className="error-message">
+                <p
+                  id="fn-error-message"
+                  className={formStyles.formErrorMessage}
+                >
                   {errors.firstName}
                 </p>
               </div>
-              <div class="input-group">
+              <div className={formStyles.formInputGroup}>
                 <label for="lastName">Last Name*</label>
                 <input
                   name="lastName"
@@ -159,11 +163,14 @@ const Profile = () => {
                   aria-describedby="ln-error-message"
                   aria-invalid={errors.lastName !== ""}
                 />
-                <p id="ln-error-message" className="error-message">
+                <p
+                  id="ln-error-message"
+                  className={formStyles.formErrorMessage}
+                >
                   {errors.lastName}
                 </p>
               </div>
-              <div class="input-group">
+              <div className={formStyles.formInputGroup}>
                 <label for="email">Email</label>
                 <input
                   name="email"
@@ -175,7 +182,7 @@ const Profile = () => {
                 />
               </div>
             </section>
-            <footer>
+            <footer className={formStyles.formFooter}>
               <button type="submit" className="btn btn--primary">
                 Save
               </button>

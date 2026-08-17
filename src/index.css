@@ -335,10 +335,6 @@ ul {
   border: 0;
 }
 
-.error-message {
-  color: var(--colors-red-500);
-}
-
 .hide-on-mobile {
   display: none;
 }

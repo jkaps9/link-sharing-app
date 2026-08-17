@@ -1,0 +1,12 @@
+label {
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .inputGroup {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+}

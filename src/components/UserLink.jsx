@@ -70,7 +70,10 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
             aria-describedby={`linkError-${userLink.id}`}
             aria-invalid={error.message !== ""}
           />
-          <p id={`linkError-${userLink.id}`} className="error-message">
+          <p
+            id={`linkError-${userLink.id}`}
+            className={formStyles.formErrorMessage}
+          >
             {error.message}
           </p>
         </div>
