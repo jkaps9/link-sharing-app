@@ -194,12 +194,6 @@ p {
 }
 
 [id="root"] {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1rem, 0.6479rem + 1.5023vw, 2rem);
-
-  /* SPACING */
-  --spacing-100: 8;
   margin-inline: auto;
   max-width: 90rem;
   min-height: 100svh;
@@ -420,16 +414,8 @@ ul {
 }
 
 @media (min-width: 64rem) {
-  #root {
-    display: flex;
+  [id="root"] {
     padding: 1.5rem;
-  }
-  main {
-    display: grid;
-    flex: 1;
-    justify-content: space-between;
-    gap: 1.5rem;
-    grid-template-columns: 2fr 3fr;
   }
 
   form {

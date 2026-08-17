@@ -9,7 +9,7 @@ import PreviewIcon from "./assets/icons/icon-preview-header.svg";
 
 function App() {
   return (
-    <>
+    <div className={styles.app}>
       <header className={`row ${styles.header}`}>
         <div>
           <img
@@ -43,10 +43,10 @@ function App() {
           <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
         </NavLink>
       </header>
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }
 

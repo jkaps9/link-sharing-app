@@ -18,6 +18,12 @@
   padding-block: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 0.6479rem + 1.5023vw, 2rem);
+}
+
 @media (min-width: 48rem) {
   .hideOnMobile {
     display: block;
@@ -35,5 +41,13 @@
 @media (min-width: 64rem) {
   .navList {
     gap: 1rem;
+  }
+
+  .main {
+    display: grid;
+    flex: 1;
+    justify-content: space-between;
+    gap: 1.5rem;
+    grid-template-columns: 2fr 3fr;
   }
 }
