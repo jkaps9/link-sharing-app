@@ -118,7 +118,9 @@ const Register = () => {
               value={formData.confirmPassword}
               aria-invalid={errors.password !== ""}
             />
-            <p>Password must contain at least 8 characters</p>
+            <p style={{ marginTop: "0.5rem" }}>
+              Password must contain at least 8 characters
+            </p>
           </div>
         </section>
 
@@ -128,7 +130,7 @@ const Register = () => {
           <button type="submit" className="btn btn--primary">
             Create new account
           </button>
-          <div>
+          <div className={formStyles.formFooterContent}>
             <p>Already have an account?</p>
             <Link to="../login" className="accent-text">
               Login

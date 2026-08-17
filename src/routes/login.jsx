@@ -112,7 +112,7 @@ const Login = () => {
             >
               Login
             </button>
-            <div>
+            <div className={formStyles.formFooterContent}>
               <p>Don't have an account? </p>
               <Link to="../signup" className="accent-text">
                 Create account
