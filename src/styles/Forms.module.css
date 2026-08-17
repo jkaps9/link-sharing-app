@@ -49,8 +49,13 @@
 .formErrorMessage {
   font-size: 0.75rem;
   justify-self: flex-end;
-  margin-top: 0.5rem;
   color: var(--colors-red-500);
+}
+
+.formInputGroup {
+  p {
+    margin-top: 0.5rem;
+  }
 }
 
 @media (min-width: 48rem) {
@@ -63,6 +68,10 @@
     input,
     select {
       max-width: 60%;
+    }
+
+    p {
+      margin-top: 0;
     }
   }
 
@@ -77,6 +86,7 @@
   }
 
   .formErrorMessage {
+    bottom: 1.1rem;
     position: absolute;
     right: 1rem;
   }

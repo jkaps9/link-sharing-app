@@ -44,13 +44,6 @@ const Login = () => {
 
           <footer
             className={`${formStyles.formFooter} ${formStyles.authFormFooter}`}
-            style={{
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.5rem",
-              textAlign: "center",
-            }}
           >
             <button
               type="submit"
@@ -59,7 +52,7 @@ const Login = () => {
             >
               Login
             </button>
-            <div className="footer__content">
+            <div>
               <p>Don't have an account? </p>
               <Link to="../signup" className="accent-text">
                 Create account
