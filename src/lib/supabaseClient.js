@@ -26,4 +26,10 @@ async function signInWithEmail() {
   return { data, error };
 }
 
-export { supabase, signUpNewUser, signInWithEmail };
+async function signOut() {
+  const { error } = await supabase.auth.signOut();
+
+  return error;
+}
+
+export { supabase, signUpNewUser, signInWithEmail, signOut };
