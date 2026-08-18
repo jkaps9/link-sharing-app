@@ -17,13 +17,6 @@ function App() {
   const [profileData, setProfileData] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const outletProps = {
-    userLinks,
-    setUserLinks,
-    profileData,
-    setProfileData,
-  };
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -63,6 +56,45 @@ function App() {
 
     fetchData();
   }, []);
+
+  const updateProfile = async (newData) => {
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      console.error("User is not authenticated");
+      return;
+    }
+
+    console.log(newData);
+
+    const { data, error } = await supabase
+      .from("users")
+      .update({
+        email: newData.email,
+        avatar: newData.avatar,
+        first_name: newData.firstName,
+        last_name: newData.lastName,
+      })
+      .eq("id", user.id)
+      .select();
+
+    if (error) {
+      alert(error.message);
+    } else {
+      setProfileData(data[0]);
+      console.log(data);
+    }
+  };
+
+  const outletProps = {
+    userLinks,
+    setUserLinks,
+    profileData,
+    updateProfile,
+  };
 
   return (
     <>

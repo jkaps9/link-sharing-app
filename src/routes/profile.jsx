@@ -7,13 +7,13 @@ import styles from "../styles/Profile.module.css";
 import formStyles from "../styles/Forms.module.css";
 
 const Profile = () => {
-  const { userLinks, profileData, setProfileData } = useOutletContext();
+  const { userLinks, profileData, updateProfile } = useOutletContext();
 
   const [formData, setFormData] = useState({
-    avatar: profileData.avatar,
-    firstName: profileData.first_name,
-    lastName: profileData.last_name,
-    email: profileData.email,
+    avatar: profileData?.avatar || null,
+    firstName: profileData?.first_name || "",
+    lastName: profileData?.last_name || "",
+    email: profileData?.email || "",
   });
 
   const [errors, setErrors] = useState({
@@ -45,8 +45,7 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setProfileData(formData);
-      alert("Saved");
+      updateProfile(formData);
     }
   };
 
@@ -175,7 +174,7 @@ const Profile = () => {
                   name="email"
                   id="email"
                   type="email"
-                  autocomplete="off"
+                  autoComplete="off"
                   onChange={handleChange}
                   value={formData.email}
                 />
