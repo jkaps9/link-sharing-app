@@ -25,57 +25,46 @@ function App() {
   };
 
   useEffect(() => {
-    async function fetchLinks() {
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser();
+    async function fetchData() {
+      try {
+        const {
+          data: { user },
+          error: userError,
+        } = await supabase.auth.getUser();
 
-      if (userError || !user) {
-        console.error("User is not authenticated");
-        return;
+        if (userError || !user) {
+          console.error("User is not authenticated");
+          return;
+        }
+
+        // Fetch both simultaneously and wait for both to finish
+        const [linksRes, profileRes] = await Promise.all([
+          supabase.from("links").select("*"),
+          supabase.from("users").select("*").limit(1).single(),
+        ]);
+
+        if (linksRes.error) {
+          console.error("Error fetching links:", linksRes.error.message);
+        } else {
+          setUserLinks(linksRes.data);
+        }
+
+        if (profileRes.error) {
+          console.error("Error fetching profile:", profileRes.error.message);
+        } else {
+          setProfileData(profileRes.data);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
       }
-
-      const { data, error } = await supabase.from("links").select("*");
-
-      if (error) {
-        console.error("Error fetching data:", error.message);
-      } else {
-        setUserLinks(data);
-      }
-      setLoading(false);
     }
 
-    fetchLinks();
-
-    async function fetchProfile() {
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser();
-
-      if (userError || !user) {
-        console.error("User is not authenticated");
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from("users")
-        .select("*")
-        .limit(1)
-        .single();
-
-      if (error) {
-        console.error("Error fetching data:", error.message);
-      } else {
-        // console.log(data);
-        setProfileData(data);
-      }
-      setLoading(false);
-    }
-
-    fetchProfile();
+    fetchData();
   }, []);
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <>
