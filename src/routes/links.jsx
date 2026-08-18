@@ -33,32 +33,6 @@ const Links = () => {
     }),
   );
 
-  async function createLink(newLink) {
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
-
-    if (userError || !user) {
-      console.error("User is not authenticated");
-      return;
-    }
-
-    const { data, error } = await supabase.from("links").insert({
-      id: newLink.id,
-      sort_order: newLink.order,
-      platform: newLink.platform,
-      url: newLink.url,
-      user_id: user.id, // Must match auth.uid() or the DB rejects it
-    });
-
-    if (error) {
-      console.error("Error posting data:", error.message);
-      return;
-    }
-    return data;
-  }
-
   const addLink = (newLink) => {
     const maxItem =
       userLinks.length === 0
