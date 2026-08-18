@@ -97,7 +97,7 @@ const Profile = () => {
               <div className={formStyles.formInputGroup}>
                 <p>Profile picture</p>
                 <div className={styles.avatarInput}>
-                  <label for="avatar" style={{ width: "fit-content" }}>
+                  <label htmlFor="avatar" style={{ width: "fit-content" }}>
                     <div
                       className={`${styles.avatarLabel}`}
                       style={{
@@ -132,7 +132,7 @@ const Profile = () => {
             </section>
             <section className={formStyles.formSection}>
               <div className={formStyles.formInputGroup}>
-                <label for="firstName">First name*</label>
+                <label htmlFor="firstName">First name*</label>
                 <input
                   type="text"
                   id="firstName"
@@ -151,7 +151,7 @@ const Profile = () => {
                 </p>
               </div>
               <div className={formStyles.formInputGroup}>
-                <label for="lastName">Last Name*</label>
+                <label htmlFor="lastName">Last Name*</label>
                 <input
                   name="lastName"
                   id="lastName"
@@ -170,7 +170,7 @@ const Profile = () => {
                 </p>
               </div>
               <div className={formStyles.formInputGroup}>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   name="email"
                   id="email"
