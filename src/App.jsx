@@ -64,8 +64,6 @@ function App() {
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-
   return (
     <>
       <ul>
@@ -73,7 +71,7 @@ function App() {
           <li key={link.id}>{link.url}</li>
         ))}
       </ul>
-      <p>{profileData.email}</p>
+      {/* <p>{profileData.email}</p> */}
       <div className={styles.app}>
         <header className={`row ${styles.header}`}>
           <div>
@@ -109,7 +107,7 @@ function App() {
           </NavLink>
         </header>
         <main className={styles.main}>
-          <Outlet context={outletProps} />
+          {loading ? <p>Loading...</p> : <Outlet context={outletProps} />}
         </main>
       </div>
     </>
