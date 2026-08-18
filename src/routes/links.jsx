@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router";
 import { DragDropProvider } from "@dnd-kit/react";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { move } from "@dnd-kit/helpers";
+import { supabase } from "../lib/supabaseClient.js";
 
 import UserLink from "../components/UserLink.jsx";
 import PhoneMockup from "../components/PhoneMockup.jsx";
@@ -31,6 +32,32 @@ const Links = () => {
       return { id: link.id, message: "" };
     }),
   );
+
+  async function createLink(newLink) {
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      console.error("User is not authenticated");
+      return;
+    }
+
+    const { data, error } = await supabase.from("links").insert({
+      id: newLink.id,
+      sort_order: newLink.order,
+      platform: newLink.platform,
+      url: newLink.url,
+      user_id: user.id, // Must match auth.uid() or the DB rejects it
+    });
+
+    if (error) {
+      console.error("Error posting data:", error.message);
+      return;
+    }
+    return data;
+  }
 
   const addLink = (newLink) => {
     const maxItem =

@@ -11,14 +11,71 @@ import ProfileIcon from "./assets/icons/icon-profile-details-header.svg?react";
 import PreviewIcon from "./assets/icons/icon-preview-header.svg";
 
 function App() {
-  const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
-  const [profileData, setProfileData] = useLocalStorage("profileData", {});
+  // const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
+  // const [profileData, setProfileData] = useLocalStorage("profileData", {});
+  const [userLinks, setUserLinks] = useState([]);
+  const [profileData, setProfileData] = useState({});
+  const [loading, setLoading] = useState(true);
+
   const outletProps = {
     userLinks,
     setUserLinks,
     profileData,
     setProfileData,
   };
+
+  useEffect(() => {
+    async function fetchLinks() {
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+
+      if (userError || !user) {
+        console.error("User is not authenticated");
+        return;
+      }
+
+      const { data, error } = await supabase.from("links").select("*");
+
+      if (error) {
+        console.error("Error fetching data:", error.message);
+      } else {
+        setUserLinks(data);
+      }
+      setLoading(false);
+    }
+
+    fetchLinks();
+
+    async function fetchProfile() {
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+
+      if (userError || !user) {
+        console.error("User is not authenticated");
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("users")
+        .select("*")
+        .limit(1)
+        .single();
+
+      if (error) {
+        console.error("Error fetching data:", error.message);
+      } else {
+        // console.log(data);
+        setProfileData(data);
+      }
+      setLoading(false);
+    }
+
+    fetchProfile();
+  }, []);
 
   // const [instruments, setInstruments] = useState([]);
 
@@ -38,11 +95,12 @@ function App() {
 
   return (
     <>
-      {/* <ul> */}
-      {/*   {instruments.map((instrument) => ( */}
-      {/*     <li key={instrument.id}>{instrument.name}</li> */}
-      {/*   ))} */}
-      {/* </ul> */}
+      <ul>
+        {userLinks.map((link) => (
+          <li key={link.id}>{link.url}</li>
+        ))}
+      </ul>
+      <p>{profileData.email}</p>
       <div className={styles.app}>
         <header className={`row ${styles.header}`}>
           <div>

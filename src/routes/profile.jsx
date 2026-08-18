@@ -11,8 +11,8 @@ const Profile = () => {
 
   const [formData, setFormData] = useState({
     avatar: profileData.avatar,
-    firstName: profileData.firstName,
-    lastName: profileData.lastName,
+    firstName: profileData.first_name,
+    lastName: profileData.last_name,
     email: profileData.email,
   });
 
