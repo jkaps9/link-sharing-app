@@ -3,4 +3,27 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-export const supabase = createClient(supabaseUrl, supabasePublishableKey);
+const supabase = createClient(supabaseUrl, supabasePublishableKey);
+
+async function signUpNewUser() {
+  const { data, error } = await supabase.auth.signUp({
+    email: "valid.email@supabase.io",
+    password: "example-password",
+    options: {
+      emailRedirectTo: "https://example.com/welcome",
+    },
+  });
+
+  return { data, error };
+}
+
+async function signInWithEmail() {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: "valid.email@supabase.io",
+    password: "example-password",
+  });
+
+  return { data, error };
+}
+
+export { supabase, signUpNewUser, signInWithEmail };
