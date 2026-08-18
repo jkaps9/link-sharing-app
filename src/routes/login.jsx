@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import formStyles from "../styles/Forms.module.css";
 import { supabase } from "../lib/supabaseClient";
 
@@ -13,6 +13,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let isValid = true;
@@ -43,10 +45,8 @@ const Login = () => {
 
     if (error) {
       alert(error.message);
-      console.error("Sign in error:", error.message);
     } else {
-      setFormData(() => ({ email: "", password: "" }));
-      alert(data.user.role);
+      navigate(`${import.meta.env.BASE_URL}links`);
     }
   }
 

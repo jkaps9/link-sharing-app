@@ -20,29 +20,29 @@ function App() {
     setProfileData,
   };
 
-  const [instruments, setInstruments] = useState([]);
+  // const [instruments, setInstruments] = useState([]);
 
-  async function getInstruments() {
-    const { data, error } = await supabase.from("instruments").select();
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    setInstruments(data);
-  }
-
-  useEffect(() => {
-    getInstruments();
-  }, []);
+  // async function getInstruments() {
+  //   const { data, error } = await supabase.from("instruments").select();
+  //   if (error) {
+  //     console.error(error);
+  //     return;
+  //   }
+  //
+  //   setInstruments(data);
+  // }
+  //
+  // useEffect(() => {
+  //   getInstruments();
+  // }, []);
 
   return (
     <>
-      <ul>
-        {instruments.map((instrument) => (
-          <li key={instrument.id}>{instrument.name}</li>
-        ))}
-      </ul>
+      {/* <ul> */}
+      {/*   {instruments.map((instrument) => ( */}
+      {/*     <li key={instrument.id}>{instrument.name}</li> */}
+      {/*   ))} */}
+      {/* </ul> */}
       <div className={styles.app}>
         <header className={`row ${styles.header}`}>
           <div>
