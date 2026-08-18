@@ -5,12 +5,12 @@ const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 const supabase = createClient(supabaseUrl, supabasePublishableKey);
 
-async function signUpNewUser() {
+async function signUpNewUser(email, password) {
   const { data, error } = await supabase.auth.signUp({
-    email: "valid.email@supabase.io",
-    password: "example-password",
+    email: email,
+    password: password,
     options: {
-      emailRedirectTo: "https://example.com/welcome",
+      emailRedirectTo: "http://localhost:5173/link-sharing-app/links",
     },
   });
 

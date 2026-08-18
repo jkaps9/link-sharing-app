@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router";
 import formStyles from "../styles/Forms.module.css";
 
+import { signUpNewUser } from "../lib/supabaseClient.js";
+
 const Register = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -41,8 +43,15 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setFormData(() => ({ email: "", password: "", confirmPassword: "" }));
-      alert("Account Created!");
+      const { data, error } = signUpNewUser(formData.email, formData.password);
+
+      if (data !== undefined) {
+        console.log("data", data);
+      } else {
+        console.log("error", error);
+      }
+      // setFormData(() => ({ email: "", password: "", confirmPassword: "" }));
+      // alert("Account Created!");
     }
   };
 
