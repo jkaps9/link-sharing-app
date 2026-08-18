@@ -77,22 +77,6 @@ function App() {
     fetchProfile();
   }, []);
 
-  // const [instruments, setInstruments] = useState([]);
-
-  // async function getInstruments() {
-  //   const { data, error } = await supabase.from("instruments").select();
-  //   if (error) {
-  //     console.error(error);
-  //     return;
-  //   }
-  //
-  //   setInstruments(data);
-  // }
-  //
-  // useEffect(() => {
-  //   getInstruments();
-  // }, []);
-
   return (
     <>
       <ul>
