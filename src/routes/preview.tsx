@@ -68,7 +68,7 @@ const Preview = () => {
         }}
       >
         <Link
-          to={`${import.meta.env.BASE_URL}links`}
+          to={`${import.meta.env.BASE_URL}dashboard/links`}
           className="btn btn--secondary"
         >
           <span>Back to Editor</span>
