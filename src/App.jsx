@@ -123,6 +123,16 @@ function App() {
    * @returns {Promise<{ updatedCount: number, data: Array | null, error: any }>}
    */
   async function updateLinks(currentLinks) {
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      console.error("User is not authenticated");
+      return;
+    }
+
     // 1. Create a fast lookup map for original records by their ID
     const initialMap = new Map(userLinks.map((item) => [item.id, item]));
 
@@ -150,10 +160,15 @@ function App() {
       return { updatedCount: 0, data: [], error: null };
     }
 
+    const linksWithUserId = changedLinks.map((link) => ({
+      ...link,
+      user_id: user.id,
+    }));
+
     // 4. Batch upsert only the modified/new records
     const { data, error } = await supabase
       .from("links")
-      .upsert(changedLinks, { onConflict: "id" })
+      .upsert(linksWithUserId, { onConflict: "id" })
       .select();
 
     if (error) {
@@ -162,6 +177,7 @@ function App() {
     }
 
     console.log(`Successfully updated ${data.length} link(s):`, data);
+    setUserLinks(data);
     return { updatedCount: data.length, data, error: null };
   }
 
