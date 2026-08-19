@@ -3,15 +3,13 @@ import { Link, useNavigate } from "react-router";
 import formStyles from "../styles/Forms.module.css";
 import { supabase } from "../lib/supabaseClient.js";
 
-const Login = () => {
+const ResetPassword = () => {
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
   });
 
   const [errors, setErrors] = useState({
     email: "",
-    password: "",
   });
 
   const navigate = useNavigate();
@@ -20,16 +18,10 @@ const Login = () => {
     let isValid = true;
     const newErrors = {
       email: "",
-      password: "",
     };
 
     if (formData.email === "") {
       newErrors.email = "Can't be empty";
-      isValid = false;
-    }
-
-    if (formData.password === "") {
-      newErrors.password = "Check again";
       isValid = false;
     }
 
@@ -73,8 +65,11 @@ const Login = () => {
         onSubmit={handleSubmit}
       >
         <header className={formStyles.formHeader}>
-          <h1>Login</h1>
-          <p>Add your details below to get back into the app</p>
+          <h1>Reset password</h1>
+          <p>
+            Enter your email address and we’ll send you a link to reset your
+            password
+          </p>
         </header>
 
         <section
@@ -98,24 +93,6 @@ const Login = () => {
               {errors.email}
             </p>
           </div>
-          <div
-            className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
-          >
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              onChange={handleChange}
-              value={formData.password}
-              aria-describedby="password-error"
-              aria-invalid={errors.password !== ""}
-            />
-            <p id="password-error" className={formStyles.formErrorMessage}>
-              {errors.password}
-            </p>
-          </div>
 
           <footer
             className={`${formStyles.formFooter} ${formStyles.authFormFooter}`}
@@ -125,19 +102,13 @@ const Login = () => {
               className="btn btn--primary"
               style={{ width: "100%" }}
             >
-              Login
+              Reset password
             </button>
             <div className={formStyles.formFooterContent}>
               <p>
-                <Link to="../reset-password" className="accent-text">
-                  Forgot password?
-                </Link>
-              </p>
-
-              <p>
-                Don't have an account?{" "}
-                <Link to="../signup" className="accent-text">
-                  Sign up
+                Remembered it?{" "}
+                <Link to="../login" className="accent-text">
+                  Login
                 </Link>
               </p>
             </div>
@@ -148,4 +119,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;

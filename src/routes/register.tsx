@@ -44,12 +44,19 @@ const Register = () => {
       email: email,
       password: password,
       options: {
-        emailRedirectTo: "http://localhost:5173/link-sharing-app/links",
+        emailRedirectTo:
+          "http://localhost:5173/link-sharing-app/dashboard/links",
       },
     });
 
     if (error) {
       console.error("Sign up error:", error);
+      alert(error.message);
+    } else {
+      setFormData(() => ({ email: "", password: "", confirmPassword: "" }));
+      alert(
+        "If you do not have an account, a verification link has been sent. If you already have an account please login.",
+      );
     }
   }
 
@@ -57,11 +64,6 @@ const Register = () => {
     event.preventDefault();
     if (validateForm()) {
       signUpNewUser(formData.email, formData.password);
-
-      setFormData(() => ({ email: "", password: "", confirmPassword: "" }));
-      alert(
-        "Account created! You should receive a confirmation email shortly.",
-      );
     }
   };
 
