@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router";
-
+import type { ProfileData, UserLink } from "./types.js";
 import { supabase } from "./lib/supabaseClient.js";
 
 import styles from "./App.module.css";
@@ -11,8 +11,13 @@ import ProfileIcon from "./assets/icons/icon-profile-details-header.svg?react";
 import PreviewIcon from "./assets/icons/icon-preview-header.svg";
 
 function App() {
-  const [userLinks, setUserLinks] = useState([]);
-  const [profileData, setProfileData] = useState({});
+  const [userLinks, setUserLinks] = useState<UserLink[]>([]);
+  const [profileData, setProfileData] = useState<ProfileData>({
+    avatar: null,
+    first_name: "",
+    last_name: "",
+    email: "",
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
