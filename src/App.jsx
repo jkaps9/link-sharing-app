@@ -88,11 +88,11 @@ function App() {
   };
 
   /**
-   * Compares local links against initial links and updates changed records in Supabase.
+   * Compares current links against existing userLinks:
+   * - Deletes removed items from Supabase
+   * - Upserts new/modified items to Supabase
    *
    * @param {Array<Object>} currentLinks - The current state/edited links.
-   * @param {Array<Object>} initialLinks - The original state/links fetched from the DB.
-   * @returns {Promise<{ updatedCount: number, data: Array | null, error: any }>}
    */
   async function updateLinks(currentLinks) {
     const {
@@ -105,17 +105,20 @@ function App() {
       return;
     }
 
-    // 1. Create a fast lookup map for original records by their ID
-    const initialMap = new Map(userLinks.map((item) => [item.id, item]));
+    // 1. Identify Removed Links
+    const currentIdSet = new Set(
+      currentLinks.map((item) => item.id).filter(Boolean),
+    );
+    const removedLinkIds = userLinks
+      .filter((original) => !currentIdSet.has(original.id))
+      .map((item) => item.id);
 
-    // 2. Filter for items that are new or have modified fields
+    // 2. Identify Modified or Added Links
+    const initialMap = new Map(userLinks.map((item) => [item.id, item]));
     const changedLinks = currentLinks.filter((current) => {
-      // If there is no ID, it's a newly added link
-      if (!current.id) return true;
+      if (!current.id) return true; // Newly added item
 
       const original = initialMap.get(current.id);
-
-      // If ID not found in original list, consider it changed/new
       if (!original) return true;
 
       // Compare editable fields
@@ -126,38 +129,52 @@ function App() {
       return isUrlChanged || isPlatformChanged || isOrderChanged;
     });
 
-    const currentMap = new Map(currentLinks.map((item) => [item.id, item]));
-
-    const removedLinks = userLinks.filter((userLink) => {
-      const inCurrent = currentMap.get(userLink.id);
-      if (!inCurrent) return true;
-    });
-
-    // 3. Skip DB call if nothing has changed
-    if (changedLinks.length === 0 && removedLinks.length === 0) {
+    // 3. Early return if nothing changed
+    if (changedLinks.length === 0 && removedLinkIds.length === 0) {
       console.log("No changes detected. Skipping update.");
-      return { updatedCount: 0, data: [], error: null };
+      return;
     }
 
-    const linksWithUserId = changedLinks.map((link) => ({
-      ...link,
-      user_id: user.id,
-    }));
+    // 4. Process Deletions (if any)
+    if (removedLinkIds.length > 0) {
+      const { error: deleteError } = await supabase
+        .from("links")
+        .delete()
+        .in("id", removedLinkIds);
 
-    // 4. Batch upsert only the modified/new records
-    const { data, error } = await supabase
+      if (deleteError) {
+        console.error("Error deleting links:", deleteError.message);
+        return;
+      }
+    }
+
+    // 5. Process Upserts (if any)
+    if (changedLinks.length > 0) {
+      const linksWithUserId = changedLinks.map((link) => ({
+        ...link,
+        user_id: user.id,
+      }));
+
+      const { error: upsertError } = await supabase
+        .from("links")
+        .upsert(linksWithUserId, { onConflict: "id" });
+
+      if (upsertError) {
+        console.error("Error upserting links:", upsertError.message);
+        return;
+      }
+    }
+
+    // 6. Refresh state with the complete latest list
+    const { data: updatedList, error: fetchError } = await supabase
       .from("links")
-      .upsert(linksWithUserId, { onConflict: "id" })
-      .select();
+      .select("*")
+      .eq("user_id", user.id)
+      .order("sort_order", { ascending: true });
 
-    if (error) {
-      console.error("Error updating links:", error.message);
-      return { updatedCount: 0, data: null, error };
+    if (!fetchError && updatedList) {
+      setUserLinks(updatedList);
     }
-
-    console.log(`Successfully updated ${data.length} link(s):`, data);
-    setUserLinks(data);
-    return { updatedCount: data.length, data, error: null };
   }
 
   const outletProps = {
