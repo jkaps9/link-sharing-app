@@ -9,7 +9,13 @@ import UserLink from "../components/UserLink.js";
 import PhoneMockup from "../components/PhoneMockup.js";
 import styles from "../styles/Forms.module.css";
 
-function Sortable({ id, index, children }) {
+interface SortableProps {
+  id: string;
+  index: number;
+  children: React.ReactNode;
+}
+
+function Sortable({ id, index, children }: SortableProps) {
   const { ref } = useSortable({ id, index });
 
   return (
@@ -92,7 +98,7 @@ const Links = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (validateForm()) {
       updateLinks([...formData]);
@@ -100,7 +106,7 @@ const Links = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, id } = e.target;
 
     setFormData((prevData) =>
