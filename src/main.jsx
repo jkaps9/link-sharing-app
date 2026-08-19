@@ -9,7 +9,7 @@ import Links from "./routes/links.tsx";
 
 import Preview from "./routes/preview.tsx";
 
-import Auth from "./Auth.jsx";
+import Auth from "./Auth.tsx";
 import Login from "./routes/login.tsx";
 import Register from "./routes/register.tsx";
 
