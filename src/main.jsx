@@ -3,8 +3,8 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import "./index.css";
 import App from "./App.jsx";
-import Home from "./routes/home.jsx";
-import Profile from "./routes/profile.jsx";
+import Home from "./routes/home.tsx";
+import Profile from "./routes/profile.tsx";
 import Links from "./routes/links.jsx";
 
 import Preview from "./routes/preview.jsx";

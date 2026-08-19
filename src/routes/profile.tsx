@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router";
-import PhoneMockup from "../components/PhoneMockup.jsx";
+import PhoneMockup from "../components/PhoneMockup.js";
 
 import ImageIcon from "../assets/icons/icon-upload-image.svg?react";
 import styles from "../styles/Profile.module.css";
 import formStyles from "../styles/Forms.module.css";
 
 const Profile = () => {
-  const { userLinks, profileData, updateProfile } = useOutletContext();
+  const { userLinks, profileData, updateProfile } = useOutletContext<{
+    userLinks: any;
+    profileData: any;
+    updateProfile: (data: any) => void;
+  }>();
 
   const [formData, setFormData] = useState({
     avatar: profileData?.avatar || null,
@@ -63,7 +67,7 @@ const Profile = () => {
       const reader = new FileReader();
       let base64String = "";
       reader.onload = function () {
-        base64String = reader.result;
+        base64String = reader.result as string;
         parsedValue = base64String;
         setFormData((prev) => ({
           ...prev,
