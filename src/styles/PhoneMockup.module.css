@@ -9,10 +9,11 @@
 }
 
 .screenOverlay {
+  background-color: var(--color-bg-surface);
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
-  height: 81%;
+  height: 82%;
   left: 11.5%;
   overflow-y: auto;
   position: absolute;
@@ -28,13 +29,9 @@
 .profileWrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  height: 158px;
+  gap: 1.5rem;
+  height: 34.6%;
   text-align: center;
-
-  p {
-    background-color: var(--color-bg-surface);
-  }
 }
 
 .avatar {

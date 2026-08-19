@@ -21,9 +21,9 @@ const PhoneMockup = ({ userLinks, profileData }) => {
                 fontWeight: "600",
               }}
             >
-              {profileData.firstName} {profileData.lastName}
+              {profileData.first_name} {profileData.last_name}
             </p>
-            <p>{profileData.email}</p>
+            <p style={{ fontSize: "0.875rem" }}>{profileData.email}</p>
           </div>
         </div>
         <div className={styles.linksWrapper}>
