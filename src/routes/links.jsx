@@ -35,15 +35,12 @@ const Links = () => {
 
   const addLink = (newLink) => {
     const maxItem =
-      userLinks.length === 0
+      formData.length === 0
         ? { order: 0 }
-        : userLinks.reduce((previous, current) =>
+        : formData.reduce((previous, current) =>
             previous.order > current.order ? previous : current,
           );
     newLink.order = maxItem.order + 1;
-    setUserLinks((prev) => {
-      return [...prev, newLink];
-    });
     setFormData((prev) => {
       return [...prev, newLink];
     });
