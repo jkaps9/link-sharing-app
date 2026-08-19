@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router";
+import type { OutletContextType } from "../types.js";
 import { DragDropProvider } from "@dnd-kit/react";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { move } from "@dnd-kit/helpers";
 
-import UserLink from "../components/UserLink.jsx";
-import PhoneMockup from "../components/PhoneMockup.jsx";
+import UserLink from "../components/UserLink.js";
+import PhoneMockup from "../components/PhoneMockup.js";
 import styles from "../styles/Forms.module.css";
 
 function Sortable({ id, index, children }) {
@@ -22,7 +23,8 @@ const Links = () => {
   const urlRegex =
     /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)/g;
 
-  const { userLinks, updateLinks, profileData } = useOutletContext();
+  const { userLinks, updateLinks, profileData } =
+    useOutletContext<OutletContextType>();
 
   const [formData, setFormData] = useState([...userLinks]);
 

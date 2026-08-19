@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router";
+import type { OutletContextType } from "../types.js";
 import PhoneMockup from "../components/PhoneMockup.js";
 
 import ImageIcon from "../assets/icons/icon-upload-image.svg?react";
@@ -7,11 +8,8 @@ import styles from "../styles/Profile.module.css";
 import formStyles from "../styles/Forms.module.css";
 
 const Profile = () => {
-  const { userLinks, profileData, updateProfile } = useOutletContext<{
-    userLinks: any;
-    profileData: any;
-    updateProfile: (data: any) => void;
-  }>();
+  const { userLinks, profileData, updateProfile } =
+    useOutletContext<OutletContextType>();
 
   const [formData, setFormData] = useState({
     avatar: profileData?.avatar || null,
