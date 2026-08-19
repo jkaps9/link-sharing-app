@@ -346,6 +346,8 @@ ul {
 
 @media (min-width: 64rem) {
   [id="root"] {
+    align-items: stretch;
+    display: flex;
     padding: 1.5rem;
   }
 
