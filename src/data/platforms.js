@@ -57,7 +57,7 @@ export const platforms = [
     id: "codepen",
     name: "Codepen",
     iconFilename: "icon-codepen.svg",
-    color: "var(--colors-grey-950)",
+    color: "var(--colors-grey-925)",
   },
   {
     id: "freecodecamp",
