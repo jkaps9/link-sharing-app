@@ -1,11 +1,27 @@
 import { platforms } from "../data/platforms.js";
 import { getPlatformIcon } from "../utils/iconLoader.js";
-
+import type { ProfileData, UserLink } from "../types.js";
 import styles from "../styles/UserLink.module.css";
 import formStyles from "../styles/Forms.module.css";
 import DragAndDropIcon from "../assets/icons/icon-drag-and-drop.svg?react";
 
-const UserLink = ({ userLink, onDelete, onChange, error }) => {
+interface UserLinkProps {
+  userLink: UserLink;
+  onDelete: (linkId: string) => void;
+  onChange: (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>,
+  ) => void;
+  error: { id: string; message: string } | undefined;
+}
+
+const UserLinkComponent = ({
+  userLink,
+  onDelete,
+  onChange,
+  error,
+}: UserLinkProps) => {
   return (
     <>
       <section className={formStyles.formSection}>
@@ -68,13 +84,13 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
             value={userLink.url}
             onChange={onChange}
             aria-describedby={`linkError-${userLink.id}`}
-            aria-invalid={error.message !== ""}
+            aria-invalid={error && error.message !== ""}
           />
           <p
             id={`linkError-${userLink.id}`}
             className={formStyles.formErrorMessage}
           >
-            {error.message}
+            {error && error.message}
           </p>
         </div>
       </section>
@@ -82,4 +98,4 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
   );
 };
 
-export default UserLink;
+export default UserLinkComponent;
