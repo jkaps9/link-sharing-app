@@ -27,8 +27,8 @@ const Links = () => {
   const [formData, setFormData] = useState([...userLinks]);
 
   const [errors, setErrors] = useState(
-    formData.map((link, index) => {
-      return { id: index, message: "" };
+    formData.map((link) => {
+      return { id: link.id, message: "" };
     }),
   );
 
@@ -43,8 +43,8 @@ const Links = () => {
     setFormData((prev) => {
       return [...prev, newLink];
     });
-    setErrors((prev, index) => {
-      return [...prev, { id: index, message: "" }];
+    setErrors((prev) => {
+      return [...prev, { id: newLink.id, message: "" }];
     });
   };
 
@@ -133,6 +133,7 @@ const Links = () => {
             className="btn btn--secondary"
             onClick={() =>
               addLink({
+                id: crypto.randomUUID(),
                 sort_order: 0,
                 platform: "github",
                 url: "",
