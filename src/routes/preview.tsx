@@ -105,7 +105,7 @@ const Preview = () => {
               <ul className={styles.linkList}>
                 {userLinks.map((link) => (
                   <li key={link.id}>
-                    <PreviewLink link={link}></PreviewLink>
+                    <PreviewLink link={link} isMockup={false}></PreviewLink>
                   </li>
                 ))}
               </ul>
