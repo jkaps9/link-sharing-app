@@ -46,7 +46,7 @@ const Login = () => {
     if (error) {
       alert(error.message);
     } else {
-      navigate(`${import.meta.env.BASE_URL}links`);
+      navigate(`${import.meta.env.BASE_URL}dashboard/links`);
     }
   }
 

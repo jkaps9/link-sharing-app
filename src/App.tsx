@@ -197,48 +197,7 @@ function App() {
 
   if (loading) return <p>Loading...</p>;
 
-  return (
-    <>
-      <div className={styles.app}>
-        <header className={`row ${styles.header}`}>
-          <div>
-            <img
-              src={LogoLarge}
-              alt="Dev Links Logo"
-              className={styles.hideOnMobile}
-            />
-            <img
-              src={LogoSmall}
-              alt="Dev Links Logo"
-              className={styles.mobileOnly}
-            />
-          </div>
-          <nav className={styles.navList}>
-            <NavLink to="links" className={`row ${styles.navLink}`}>
-              <LinkIcon aria-hidden="true" width="16" height="16"></LinkIcon>
-              <span className={styles.hideOnMobile}>Links</span>
-            </NavLink>
-            <NavLink to="profile" className={`row ${styles.navLink}`}>
-              <ProfileIcon
-                aria-hidden="true"
-                width="16"
-                height="16"
-              ></ProfileIcon>
-              <span className={styles.hideOnMobile}>Profile Details</span>
-            </NavLink>
-          </nav>
-
-          <NavLink to="preview" className="btn btn--secondary">
-            <span className={styles.hideOnMobile}>Preview</span>
-            <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
-          </NavLink>
-        </header>
-        <main className={styles.main}>
-          <Outlet context={outletProps} />
-        </main>
-      </div>
-    </>
-  );
+  return <Outlet context={outletProps} />;
 }
 
 export default App;
