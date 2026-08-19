@@ -64,7 +64,28 @@ function App() {
     }
 
     fetchData();
-  }, []);
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "SIGNED_OUT" || !session) {
+          setAuthenticated(false);
+          setUserLinks([]); // Clear sensitive data
+          setProfileData({
+            avatar: null,
+            first_name: "",
+            last_name: "",
+            email: "",
+          });
+          navigate(`${import.meta.env.BASE_URL}auth/login`);
+        }
+      },
+    );
+
+    // 3. Cleanup the listener when the component unmounts
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [navigate]);
 
   const updateProfile = async (newData: ProfileData) => {
     const {
