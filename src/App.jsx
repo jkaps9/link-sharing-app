@@ -162,12 +162,6 @@ function App() {
 
   return (
     <>
-      {/* <ul>
-        {userLinks.map((link) => (
-          <li key={link.id}>{link.url}</li>
-        ))}
-      </ul> */}
-      {/* <p>{profileData.email}</p> */}
       <div className={styles.app}>
         <header className={`row ${styles.header}`}>
           <div>
