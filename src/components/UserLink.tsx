@@ -1,5 +1,5 @@
-import { platforms } from "../data/platforms";
-import { getPlatformIcon } from "../utils/iconLoader";
+import { platforms } from "../data/platforms.js";
+import { getPlatformIcon } from "../utils/iconLoader.js";
 
 import styles from "../styles/UserLink.module.css";
 import formStyles from "../styles/Forms.module.css";

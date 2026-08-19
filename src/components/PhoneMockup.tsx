@@ -1,5 +1,5 @@
 import PhoneSVG from "../assets/icons/illustration-phone-mockup.svg?react";
-import PreviewLink from "../components/PreviewLink.jsx";
+import PreviewLink from "./PreviewLink.jsx";
 import styles from "../styles/PhoneMockup.module.css";
 
 const PhoneMockup = ({ userLinks, profileData }) => {

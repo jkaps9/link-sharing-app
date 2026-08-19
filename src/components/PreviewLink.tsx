@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { platforms } from "../data/platforms";
-import { getPlatformIcon } from "../utils/iconLoader";
+import { platforms } from "../data/platforms.js";
+import { getPlatformIcon } from "../utils/iconLoader.js";
 import ArrowIcon from "../assets/icons/icon-arrow-right.svg?react";
 import styles from "../styles/PreviewLink.module.css";
 
