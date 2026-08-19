@@ -115,6 +115,56 @@ function App() {
     return data;
   }
 
+  /**
+   * Compares local links against initial links and updates changed records in Supabase.
+   *
+   * @param {Array<Object>} currentLinks - The current state/edited links.
+   * @param {Array<Object>} initialLinks - The original state/links fetched from the DB.
+   * @returns {Promise<{ updatedCount: number, data: Array | null, error: any }>}
+   */
+  async function syncChangedLinks(currentLinks, initialLinks) {
+    // 1. Create a fast lookup map for original records by their ID
+    const initialMap = new Map(initialLinks.map((item) => [item.id, item]));
+
+    // 2. Filter for items that are new or have modified fields
+    const changedLinks = currentLinks.filter((current) => {
+      // If there is no ID, it's a newly added link
+      if (!current.id) return true;
+
+      const original = initialMap.get(current.id);
+
+      // If ID not found in original list, consider it changed/new
+      if (!original) return true;
+
+      // Compare editable fields
+      const isUrlChanged = current.url !== original.url;
+      const isPlatformChanged = current.platform !== original.platform;
+      const isOrderChanged = current.sort_order !== original.sort_order;
+
+      return isUrlChanged || isPlatformChanged || isOrderChanged;
+    });
+
+    // 3. Skip DB call if nothing has changed
+    if (changedLinks.length === 0) {
+      console.log("No changes detected. Skipping update.");
+      return { updatedCount: 0, data: [], error: null };
+    }
+
+    // 4. Batch upsert only the modified/new records
+    const { data, error } = await supabase
+      .from("links")
+      .upsert(changedLinks, { onConflict: "id" })
+      .select();
+
+    if (error) {
+      console.error("Error updating links:", error.message);
+      return { updatedCount: 0, data: null, error };
+    }
+
+    console.log(`Successfully updated ${data.length} link(s):`, data);
+    return { updatedCount: data.length, data, error: null };
+  }
+
   const outletProps = {
     userLinks,
     setUserLinks,
