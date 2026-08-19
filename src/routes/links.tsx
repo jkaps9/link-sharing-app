@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router";
-import type { OutletContextType } from "../types.js";
+import type { OutletContextType, UserLink } from "../types.js";
 import { DragDropProvider } from "@dnd-kit/react";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { move } from "@dnd-kit/helpers";
 
-import UserLink from "../components/UserLink.js";
+import UserLinkComponent from "../components/UserLink.js";
 import PhoneMockup from "../components/PhoneMockup.js";
 import styles from "../styles/Forms.module.css";
 
@@ -40,7 +40,7 @@ const Links = () => {
     }),
   );
 
-  const addLink = (newLink) => {
+  const addLink = (newLink: UserLink) => {
     const maxItem =
       formData.length === 0
         ? { sort_order: 0 }
@@ -56,7 +56,7 @@ const Links = () => {
     });
   };
 
-  const removeLink = (linkId) => {
+  const removeLink = (linkId: string) => {
     setFormData((prev) => {
       const updatedArray = prev.filter((link) => link.id !== linkId);
 
@@ -80,14 +80,14 @@ const Links = () => {
       if (link.url === "") {
         newErrors.forEach((error, index) => {
           if (error.id === link.id) {
-            newErrors[index].message = "Can't be empty";
+            newErrors[index]!.message = "Can't be empty";
           }
         });
         isValid = false;
       } else if (!link.url.match(urlRegex)) {
         newErrors.forEach((error, index) => {
           if (error.id === link.id) {
-            newErrors[index].message = "Please check the URL";
+            newErrors[index]!.message = "Please check the URL";
           }
         });
         isValid = false;
@@ -98,16 +98,16 @@ const Links = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (validateForm()) {
       updateLinks([...formData]);
       alert("Saved");
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, id } = e.target;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, id } = event.target;
 
     setFormData((prevData) =>
       prevData.map((link) => {
@@ -168,13 +168,13 @@ const Links = () => {
               >
                 {formData.map((link) => (
                   <Sortable key={link.id} id={link.id} index={link.sort_order}>
-                    <UserLink
+                    <UserLinkComponent
                       key={link.id}
                       userLink={link}
                       onDelete={removeLink}
                       onChange={handleChange}
                       error={errors.filter((error) => error.id === link.id)[0]}
-                    ></UserLink>
+                    ></UserLinkComponent>
                   </Sortable>
                 ))}
               </DragDropProvider>
