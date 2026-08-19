@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import formStyles from "../styles/Forms.module.css";
+import { supabase } from "../lib/supabaseClient";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -38,11 +39,29 @@ const Register = () => {
     return isValid;
   };
 
+  async function signUpNewUser(email, password) {
+    const { error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        emailRedirectTo: "http://localhost:5173/link-sharing-app/links",
+      },
+    });
+
+    if (error) {
+      console.error("Sign up error:", error);
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      signUpNewUser(formData.email, formData.password);
+
       setFormData(() => ({ email: "", password: "", confirmPassword: "" }));
-      alert("Account Created!");
+      alert(
+        "Account created! You should receive a confirmation email shortly.",
+      );
     }
   };
 
@@ -80,6 +99,7 @@ const Register = () => {
               placeholder="e.g. alex@email.com"
               onChange={handleChange}
               value={formData.email}
+              autoComplete="email"
               aria-describedby="email-error"
               aria-invalid={errors.email !== ""}
             />
@@ -95,6 +115,7 @@ const Register = () => {
               type="password"
               id="password"
               name="password"
+              autoComplete="new-password"
               placeholder="At least 8 characters"
               onChange={handleChange}
               value={formData.password}
@@ -113,6 +134,7 @@ const Register = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
+              autoComplete="new-password"
               placeholder="At least 8 characters"
               onChange={handleChange}
               value={formData.confirmPassword}

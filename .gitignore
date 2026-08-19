@@ -30,3 +30,4 @@ dist-ssr
 .windsurf
 .agents
 src/generated/
+skills-lock.json

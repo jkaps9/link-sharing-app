@@ -7,34 +7,34 @@ import styles from "../styles/Profile.module.css";
 import formStyles from "../styles/Forms.module.css";
 
 const Profile = () => {
-  const { userLinks, profileData, setProfileData } = useOutletContext();
+  const { userLinks, profileData, updateProfile } = useOutletContext();
 
   const [formData, setFormData] = useState({
-    avatar: profileData.avatar,
-    firstName: profileData.firstName,
-    lastName: profileData.lastName,
-    email: profileData.email,
+    avatar: profileData?.avatar || null,
+    first_name: profileData?.first_name || "",
+    last_name: profileData?.last_name || "",
+    email: profileData?.email || "",
   });
 
   const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
   });
 
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
     };
 
-    if (formData.firstName === "") {
-      newErrors.firstName = "Can't be empty";
+    if (formData.first_name === "") {
+      newErrors.first_name = "Can't be empty";
       isValid = false;
     }
 
-    if (formData.lastName === "") {
-      newErrors.lastName = "Can't be empty";
+    if (formData.last_name === "") {
+      newErrors.last_name = "Can't be empty";
       isValid = false;
     }
 
@@ -45,8 +45,7 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setProfileData(formData);
-      alert("Saved");
+      updateProfile(formData);
     }
   };
 
@@ -97,7 +96,7 @@ const Profile = () => {
               <div className={formStyles.formInputGroup}>
                 <p>Profile picture</p>
                 <div className={styles.avatarInput}>
-                  <label for="avatar" style={{ width: "fit-content" }}>
+                  <label htmlFor="avatar" style={{ width: "fit-content" }}>
                     <div
                       className={`${styles.avatarLabel}`}
                       style={{
@@ -132,50 +131,50 @@ const Profile = () => {
             </section>
             <section className={formStyles.formSection}>
               <div className={formStyles.formInputGroup}>
-                <label for="firstName">First name*</label>
+                <label htmlFor="first_name">First name*</label>
                 <input
                   type="text"
-                  id="firstName"
-                  name="firstName"
+                  id="first_name"
+                  name="first_name"
                   placeholder="e.g. John"
-                  value={formData.firstName}
+                  value={formData.first_name}
                   onChange={handleChange}
                   aria-describedby="fn-error-message"
-                  aria-invalid={errors.firstName !== ""}
+                  aria-invalid={errors.first_name !== ""}
                 />
                 <p
                   id="fn-error-message"
                   className={formStyles.formErrorMessage}
                 >
-                  {errors.firstName}
+                  {errors.first_name}
                 </p>
               </div>
               <div className={formStyles.formInputGroup}>
-                <label for="lastName">Last Name*</label>
+                <label htmlFor="last_name">Last Name*</label>
                 <input
-                  name="lastName"
-                  id="lastName"
+                  name="last_name"
+                  id="last_name"
                   type="text"
                   placeholder="e.g. Appleseed"
-                  value={formData.lastName}
+                  value={formData.last_name}
                   onChange={handleChange}
                   aria-describedby="ln-error-message"
-                  aria-invalid={errors.lastName !== ""}
+                  aria-invalid={errors.last_name !== ""}
                 />
                 <p
                   id="ln-error-message"
                   className={formStyles.formErrorMessage}
                 >
-                  {errors.lastName}
+                  {errors.last_name}
                 </p>
               </div>
               <div className={formStyles.formInputGroup}>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   name="email"
                   id="email"
                   type="email"
-                  autocomplete="off"
+                  autoComplete="off"
                   onChange={handleChange}
                   value={formData.email}
                 />

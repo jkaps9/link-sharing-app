@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import formStyles from "../styles/Forms.module.css";
+import { supabase } from "../lib/supabaseClient";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let isValid = true;
@@ -34,11 +37,23 @@ const Login = () => {
     return isValid;
   };
 
+  async function signInWithEmail(email, password) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      alert(error.message);
+    } else {
+      navigate(`${import.meta.env.BASE_URL}links`);
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setFormData(() => ({ email: "", password: "" }));
-      alert("Logged In!");
+      signInWithEmail(formData.email, formData.password);
     }
   };
 

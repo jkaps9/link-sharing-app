@@ -12,7 +12,7 @@ const UserLink = ({ userLink, onDelete, onChange, error }) => {
         <header className="row">
           <div className={styles.cardHeaderLeft}>
             <DragAndDropIcon></DragAndDropIcon>
-            <h2>Link #{userLink.order}</h2>
+            <h2>Link #{userLink.sort_order}</h2>
           </div>
           <button
             type="button"

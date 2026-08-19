@@ -22,7 +22,7 @@ const Links = () => {
   const urlRegex =
     /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)/g;
 
-  const { userLinks, setUserLinks, profileData } = useOutletContext();
+  const { userLinks, updateLinks, profileData } = useOutletContext();
 
   const [formData, setFormData] = useState([...userLinks]);
 
@@ -34,15 +34,12 @@ const Links = () => {
 
   const addLink = (newLink) => {
     const maxItem =
-      userLinks.length === 0
-        ? { order: 0 }
-        : userLinks.reduce((previous, current) =>
-            previous.order > current.order ? previous : current,
+      formData.length === 0
+        ? { sort_order: 0 }
+        : formData.reduce((previous, current) =>
+            previous.sort_order > current.sort_order ? previous : current,
           );
-    newLink.order = maxItem.order + 1;
-    setUserLinks((prev) => {
-      return [...prev, newLink];
-    });
+    newLink.sort_order = maxItem.sort_order + 1;
     setFormData((prev) => {
       return [...prev, newLink];
     });
@@ -58,7 +55,7 @@ const Links = () => {
       return updatedArray.map((link, index) => {
         return {
           ...link,
-          order: index + 1,
+          sort_order: index + 1,
         };
       });
     });
@@ -96,7 +93,7 @@ const Links = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setUserLinks([...formData]);
+      updateLinks([...formData]);
       alert("Saved");
     }
   };
@@ -137,7 +134,7 @@ const Links = () => {
             onClick={() =>
               addLink({
                 id: crypto.randomUUID(),
-                order: 0,
+                sort_order: 0,
                 platform: "github",
                 url: "",
               })
@@ -155,14 +152,14 @@ const Links = () => {
                     return movedArray.map((link, index) => {
                       return {
                         ...link,
-                        order: index + 1,
+                        sort_order: index + 1,
                       };
                     });
                   });
                 }}
               >
                 {formData.map((link) => (
-                  <Sortable key={link.id} id={link.id} index={link.order}>
+                  <Sortable key={link.id} id={link.id} index={link.sort_order}>
                     <UserLink
                       key={link.id}
                       userLink={link}
