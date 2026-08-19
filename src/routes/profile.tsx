@@ -44,7 +44,7 @@ const Profile = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
       updateProfile(formData);
@@ -57,23 +57,25 @@ const Profile = () => {
 
     if (files) {
       const file = files[0];
-      if (file.size > 2097152) {
-        alert("file is too large");
-        return;
+      if (file) {
+        if (file.size > 2097152) {
+          alert("file is too large");
+          return;
+        }
+
+        const reader = new FileReader();
+        let base64String = "";
+        reader.onload = function () {
+          base64String = reader.result as string;
+          parsedValue = base64String;
+          setFormData((prev) => ({
+            ...prev,
+            [name]: parsedValue,
+          }));
+        };
+
+        reader.readAsDataURL(file);
       }
-
-      const reader = new FileReader();
-      let base64String = "";
-      reader.onload = function () {
-        base64String = reader.result as string;
-        parsedValue = base64String;
-        setFormData((prev) => ({
-          ...prev,
-          [name]: parsedValue,
-        }));
-      };
-
-      reader.readAsDataURL(file);
     } else {
       setFormData((prev) => ({
         ...prev,
