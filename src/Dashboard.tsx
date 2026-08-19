@@ -1,4 +1,5 @@
 import { NavLink, Outlet, useOutletContext } from "react-router";
+import { supabase } from "./lib/supabaseClient.js";
 
 import styles from "./App.module.css";
 import LogoLarge from "./assets/icons/logo-devlinks-large.svg";
@@ -8,6 +9,11 @@ import ProfileIcon from "./assets/icons/icon-profile-details-header.svg?react";
 import PreviewIcon from "./assets/icons/icon-preview-header.svg";
 
 function Dashboard() {
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) alert(error.message);
+  };
+
   return (
     <>
       <div className={styles.app}>
@@ -38,11 +44,15 @@ function Dashboard() {
               <span className={styles.hideOnMobile}>Profile Details</span>
             </NavLink>
           </nav>
-
-          <NavLink to="../preview" className="btn btn--secondary">
-            <span className={styles.hideOnMobile}>Preview</span>
-            <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
-          </NavLink>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <button className="btn btn--text" onClick={signOut}>
+              Sign out
+            </button>
+            <NavLink to="../preview" className="btn btn--secondary">
+              <span className={styles.hideOnMobile}>Preview</span>
+              <img src={PreviewIcon} alt="" className={styles.mobileOnly} />
+            </NavLink>
+          </div>
         </header>
         <main className={styles.main}>
           <Outlet context={useOutletContext()} />
