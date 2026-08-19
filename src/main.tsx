@@ -2,16 +2,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import "./index.css";
-import App from "./App.tsx";
-import Home from "./routes/home.tsx";
-import Profile from "./routes/profile.tsx";
-import Links from "./routes/links.tsx";
+import App from "./App.js";
+import Home from "./routes/home.js";
+import Profile from "./routes/profile.js";
+import Links from "./routes/links.js";
 
-import Preview from "./routes/preview.tsx";
+import Preview from "./routes/preview.js";
 
-import Auth from "./Auth.tsx";
-import Login from "./routes/login.tsx";
-import Register from "./routes/register.tsx";
+import Auth from "./Auth.js";
+import Login from "./routes/login.js";
+import Register from "./routes/register.js";
 
 const router = createBrowserRouter([
   {
