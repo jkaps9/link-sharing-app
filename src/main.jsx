@@ -5,9 +5,9 @@ import "./index.css";
 import App from "./App.jsx";
 import Home from "./routes/home.tsx";
 import Profile from "./routes/profile.tsx";
-import Links from "./routes/links.jsx";
+import Links from "./routes/links.tsx";
 
-import Preview from "./routes/preview.jsx";
+import Preview from "./routes/preview.tsx";
 
 import Auth from "./Auth.jsx";
 import Login from "./routes/login.tsx";

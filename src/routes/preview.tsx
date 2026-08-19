@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import PreviewLink from "../components/PreviewLink.jsx";
+import type { ProfileData, UserLink } from "../types.js";
+import PreviewLink from "../components/PreviewLink.js";
 import styles from "../styles/Preview.module.css";
 
 import { supabase } from "../lib/supabaseClient.js";
 const Preview = () => {
-  const [userLinks, setUserLinks] = useState([]);
-  const [profileData, setProfileData] = useState({});
+  const [userLinks, setUserLinks] = useState<UserLink[]>([]);
+  const [profileData, setProfileData] = useState<ProfileData>({
+    avatar: null,
+    first_name: "",
+    last_name: "",
+    email: "",
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
