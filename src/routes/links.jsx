@@ -3,7 +3,6 @@ import { useOutletContext } from "react-router";
 import { DragDropProvider } from "@dnd-kit/react";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { move } from "@dnd-kit/helpers";
-import { supabase } from "../lib/supabaseClient.js";
 
 import UserLink from "../components/UserLink.jsx";
 import PhoneMockup from "../components/PhoneMockup.jsx";
