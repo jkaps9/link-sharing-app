@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import formStyles from "../styles/Forms.module.css";
-import { supabase } from "../lib/supabaseClient";
+import { supabase } from "../lib/supabaseClient.js";
 
 const Register = () => {
   const [formData, setFormData] = useState({

@@ -10,8 +10,8 @@ import Links from "./routes/links.jsx";
 import Preview from "./routes/preview.jsx";
 
 import Auth from "./Auth.jsx";
-import Login from "./routes/login.jsx";
-import Register from "./routes/register.jsx";
+import Login from "./routes/login.tsx";
+import Register from "./routes/register.tsx";
 
 const router = createBrowserRouter([
   {
