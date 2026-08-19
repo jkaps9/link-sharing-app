@@ -102,7 +102,7 @@ function App() {
 
     const { data, error } = await supabase.from("links").insert({
       id: newLink.id,
-      sort_order: newLink.order,
+      sort_order: newLink.sort_order,
       platform: newLink.platform,
       url: newLink.url,
       user_id: user.id, // Must match auth.uid() or the DB rejects it
@@ -122,9 +122,9 @@ function App() {
    * @param {Array<Object>} initialLinks - The original state/links fetched from the DB.
    * @returns {Promise<{ updatedCount: number, data: Array | null, error: any }>}
    */
-  async function syncChangedLinks(currentLinks, initialLinks) {
+  async function updateLinks(currentLinks) {
     // 1. Create a fast lookup map for original records by their ID
-    const initialMap = new Map(initialLinks.map((item) => [item.id, item]));
+    const initialMap = new Map(userLinks.map((item) => [item.id, item]));
 
     // 2. Filter for items that are new or have modified fields
     const changedLinks = currentLinks.filter((current) => {
@@ -167,18 +167,18 @@ function App() {
 
   const outletProps = {
     userLinks,
-    setUserLinks,
+    updateLinks,
     profileData,
     updateProfile,
   };
 
   return (
     <>
-      <ul>
+      {/* <ul>
         {userLinks.map((link) => (
           <li key={link.id}>{link.url}</li>
         ))}
-      </ul>
+      </ul> */}
       {/* <p>{profileData.email}</p> */}
       <div className={styles.app}>
         <header className={`row ${styles.header}`}>
