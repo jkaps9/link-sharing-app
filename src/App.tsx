@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, useNavigate } from "react-router";
 import type { ProfileData, UserLink } from "./types.js";
 import { supabase } from "./lib/supabaseClient.js";
 
@@ -19,6 +19,8 @@ function App() {
     email: "",
   });
   const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -30,8 +32,12 @@ function App() {
 
         if (userError || !user) {
           console.error("User is not authenticated");
+          setAuthenticated(false);
+          navigate(`${import.meta.env.BASE_URL}auth/login`);
           return;
         }
+
+        setAuthenticated(true);
 
         // Fetch both simultaneously and wait for both to finish
         const [linksRes, profileRes] = await Promise.all([
@@ -189,6 +195,8 @@ function App() {
     updateProfile,
   };
 
+  if (loading) return <p>Loading...</p>;
+
   return (
     <>
       <div className={styles.app}>
@@ -226,7 +234,7 @@ function App() {
           </NavLink>
         </header>
         <main className={styles.main}>
-          {loading ? <p>Loading...</p> : <Outlet context={outletProps} />}
+          <Outlet context={outletProps} />
         </main>
       </div>
     </>
