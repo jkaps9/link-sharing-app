@@ -73,8 +73,8 @@ function App() {
       .update({
         email: newData.email,
         avatar: newData.avatar,
-        first_name: newData.firstName,
-        last_name: newData.lastName,
+        first_name: newData.first_name,
+        last_name: newData.last_name,
       })
       .eq("id", user.id)
       .select();

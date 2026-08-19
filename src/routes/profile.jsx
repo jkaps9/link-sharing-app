@@ -11,30 +11,30 @@ const Profile = () => {
 
   const [formData, setFormData] = useState({
     avatar: profileData?.avatar || null,
-    firstName: profileData?.first_name || "",
-    lastName: profileData?.last_name || "",
+    first_name: profileData?.first_name || "",
+    last_name: profileData?.last_name || "",
     email: profileData?.email || "",
   });
 
   const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
   });
 
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
     };
 
-    if (formData.firstName === "") {
-      newErrors.firstName = "Can't be empty";
+    if (formData.first_name === "") {
+      newErrors.first_name = "Can't be empty";
       isValid = false;
     }
 
-    if (formData.lastName === "") {
-      newErrors.lastName = "Can't be empty";
+    if (formData.last_name === "") {
+      newErrors.last_name = "Can't be empty";
       isValid = false;
     }
 
@@ -131,41 +131,41 @@ const Profile = () => {
             </section>
             <section className={formStyles.formSection}>
               <div className={formStyles.formInputGroup}>
-                <label htmlFor="firstName">First name*</label>
+                <label htmlFor="first_name">First name*</label>
                 <input
                   type="text"
-                  id="firstName"
-                  name="firstName"
+                  id="first_name"
+                  name="first_name"
                   placeholder="e.g. John"
-                  value={formData.firstName}
+                  value={formData.first_name}
                   onChange={handleChange}
                   aria-describedby="fn-error-message"
-                  aria-invalid={errors.firstName !== ""}
+                  aria-invalid={errors.first_name !== ""}
                 />
                 <p
                   id="fn-error-message"
                   className={formStyles.formErrorMessage}
                 >
-                  {errors.firstName}
+                  {errors.first_name}
                 </p>
               </div>
               <div className={formStyles.formInputGroup}>
-                <label htmlFor="lastName">Last Name*</label>
+                <label htmlFor="last_name">Last Name*</label>
                 <input
-                  name="lastName"
-                  id="lastName"
+                  name="last_name"
+                  id="last_name"
                   type="text"
                   placeholder="e.g. Appleseed"
-                  value={formData.lastName}
+                  value={formData.last_name}
                   onChange={handleChange}
                   aria-describedby="ln-error-message"
-                  aria-invalid={errors.lastName !== ""}
+                  aria-invalid={errors.last_name !== ""}
                 />
                 <p
                   id="ln-error-message"
                   className={formStyles.formErrorMessage}
                 >
-                  {errors.lastName}
+                  {errors.last_name}
                 </p>
               </div>
               <div className={formStyles.formInputGroup}>
