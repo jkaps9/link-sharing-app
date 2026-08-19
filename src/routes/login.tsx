@@ -37,7 +37,7 @@ const Login = () => {
     return isValid;
   };
 
-  async function signInWithEmail(email, password) {
+  async function signInWithEmail(email: string, password: string) {
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
@@ -50,15 +50,15 @@ const Login = () => {
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (validateForm()) {
       signInWithEmail(formData.email, formData.password);
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
 
     setFormData((prev) => ({
       ...prev,

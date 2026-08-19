@@ -39,7 +39,7 @@ const Register = () => {
     return isValid;
   };
 
-  async function signUpNewUser(email, password) {
+  async function signUpNewUser(email: string, password: string) {
     const { error } = await supabase.auth.signUp({
       email: email,
       password: password,
@@ -53,8 +53,8 @@ const Register = () => {
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (validateForm()) {
       signUpNewUser(formData.email, formData.password);
 
@@ -65,8 +65,8 @@ const Register = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
 
     setFormData((prev) => ({
       ...prev,

@@ -60,7 +60,7 @@ function App() {
     fetchData();
   }, []);
 
-  const updateProfile = async (newData) => {
+  const updateProfile = async (newData: ProfileData) => {
     const {
       data: { user },
       error: userError,
@@ -99,7 +99,7 @@ function App() {
    *
    * @param {Array<Object>} currentLinks - The current state/edited links.
    */
-  async function updateLinks(currentLinks) {
+  async function updateLinks(currentLinks: UserLink[]) {
     const {
       data: { user },
       error: userError,
