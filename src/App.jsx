@@ -126,8 +126,15 @@ function App() {
       return isUrlChanged || isPlatformChanged || isOrderChanged;
     });
 
+    const currentMap = new Map(currentLinks.map((item) => [item.id, item]));
+
+    const removedLinks = userLinks.filter((userLink) => {
+      const inCurrent = currentMap.get(userLink.id);
+      if (!inCurrent) return true;
+    });
+
     // 3. Skip DB call if nothing has changed
-    if (changedLinks.length === 0) {
+    if (changedLinks.length === 0 && removedLinks.length === 0) {
       console.log("No changes detected. Skipping update.");
       return { updatedCount: 0, data: [], error: null };
     }
