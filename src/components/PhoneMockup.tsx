@@ -1,8 +1,14 @@
 import PhoneSVG from "../assets/icons/illustration-phone-mockup.svg?react";
 import PreviewLink from "./PreviewLink.jsx";
 import styles from "../styles/PhoneMockup.module.css";
+import type { ProfileData, UserLink } from "../types.js";
 
-const PhoneMockup = ({ userLinks, profileData }) => {
+interface PhoneMockupProps {
+  userLinks: UserLink[];
+  profileData: ProfileData;
+}
+
+const PhoneMockup = ({ userLinks, profileData }: PhoneMockupProps) => {
   return (
     <div className={styles.mockupContainer}>
       <PhoneSVG className={styles.phoneImage} aria-hidden="true" />

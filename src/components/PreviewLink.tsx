@@ -1,10 +1,16 @@
 import { Link } from "react-router";
 import { platforms } from "../data/platforms.js";
 import { getPlatformIcon } from "../utils/iconLoader.js";
+import type { UserLink } from "../types.js";
 import ArrowIcon from "../assets/icons/icon-arrow-right.svg?react";
 import styles from "../styles/PreviewLink.module.css";
 
-const PreviewLink = ({ link, isMockup = false }) => {
+interface PreviewLinkProps {
+  link: UserLink;
+  isMockup: boolean;
+}
+
+const PreviewLink = ({ link, isMockup = false }: PreviewLinkProps) => {
   const platform = platforms.find((item) => item.id === link.platform);
   if (!platform) return null;
   const PlatformIcon = getPlatformIcon(platform.iconFilename);
