@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router";
-import { useLocalStorage } from "./hooks/useLocalStorage.js";
+
 import { supabase } from "./lib/supabaseClient.js";
 
 import styles from "./App.module.css";
@@ -11,8 +11,6 @@ import ProfileIcon from "./assets/icons/icon-profile-details-header.svg?react";
 import PreviewIcon from "./assets/icons/icon-preview-header.svg";
 
 function App() {
-  // const [userLinks, setUserLinks] = useLocalStorage("userLinks", []);
-  // const [profileData, setProfileData] = useLocalStorage("profileData", {});
   const [userLinks, setUserLinks] = useState([]);
   const [profileData, setProfileData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -88,32 +86,6 @@ function App() {
       console.log(data);
     }
   };
-
-  async function createLink(newLink) {
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
-
-    if (userError || !user) {
-      console.error("User is not authenticated");
-      return;
-    }
-
-    const { data, error } = await supabase.from("links").insert({
-      id: newLink.id,
-      sort_order: newLink.sort_order,
-      platform: newLink.platform,
-      url: newLink.url,
-      user_id: user.id, // Must match auth.uid() or the DB rejects it
-    });
-
-    if (error) {
-      console.error("Error posting data:", error.message);
-      return;
-    }
-    return data;
-  }
 
   /**
    * Compares local links against initial links and updates changed records in Supabase.
