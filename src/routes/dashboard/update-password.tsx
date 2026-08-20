@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router";
-import formStyles from "../styles/Forms.module.css";
-import { supabase } from "../lib/supabaseClient.js";
+import formStyles from "../../styles/Forms.module.css";
+import { supabase } from "../../lib/supabaseClient.js";
 
 const UpdatePassword = () => {
   const [formData, setFormData] = useState({

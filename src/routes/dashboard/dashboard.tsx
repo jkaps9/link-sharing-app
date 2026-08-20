@@ -1,12 +1,12 @@
 import { NavLink, Outlet, useOutletContext } from "react-router";
-import { supabase } from "./lib/supabaseClient.js";
+import { supabase } from "../../lib/supabaseClient.js";
 
-import styles from "./App.module.css";
-import LogoLarge from "./assets/icons/logo-devlinks-large.svg";
-import LogoSmall from "./assets/icons/logo-devlinks-small.svg";
-import LinkIcon from "./assets/icons/icon-link.svg?react";
-import ProfileIcon from "./assets/icons/icon-profile-details-header.svg?react";
-import PreviewIcon from "./assets/icons/icon-preview-header.svg";
+import styles from "../../styles/App.module.css";
+import LogoLarge from "../../assets/icons/logo-devlinks-large.svg";
+import LogoSmall from "../../assets/icons/logo-devlinks-small.svg";
+import LinkIcon from "../../assets/icons/icon-link.svg?react";
+import ProfileIcon from "../../assets/icons/icon-profile-details-header.svg?react";
+import PreviewIcon from "../../assets/icons/icon-preview-header.svg";
 
 function Dashboard() {
   const signOut = async () => {

@@ -1,19 +1,19 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router";
-import "./index.css";
+import "./styles/index.css";
 import App from "./App.js";
 import Home from "./routes/home.js";
-import Profile from "./routes/profile.js";
-import Links from "./routes/links.js";
-import Dashboard from "./Dashboard.js";
-import Preview from "./routes/preview.js";
+import Profile from "./routes/dashboard/profile.js";
+import Links from "./routes/dashboard/links.js";
+import Dashboard from "./routes/dashboard/dashboard.js";
+import Preview from "./routes/dashboard/preview.js";
 
-import Auth from "./Auth.js";
+import Auth from "./routes/auth/auth.js";
 import Login from "./routes/auth/login.js";
 import Register from "./routes/auth/register.js";
 import ResetPassword from "./routes/auth/reset-password.js";
-import UpdatePassword from "./routes/update-password.js";
+import UpdatePassword from "./routes/dashboard/update-password.js";
 
 const router = createBrowserRouter([
   {

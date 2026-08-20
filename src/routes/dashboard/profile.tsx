@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router";
-import type { OutletContextType } from "../types.js";
-import PhoneMockup from "../components/PhoneMockup.js";
+import type { OutletContextType } from "../../types.js";
+import PhoneMockup from "../../components/PhoneMockup.js";
 
-import ImageIcon from "../assets/icons/icon-upload-image.svg?react";
-import styles from "../styles/Profile.module.css";
-import formStyles from "../styles/Forms.module.css";
+import ImageIcon from "../../assets/icons/icon-upload-image.svg?react";
+import styles from "../../styles/Profile.module.css";
+import formStyles from "../../styles/Forms.module.css";
 
 const Profile = () => {
   const { userLinks, profileData, updateProfile } =

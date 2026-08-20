@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router";
-import type { OutletContextType, UserLink } from "../types.js";
+import type { OutletContextType, UserLink } from "../../types.js";
 import { DragDropProvider } from "@dnd-kit/react";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { move } from "@dnd-kit/helpers";
 
-import UserLinkComponent from "../components/UserLink.js";
-import PhoneMockup from "../components/PhoneMockup.js";
-import styles from "../styles/Forms.module.css";
+import UserLinkComponent from "../../components/UserLink.js";
+import PhoneMockup from "../../components/PhoneMockup.js";
+import styles from "../../styles/Forms.module.css";
 
 interface SortableProps {
   id: string;

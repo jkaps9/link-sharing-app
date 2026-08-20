@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
-import LogoLarge from "./assets/icons/logo-devlinks-large.svg";
+import LogoLarge from "../../assets/icons/logo-devlinks-large.svg";
 
-import styles from "./Auth.module.css";
+import styles from "../../styles/Auth.module.css";
 
 const Auth = () => {
   return (
