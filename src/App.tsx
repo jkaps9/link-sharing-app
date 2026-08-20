@@ -209,7 +209,9 @@ function App() {
 
   if (loading) return <p>Loading...</p>;
 
-  return <Outlet context={outletProps} />;
+  if (authenticated) return <Outlet context={outletProps} />;
+
+  return <p>Something went wrong...</p>;
 }
 
 export default App;
