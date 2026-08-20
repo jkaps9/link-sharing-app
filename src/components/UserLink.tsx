@@ -49,6 +49,7 @@ const UserLinkComponent = ({
             name="platform"
             className={styles.customSelect}
             onChange={onChange}
+            value={userLink.platform}
           >
             <button>
               <selectedcontent></selectedcontent>
@@ -57,11 +58,7 @@ const UserLinkComponent = ({
               {platforms.map((p) => {
                 const PlatformIcon = getPlatformIcon(p.iconFilename);
                 return (
-                  <option
-                    key={p.id}
-                    value={p.id}
-                    selected={userLink.platform === p.id}
-                  >
+                  <option key={p.id} value={p.id}>
                     <PlatformIcon
                       fill="currentColor"
                       width="16"
@@ -87,14 +84,14 @@ const UserLinkComponent = ({
               value={userLink.url}
               onChange={onChange}
               aria-describedby={`linkError-${userLink.id}`}
-              aria-invalid={error && error.message !== ""}
+              aria-invalid={!!error}
             />
           </div>
           <p
             id={`linkError-${userLink.id}`}
             className={formStyles.formErrorMessage}
           >
-            {error && error.message}
+            {error}
           </p>
         </div>
       </section>
