@@ -109,7 +109,6 @@
   --color-bg: var(--colors-grey-950);
   --color-bg-surface: var(--colors-grey-900);
   --color-bg-light: var(--colors-grey-950);
-  --color-bg-button: var(--colors-purple-200);
 
   --color-text-header: var(--colors-white);
   --color-text-body: var(--colors-grey-50);
@@ -307,7 +306,7 @@ ul {
   &:hover,
   &:active,
   &:focus-visible {
-    background-color: var(--colors-purple-300);
+    background-color: var(--colors-purple-200);
   }
 }
 
