@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import type { ProfileData, UserLink } from "./types.js";
 import { supabase } from "./lib/supabaseClient.js";
-
-import styles from "./App.module.css";
-import LogoLarge from "./assets/icons/logo-devlinks-large.svg";
-import LogoSmall from "./assets/icons/logo-devlinks-small.svg";
-import LinkIcon from "./assets/icons/icon-link.svg?react";
-import ProfileIcon from "./assets/icons/icon-profile-details-header.svg?react";
-import PreviewIcon from "./assets/icons/icon-preview-header.svg";
 
 function App() {
   const [userLinks, setUserLinks] = useState<UserLink[]>([]);
