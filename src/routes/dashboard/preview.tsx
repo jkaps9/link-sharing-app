@@ -5,6 +5,7 @@ import styles from "../../styles/Preview.module.css";
 import { toast } from "react-hot-toast";
 
 import LinkCopiedIcon from "../../assets/icons/icon-link-copied-to-clipboard.svg?react";
+import LogoSmall from "../../assets/icons/logo-devlinks-small.svg";
 
 const notify = () =>
   toast("The link has been copied to your clipboard!", {
@@ -41,7 +42,7 @@ const Preview = () => {
           <div className={`${styles.previewCard} card`}>
             <div className={styles.profileWrapper}>
               <img
-                src={`${profileData.avatar}`}
+                src={`${profileData.avatar ? profileData.avatar : LogoSmall}`}
                 alt="user avatar"
                 className="avatar"
               />

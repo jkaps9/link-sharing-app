@@ -2,6 +2,7 @@ import PhoneSVG from "../assets/icons/illustration-phone-mockup.svg?react";
 import PreviewLink from "./PreviewLink.jsx";
 import styles from "../styles/PhoneMockup.module.css";
 import type { ProfileData, UserLink } from "../types.js";
+import LogoSmall from "../assets/icons/logo-devlinks-small.svg";
 
 interface PhoneMockupProps {
   userLinks: UserLink[];
@@ -15,7 +16,7 @@ const PhoneMockup = ({ userLinks, profileData }: PhoneMockupProps) => {
       <div className={styles.screenOverlay}>
         <div className={styles.profileWrapper}>
           <img
-            src={`${profileData.avatar}`}
+            src={`${profileData.avatar ? profileData.avatar : LogoSmall}`}
             alt="user avatar"
             className={styles.avatar}
           />
