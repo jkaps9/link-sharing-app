@@ -87,10 +87,16 @@ const Links = () => {
       } else if (!link.url.match(urlRegex)) {
         newErrors.forEach((error, index) => {
           if (error.id === link.id) {
-            newErrors[index]!.message = "Please check the URL";
+            newErrors[index]!.message = "Invalid URL structure";
           }
         });
         isValid = false;
+      } else if (!link.url.includes(link.platform)) {
+        newErrors.forEach((error, index) => {
+          if (error.id === link.id) {
+            newErrors[index]!.message = "URL not valid for platform";
+          }
+        });
       }
     });
 
