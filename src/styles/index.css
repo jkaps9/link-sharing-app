@@ -87,6 +87,8 @@
   --color-border: var(--colors-grey-200);
   --color-bg-surface: var(--colors-white);
 
+  --box-shadow-focus: 0 0 32px 0 rgba(from var(--color-primary) r g b / 0.25);
+
   /* TYPOGRAPHY */
   --font-header: "Instrument Sans", Arial, Helvetica, sans-serif;
   --font-body: "Instrument Sans", Arial, Helvetica, sans-serif;
@@ -219,13 +221,26 @@ label {
 }
 
 input {
+  background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
+  color: var(--color-text-header);
+  outline: none;
   padding: 1rem;
   width: 100%;
 
   &[aria-invalid="true"] {
     border-color: var(--colors-red-500);
+  }
+  &::placeholder {
+    opacity: 0.5;
+  }
+  &:hover {
+    border-color: var(--color-primary);
+  }
+  &:focus-visible {
+    border-color: var(--color-primary);
+    box-shadow: var(--box-shadow-focus);
   }
 }
 
