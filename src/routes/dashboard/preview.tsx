@@ -18,7 +18,7 @@ const Preview = () => {
     <div className={styles.previewContainer}>
       <div className={styles.backgroundShape}></div>
       <header
-        className="card"
+        className={`card ${styles.previewHeader}`}
         style={{
           flexDirection: "row",
           gap: "1rem",

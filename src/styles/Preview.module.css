@@ -50,8 +50,27 @@ body:has(.previewContainer) {
   text-align: center;
 }
 
+.previewHeader {
+  position: sticky;
+  top: 0;
+}
+
 @media (min-width: 48rem) {
+  body:has(.previewContainer) {
+    background-color: var(--color-bg);
+  }
+
   .backgroundShape {
     background-color: var(--color-primary);
+  }
+
+  .previewCard {
+    box-shadow: 0 0 32px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (min-width: 64rem) {
+  .previewHeader {
+    top: 1.5rem;
   }
 }
