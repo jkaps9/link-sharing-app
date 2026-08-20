@@ -13,6 +13,7 @@ import Auth from "./Auth.js";
 import Login from "./routes/login.js";
 import Register from "./routes/register.js";
 import ResetPassword from "./routes/reset-password.js";
+import UpdatePassword from "./routes/update-password.js";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,8 @@ const router = createBrowserRouter([
     Component: App,
     children: [
       { index: true, element: <Navigate to="dashboard/links" replace /> },
+      { path: "update-password", Component: UpdatePassword },
+      { path: `${import.meta.env.BASE_URL}preview`, Component: Preview },
       {
         path: "dashboard",
         Component: Dashboard,
@@ -30,7 +33,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: `${import.meta.env.BASE_URL}preview`, Component: Preview },
   {
     path: `${import.meta.env.BASE_URL}auth`,
     Component: Auth,
