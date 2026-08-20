@@ -79,6 +79,7 @@
   --color-accent: var(--colors-purple-600);
   --color-bg: var(--colors-grey-50);
   --color-bg-light: var(--colors-grey-50);
+  --color-bg-button: transparent;
 
   --color-text-header: var(--colors-grey-900);
   --color-text-body: var(--colors-grey-500);
@@ -102,6 +103,16 @@
   --radius-xs: calc(var(--corner-radius-4) / 16 * 1rem);
   --radius-sm: calc(var(--corner-radius-8) / 16 * 1rem);
   --radius-full: calc(var(--corner-radius-full)/16 * 1rem);
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--colors-grey-950);
+  --color-bg-surface: var(--colors-grey-900);
+  --color-bg-light: var(--colors-grey-950);
+  --color-bg-button: var(--colors-purple-200);
+
+  --color-text-header: var(--colors-white);
+  --color-text-body: var(--colors-grey-50);
 }
 /*~ ~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~>
 <~~           Reset            ~~>
@@ -290,13 +301,13 @@ ul {
 }
 
 .btn--secondary {
-  background-color: transparent;
+  background-color: var(--color-bg-button);
   border-color: var(--color-primary);
   color: var(--color-primary);
   &:hover,
   &:active,
   &:focus-visible {
-    background-color: var(--colors-purple-200);
+    background-color: var(--colors-purple-300);
   }
 }
 

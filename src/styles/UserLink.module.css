@@ -88,6 +88,7 @@
 }
 
 .selectList {
+  background-color: var(--color-bg-surface);
   container-type: scroll-state;
   max-block-size: min(24rem, 80dvh);
   min-inline-size: max-content;
