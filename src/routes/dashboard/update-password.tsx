@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
 import LogoLarge from "../../assets/icons/logo-devlinks-large.svg?react";
@@ -15,6 +16,8 @@ const UpdatePassword = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
@@ -23,6 +26,9 @@ const UpdatePassword = () => {
 
     if (formData.password === "") {
       newErrors.password = "Check again";
+      isValid = false;
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Must be at least 8 characters";
       isValid = false;
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.password = "Passwords must match";
@@ -44,6 +50,7 @@ const UpdatePassword = () => {
     } else {
       setFormData(() => ({ password: "", confirmPassword: "" }));
       toast.success("Password has been updated");
+      navigate("../dashboard/links");
     }
   }
 
@@ -66,7 +73,10 @@ const UpdatePassword = () => {
   return (
     <div className={styles.auth}>
       <header className={styles.authHeader}>
-        <LogoLarge />
+        <h1>
+          <span className="sr-only">devlinks</span>
+          <LogoLarge aria-hidden="true" />
+        </h1>
       </header>
       <main>
         <form
