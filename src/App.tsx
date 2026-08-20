@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router";
 import type { ProfileData, UserLink } from "./types.js";
 import { supabase } from "./lib/supabaseClient.js";
+import { Toaster, toast } from "react-hot-toast";
+
+import SuccessIcon from "./assets/icons/icon-changes-saved.svg?react";
 
 function App() {
   const [userLinks, setUserLinks] = useState<UserLink[]>([]);
@@ -106,10 +109,12 @@ function App() {
       .select();
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message);
     } else {
       setProfileData(data[0]);
-      alert("Profile saved");
+      toast.success("Your changes have been successfully saved!", {
+        icon: <SuccessIcon />,
+      });
     }
   };
 
@@ -127,7 +132,7 @@ function App() {
     } = await supabase.auth.getUser();
 
     if (userError || !user) {
-      console.error("User is not authenticated");
+      toast.error("User is not authenticated");
       return;
     }
 
@@ -168,7 +173,7 @@ function App() {
         .in("id", removedLinkIds);
 
       if (deleteError) {
-        console.error("Error deleting links:", deleteError.message);
+        toast.error(deleteError.message);
         return;
       }
     }
@@ -185,7 +190,7 @@ function App() {
         .upsert(linksWithUserId, { onConflict: "id" });
 
       if (upsertError) {
-        console.error("Error upserting links:", upsertError.message);
+        toast.error(upsertError.message);
         return;
       }
     }
@@ -199,7 +204,9 @@ function App() {
 
     if (!fetchError && updatedList) {
       setUserLinks(updatedList);
-      alert("Links saved");
+      toast.success("Your changes have been successfully saved!", {
+        icon: <SuccessIcon />,
+      });
     }
   }
 
@@ -210,11 +217,35 @@ function App() {
     updateProfile,
   };
 
-  if (loading) return <p>Loading...</p>;
+  return (
+    <>
+      {loading ? (
+        <p>Loading...</p>
+      ) : authenticated ? (
+        <Outlet context={outletProps} />
+      ) : (
+        <p>Something went wrong...</p>
+      )}
 
-  if (authenticated) return <Outlet context={outletProps} />;
-
-  return <p>Something went wrong...</p>;
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            background: "var(--color-text-header)",
+            borderRadius: "0.75rem",
+            boxShadow: "0 0 32px 0 rgba(0, 0, 0, 0.10)",
+            color: "var(--color-bg)",
+            fontWeight: "600",
+            lineHeight: "1.5",
+            maxWidth: "600px",
+            padding: "1rem 1.5rem",
+            whiteSpace: "nowrap",
+          },
+        }}
+      />
+    </>
+  );
 }
 
 export default App;
