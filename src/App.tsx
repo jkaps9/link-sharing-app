@@ -34,7 +34,10 @@ function App() {
 
         // Fetch both simultaneously and wait for both to finish
         const [linksRes, profileRes] = await Promise.all([
-          supabase.from("links").select("*"),
+          supabase
+            .from("links")
+            .select("*")
+            .order("sort_order", { ascending: true }),
           supabase.from("users").select("*").limit(1).single(),
         ]);
 
