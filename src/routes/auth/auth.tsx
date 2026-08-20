@@ -7,7 +7,10 @@ const Auth = () => {
   return (
     <div className={styles.auth}>
       <header className={styles.authHeader}>
-        <LogoLarge />
+        <h1>
+          <span className="sr-only">devlinks</span>
+          <LogoLarge aria-hidden="true" />
+        </h1>
       </header>
       <main>
         <Outlet />
