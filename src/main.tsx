@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="dashboard/links" replace /> },
       { path: "update-password", Component: UpdatePassword },
-      { path: `${import.meta.env.BASE_URL}preview`, Component: Preview },
+      { path: `preview`, Component: Preview },
       {
         path: "dashboard",
         Component: Dashboard,
