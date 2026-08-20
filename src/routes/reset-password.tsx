@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import formStyles from "../styles/Forms.module.css";
 import { supabase } from "../lib/supabaseClient.js";
 
@@ -11,8 +11,6 @@ const ResetPassword = () => {
   const [errors, setErrors] = useState({
     email: "",
   });
-
-  const navigate = useNavigate();
 
   const validateForm = () => {
     let isValid = true;
@@ -29,23 +27,20 @@ const ResetPassword = () => {
     return isValid;
   };
 
-  async function signInWithEmail(email: string, password: string) {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+  async function resetEmailPassword(email: string) {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "http://localhost:5173/link-sharing-app/update-password",
     });
 
     if (error) {
       alert(error.message);
-    } else {
-      navigate(`${import.meta.env.BASE_URL}dashboard/links`);
     }
   }
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validateForm()) {
-      signInWithEmail(formData.email, formData.password);
+      resetEmailPassword(formData.email);
     }
   };
 

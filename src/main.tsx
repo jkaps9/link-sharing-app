@@ -12,6 +12,7 @@ import Preview from "./routes/preview.js";
 import Auth from "./Auth.js";
 import Login from "./routes/login.js";
 import Register from "./routes/register.js";
+import ResetPassword from "./routes/reset-password.js";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
     children: [
       { path: "login", Component: Login },
       { path: "signup", Component: Register },
+      { path: "reset-password", Component: ResetPassword },
     ],
   },
 ]);
