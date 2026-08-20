@@ -128,12 +128,9 @@ const Login = () => {
               Login
             </button>
             <div className={formStyles.formFooterContent}>
-              <p>
-                <Link to="../reset-password" className="accent-text">
-                  Forgot password?
-                </Link>
-              </p>
-
+              <Link to="../reset-password" className="accent-text">
+                Forgot password?
+              </Link>
               <p>
                 Don't have an account?{" "}
                 <Link to="../signup" className="accent-text">

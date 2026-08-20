@@ -90,12 +90,6 @@
   .authFormFooter {
     align-items: stretch;
   }
-
-  .formFooterContent {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-  }
 }
 
 @media (min-width: 64rem) {
