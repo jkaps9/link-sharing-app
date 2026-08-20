@@ -10,9 +10,9 @@ import Dashboard from "./Dashboard.js";
 import Preview from "./routes/preview.js";
 
 import Auth from "./Auth.js";
-import Login from "./routes/login.js";
-import Register from "./routes/register.js";
-import ResetPassword from "./routes/reset-password.js";
+import Login from "./routes/auth/login.js";
+import Register from "./routes/auth/register.js";
+import ResetPassword from "./routes/auth/reset-password.js";
 import UpdatePassword from "./routes/update-password.js";
 
 const router = createBrowserRouter([

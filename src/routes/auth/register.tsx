@@ -1,20 +1,19 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
-import formStyles from "../styles/Forms.module.css";
-import { supabase } from "../lib/supabaseClient.js";
+import { Link } from "react-router";
+import formStyles from "../../styles/Forms.module.css";
+import { supabase } from "../../lib/supabaseClient.js";
 
-const Login = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({
     email: "",
     password: "",
   });
-
-  const navigate = useNavigate();
 
   const validateForm = () => {
     let isValid = true;
@@ -31,29 +30,40 @@ const Login = () => {
     if (formData.password === "") {
       newErrors.password = "Check again";
       isValid = false;
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.password = "Passwords must match";
+      isValid = false;
     }
 
     setErrors(newErrors);
     return isValid;
   };
 
-  async function signInWithEmail(email: string, password: string) {
-    const { data, error } = await supabase.auth.signInWithPassword({
+  async function signUpNewUser(email: string, password: string) {
+    const { error } = await supabase.auth.signUp({
       email: email,
       password: password,
+      options: {
+        emailRedirectTo:
+          "http://localhost:5173/link-sharing-app/dashboard/links",
+      },
     });
 
     if (error) {
+      console.error("Sign up error:", error);
       alert(error.message);
     } else {
-      navigate(`${import.meta.env.BASE_URL}dashboard/links`);
+      setFormData(() => ({ email: "", password: "", confirmPassword: "" }));
+      alert(
+        "If you do not have an account, a verification link has been sent. If you already have an account please login.",
+      );
     }
   }
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validateForm()) {
-      signInWithEmail(formData.email, formData.password);
+      signUpNewUser(formData.email, formData.password);
     }
   };
 
@@ -73,8 +83,8 @@ const Login = () => {
         onSubmit={handleSubmit}
       >
         <header className={formStyles.formHeader}>
-          <h1>Login</h1>
-          <p>Add your details below to get back into the app</p>
+          <h1>Create account</h1>
+          <p>Let’s get you started sharing your links!</p>
         </header>
 
         <section
@@ -91,6 +101,7 @@ const Login = () => {
               placeholder="e.g. alex@email.com"
               onChange={handleChange}
               value={formData.email}
+              autoComplete="email"
               aria-describedby="email-error"
               aria-invalid={errors.email !== ""}
             />
@@ -101,12 +112,13 @@ const Login = () => {
           <div
             className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
           >
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Create password</label>
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="Enter your password"
+              autoComplete="new-password"
+              placeholder="At least 8 characters"
               onChange={handleChange}
               value={formData.password}
               aria-describedby="password-error"
@@ -116,33 +128,42 @@ const Login = () => {
               {errors.password}
             </p>
           </div>
-
-          <footer
-            className={`${formStyles.formFooter} ${formStyles.authFormFooter}`}
+          <div
+            className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
           >
-            <button
-              type="submit"
-              className="btn btn--primary"
-              style={{ width: "100%" }}
-            >
-              Login
-            </button>
-            <div className={formStyles.formFooterContent}>
-              <Link to="../reset-password" className="accent-text">
-                Forgot password?
-              </Link>
-              <p>
-                Don't have an account?{" "}
-                <Link to="../signup" className="accent-text">
-                  Sign up
-                </Link>
-              </p>
-            </div>
-          </footer>
+            <label htmlFor="confirmPassword">Confirm password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              autoComplete="new-password"
+              placeholder="At least 8 characters"
+              onChange={handleChange}
+              value={formData.confirmPassword}
+              aria-invalid={errors.password !== ""}
+            />
+            <p style={{ marginTop: "0.5rem" }}>
+              Password must contain at least 8 characters
+            </p>
+          </div>
         </section>
+
+        <footer
+          className={`${formStyles.formFooter} ${formStyles.authFormFooter}`}
+        >
+          <button type="submit" className="btn btn--primary">
+            Create new account
+          </button>
+          <div className={formStyles.formFooterContent}>
+            <p>Already have an account?</p>
+            <Link to="../login" className="accent-text">
+              Login
+            </Link>
+          </div>
+        </footer>
       </form>
     </>
   );
 };
 
-export default Login;
+export default Register;
