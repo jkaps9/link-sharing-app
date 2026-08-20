@@ -2,8 +2,8 @@ import { NavLink, Outlet, useOutletContext } from "react-router";
 import { supabase } from "../../lib/supabaseClient.js";
 
 import styles from "../../styles/App.module.css";
-import LogoLarge from "../../assets/icons/logo-devlinks-large.svg";
-import LogoSmall from "../../assets/icons/logo-devlinks-small.svg";
+import LogoLarge from "../../assets/icons/logo-devlinks-large.svg?react";
+import LogoSmall from "../../assets/icons/logo-devlinks-small.svg?react";
 import LinkIcon from "../../assets/icons/icon-link.svg?react";
 import ProfileIcon from "../../assets/icons/icon-profile-details-header.svg?react";
 import PreviewIcon from "../../assets/icons/icon-preview-header.svg";
@@ -19,16 +19,8 @@ function Dashboard() {
       <div className={styles.app}>
         <header className={`row ${styles.header}`}>
           <div>
-            <img
-              src={LogoLarge}
-              alt="Dev Links Logo"
-              className={styles.hideOnMobile}
-            />
-            <img
-              src={LogoSmall}
-              alt="Dev Links Logo"
-              className={styles.mobileOnly}
-            />
+            <LogoLarge className={styles.hideOnMobile} />
+            <LogoSmall className={styles.mobileOnly} />
           </div>
           <nav className={styles.navList}>
             <NavLink to="links" className={`row ${styles.navLink}`}>
