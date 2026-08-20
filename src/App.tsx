@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet, Navigate, useNavigate } from "react-router";
 import type { ProfileData, UserLink } from "./types.js";
 import { supabase } from "./lib/supabaseClient.js";
 import { Toaster, toast } from "react-hot-toast";
@@ -17,7 +17,6 @@ function App() {
   });
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -30,7 +29,6 @@ function App() {
         if (userError || !user) {
           console.error("User is not authenticated");
           setAuthenticated(false);
-          navigate(`${import.meta.env.BASE_URL}auth/login`);
           return;
         }
 
@@ -42,7 +40,12 @@ function App() {
             .from("links")
             .select("*")
             .order("sort_order", { ascending: true }),
-          supabase.from("users").select("*").limit(1).single(),
+          supabase
+            .from("users")
+            .select("*")
+            .eq("id", user.id)
+            .limit(1)
+            .single(),
         ]);
 
         if (linksRes.error) {
@@ -77,7 +80,6 @@ function App() {
             username: "",
             email: "",
           });
-          navigate(`${import.meta.env.BASE_URL}auth/login`);
         }
       },
     );
@@ -86,7 +88,7 @@ function App() {
     return () => {
       authListener.subscription.unsubscribe();
     };
-  }, [navigate]);
+  }, []);
 
   const updateProfile = async (newData: ProfileData) => {
     const {
@@ -227,7 +229,7 @@ function App() {
       ) : authenticated ? (
         <Outlet context={outletProps} />
       ) : (
-        <p>Something went wrong...</p>
+        <Navigate replace to="./auth/login" />
       )}
 
       <Toaster
