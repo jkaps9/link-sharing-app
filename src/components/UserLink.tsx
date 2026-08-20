@@ -4,6 +4,7 @@ import type { ProfileData, UserLink } from "../types.js";
 import styles from "../styles/UserLink.module.css";
 import formStyles from "../styles/Forms.module.css";
 import DragAndDropIcon from "../assets/icons/icon-drag-and-drop.svg?react";
+import LinkIcon from "../assets/icons/icon-link.svg?react";
 
 interface UserLinkProps {
   userLink: UserLink;
@@ -77,15 +78,18 @@ const UserLinkComponent = ({
           className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
         >
           <label htmlFor={`url-${userLink.id}`}>Link</label>
-          <input
-            type="text"
-            name="url"
-            id={`url-${userLink.id}`}
-            value={userLink.url}
-            onChange={onChange}
-            aria-describedby={`linkError-${userLink.id}`}
-            aria-invalid={error && error.message !== ""}
-          />
+          <div className={formStyles.inputContainer}>
+            <LinkIcon className={formStyles.inputIcon}></LinkIcon>
+            <input
+              type="text"
+              name="url"
+              id={`url-${userLink.id}`}
+              value={userLink.url}
+              onChange={onChange}
+              aria-describedby={`linkError-${userLink.id}`}
+              aria-invalid={error && error.message !== ""}
+            />
+          </div>
           <p
             id={`linkError-${userLink.id}`}
             className={formStyles.formErrorMessage}

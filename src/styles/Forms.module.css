@@ -53,6 +53,22 @@
   margin-top: 0.5rem;
 }
 
+.inputContainer {
+  width: 100%;
+  position: relative;
+
+  &:has(.inputIcon) input {
+    padding-inline-start: 3rem;
+  }
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 @media (min-width: 48rem) {
   .formInputGroup {
     align-items: center;
