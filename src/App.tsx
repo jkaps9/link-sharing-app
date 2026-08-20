@@ -12,6 +12,7 @@ function App() {
     avatar: null,
     first_name: "",
     last_name: "",
+    username: "",
     email: "",
   });
   const [loading, setLoading] = useState(true);
@@ -73,6 +74,7 @@ function App() {
             avatar: null,
             first_name: "",
             last_name: "",
+            username: "",
             email: "",
           });
           navigate(`${import.meta.env.BASE_URL}auth/login`);
@@ -104,6 +106,7 @@ function App() {
         avatar: newData.avatar,
         first_name: newData.first_name,
         last_name: newData.last_name,
+        username: newData.username,
       })
       .eq("id", user.id)
       .select();

@@ -15,12 +15,14 @@ const Profile = () => {
     avatar: profileData?.avatar || null,
     first_name: profileData?.first_name || "",
     last_name: profileData?.last_name || "",
+    username: profileData?.username || "",
     email: profileData?.email || "",
   });
 
   const [errors, setErrors] = useState({
     first_name: "",
     last_name: "",
+    username: "",
   });
 
   const validateForm = () => {
@@ -28,6 +30,7 @@ const Profile = () => {
     const newErrors = {
       first_name: "",
       last_name: "",
+      username: "",
     };
 
     if (formData.first_name === "") {
@@ -37,6 +40,11 @@ const Profile = () => {
 
     if (formData.last_name === "") {
       newErrors.last_name = "Can't be empty";
+      isValid = false;
+    }
+
+    if (formData.username === "") {
+      newErrors.username = "Can't be empty";
       isValid = false;
     }
 
@@ -182,6 +190,25 @@ const Profile = () => {
                   onChange={handleChange}
                   value={formData.email}
                 />
+              </div>
+              <div className={formStyles.formInputGroup}>
+                <label htmlFor="username">Username*</label>
+                <input
+                  name="username"
+                  id="username"
+                  type="text"
+                  placeholder="e.g. JAppleseed"
+                  value={formData.username}
+                  onChange={handleChange}
+                  aria-describedby="un-error-message"
+                  aria-invalid={errors.username !== ""}
+                />
+                <p
+                  id="un-error-message"
+                  className={formStyles.formErrorMessage}
+                >
+                  {errors.username}
+                </p>
               </div>
             </section>
             <footer className={formStyles.formFooter}>

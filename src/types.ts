@@ -2,6 +2,7 @@ export interface ProfileData {
   avatar: string | null;
   first_name: string;
   last_name: string;
+  username: string;
   email: string;
 }
 
