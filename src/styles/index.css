@@ -208,7 +208,7 @@ a {
 }
 
 a.active {
-  background-color: var(--colors-grey-100);
+  background-color: var(--colors-purple-200);
   border-radius: var(--radius-sm);
   color: var(--color-primary);
 }

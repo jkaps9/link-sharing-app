@@ -4,6 +4,9 @@
 
 .navLink {
   padding: 1rem 1.5rem;
+  &:hover {
+    color: var(--color-primary);
+  }
 }
 
 .hideOnMobile {
