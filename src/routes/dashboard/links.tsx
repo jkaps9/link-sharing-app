@@ -102,7 +102,6 @@ const Links = () => {
     event.preventDefault();
     if (validateForm()) {
       updateLinks([...formData]);
-      alert("Saved");
     }
   };
 

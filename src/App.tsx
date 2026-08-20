@@ -108,7 +108,7 @@ function App() {
       alert(error.message);
     } else {
       setProfileData(data[0]);
-      console.log(data);
+      alert("Profile saved");
     }
   };
 
@@ -199,6 +199,7 @@ function App() {
 
     if (!fetchError && updatedList) {
       setUserLinks(updatedList);
+      alert("Links saved");
     }
   }
 
