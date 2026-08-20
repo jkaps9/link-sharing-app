@@ -3,6 +3,7 @@ import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
 import LogoLarge from "../../assets/icons/logo-devlinks-large.svg?react";
 import styles from "../../styles/Auth.module.css";
+import { toast } from "react-hot-toast";
 
 const UpdatePassword = () => {
   const [formData, setFormData] = useState({
@@ -39,10 +40,10 @@ const UpdatePassword = () => {
 
     if (error) {
       console.error("Update password error:", error);
-      alert(error.message);
+      toast.error(error.message);
     } else {
       setFormData(() => ({ password: "", confirmPassword: "" }));
-      alert("Password has been updated");
+      toast.success("Password has been updated");
     }
   }
 

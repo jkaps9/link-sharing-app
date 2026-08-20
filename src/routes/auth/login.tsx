@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
+import { toast } from "react-hot-toast";
 
 const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL}dashboard/links`;
 
@@ -46,7 +47,7 @@ const Login = () => {
     });
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message);
     } else {
       navigate(redirectUrl);
     }

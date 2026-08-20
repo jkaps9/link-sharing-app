@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
+import { toast } from "react-hot-toast";
 const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL}dashboard/links`;
 
 const ResetPassword = () => {
@@ -34,9 +35,9 @@ const ResetPassword = () => {
     });
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message);
     } else {
-      alert(
+      toast.success(
         "If an account with that email address was found you wil receive a link to reset your password.",
       );
     }

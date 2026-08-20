@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
+import { toast } from "react-hot-toast";
 
 const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL}dashboard/links`;
 
@@ -52,10 +53,10 @@ const Register = () => {
 
     if (error) {
       console.error("Sign up error:", error);
-      alert(error.message);
+      toast.error(error.message);
     } else {
       setFormData(() => ({ email: "", password: "", confirmPassword: "" }));
-      alert(
+      toast.success(
         "If you do not have an account, a verification link has been sent. If you already have an account please login.",
       );
     }
