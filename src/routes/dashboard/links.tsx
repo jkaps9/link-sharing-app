@@ -34,11 +34,7 @@ const Links = () => {
 
   const [formData, setFormData] = useState([...userLinks]);
 
-  const [errors, setErrors] = useState(
-    formData.map((link) => {
-      return { id: link.id, message: "" };
-    }),
-  );
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const addLink = (newLink: UserLink) => {
     const maxItem =
@@ -51,9 +47,7 @@ const Links = () => {
     setFormData((prev) => {
       return [...prev, newLink];
     });
-    setErrors((prev) => {
-      return [...prev, { id: newLink.id, message: "" }];
-    });
+    setErrors({});
   };
 
   const removeLink = (linkId: string) => {
@@ -67,36 +61,26 @@ const Links = () => {
         };
       });
     });
-    setErrors((prev) => prev.filter((link) => link.id !== linkId));
+    setErrors((prev) => {
+      const updatedErrors = { ...prev };
+      delete updatedErrors[linkId];
+      return updatedErrors;
+    });
   };
 
   const validateForm = () => {
     let isValid = true;
-    const newErrors = formData.map((link) => {
-      return { id: link.id, message: "" };
-    });
+    const newErrors: Record<string, string> = {};
 
     formData.map((link) => {
       if (link.url === "") {
-        newErrors.forEach((error, index) => {
-          if (error.id === link.id) {
-            newErrors[index]!.message = "Can't be empty";
-          }
-        });
+        newErrors[link.id] = "Can't be empty";
         isValid = false;
       } else if (!link.url.match(urlRegex)) {
-        newErrors.forEach((error, index) => {
-          if (error.id === link.id) {
-            newErrors[index]!.message = "Invalid URL structure";
-          }
-        });
+        newErrors[link.id] = "Invalid URL structure";
         isValid = false;
       } else if (!link.url.includes(link.platform)) {
-        newErrors.forEach((error, index) => {
-          if (error.id === link.id) {
-            newErrors[index]!.message = "URL not valid for platform";
-          }
-        });
+        newErrors[link.id] = "URL not valid for platform";
         isValid = false;
       }
     });
@@ -183,7 +167,7 @@ const Links = () => {
                       userLink={link}
                       onDelete={removeLink}
                       onChange={handleChange}
-                      error={errors.filter((error) => error.id === link.id)[0]}
+                      error={errors[link.id]}
                     ></UserLinkComponent>
                   </Sortable>
                 ))}

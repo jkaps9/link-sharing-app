@@ -14,7 +14,7 @@ interface UserLinkProps {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>,
   ) => void;
-  error: { id: string; message: string } | undefined;
+  error: string | undefined;
 }
 
 const UserLinkComponent = ({
