@@ -9,7 +9,6 @@ async function main() {
   const val = await prisma.user.findMany({
     take: 10,
   });
-  console.log(val);
 }
 
 main()

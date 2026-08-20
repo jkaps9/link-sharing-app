@@ -91,8 +91,6 @@ function App() {
       return;
     }
 
-    console.log(newData);
-
     const { data, error } = await supabase
       .from("users")
       .update({
@@ -156,7 +154,6 @@ function App() {
 
     // 3. Early return if nothing changed
     if (changedLinks.length === 0 && removedLinkIds.length === 0) {
-      console.log("No changes detected. Skipping update.");
       return;
     }
 
