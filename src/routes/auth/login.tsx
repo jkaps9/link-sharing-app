@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
 
+const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL}dashboard/links`;
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -46,7 +48,7 @@ const Login = () => {
     if (error) {
       alert(error.message);
     } else {
-      navigate(`${import.meta.env.BASE_URL}dashboard/links`);
+      navigate(redirectUrl);
     }
   }
 
@@ -85,7 +87,7 @@ const Login = () => {
           >
             <label htmlFor="email">Email address</label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               placeholder="e.g. alex@email.com"

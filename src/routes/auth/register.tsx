@@ -3,6 +3,8 @@ import { Link } from "react-router";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
 
+const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL}dashboard/links`;
+
 const Register = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -44,8 +46,7 @@ const Register = () => {
       email: email,
       password: password,
       options: {
-        emailRedirectTo:
-          "http://localhost:5173/link-sharing-app/dashboard/links",
+        emailRedirectTo: redirectUrl,
       },
     });
 
@@ -95,7 +96,7 @@ const Register = () => {
           >
             <label htmlFor="email">Email address</label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               placeholder="e.g. alex@email.com"

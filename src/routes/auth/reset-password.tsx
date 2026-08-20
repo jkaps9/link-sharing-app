@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
+const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL}dashboard/links`;
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ const ResetPassword = () => {
 
   async function resetEmailPassword(email: string) {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: "http://localhost:5173/link-sharing-app/update-password",
+      redirectTo: redirectUrl,
     });
 
     if (error) {
@@ -79,7 +80,7 @@ const ResetPassword = () => {
           >
             <label htmlFor="email">Email address</label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               placeholder="e.g. alex@email.com"
