@@ -14,7 +14,7 @@ const notify = () =>
 
 const Preview = () => {
   const { userLinks, profileData } = useOutletContext<OutletContextType>();
-
+  // TODO: #1 breakout inline styles to preview.module.css
   return (
     <div className={styles.previewContainer}>
       <div className={styles.backgroundShape}></div>
