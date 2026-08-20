@@ -97,6 +97,7 @@ const Links = () => {
             newErrors[index]!.message = "URL not valid for platform";
           }
         });
+        isValid = false;
       }
     });
 
