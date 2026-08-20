@@ -83,4 +83,6 @@ export const platforms = [
     iconFilename: "icon-stack-overflow.svg",
     color: "var(--colors-orange-600)",
   },
-];
+] as const;
+
+export type PlatformId = (typeof platforms)[number]["id"];

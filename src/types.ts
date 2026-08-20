@@ -1,3 +1,5 @@
+import type { PlatformId } from "./data/platforms.js";
+
 export interface ProfileData {
   avatar: string | null;
   first_name: string;
@@ -9,7 +11,7 @@ export interface ProfileData {
 export interface UserLink {
   id: string;
   sort_order: number;
-  platform: string;
+  platform: PlatformId;
   url: string;
   user_id?: string;
 }
