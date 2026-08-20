@@ -8,18 +8,22 @@
   position: relative;
 }
 
+.phoneImage {
+  color: var(--color-bg-surface);
+}
+
 .screenOverlay {
   background-color: var(--color-bg-surface);
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
   height: 82%;
-  left: 11.5%;
+  left: 11.3%;
   overflow-y: auto;
   position: absolute;
   scrollbar-width: none;
   top: 10.1%;
-  width: 77%;
+  width: 78%;
 }
 
 .screenOverlay::-webkit-scrollbar {
