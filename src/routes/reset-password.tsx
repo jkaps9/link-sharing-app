@@ -34,6 +34,10 @@ const ResetPassword = () => {
 
     if (error) {
       alert(error.message);
+    } else {
+      alert(
+        "If an account with that email address was found you wil receive a link to reset your password.",
+      );
     }
   }
 
