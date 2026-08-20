@@ -1,6 +1,8 @@
 import { useState } from "react";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
+import LogoLarge from "../../assets/icons/logo-devlinks-large.svg?react";
+import styles from "../../styles/Auth.module.css";
 
 const UpdatePassword = () => {
   const [formData, setFormData] = useState({
@@ -61,67 +63,72 @@ const UpdatePassword = () => {
   };
 
   return (
-    <>
-      <form
-        className={`${formStyles.form} ${formStyles.authForm}`}
-        onSubmit={handleSubmit}
-      >
-        <header className={formStyles.formHeader}>
-          <h1>Update password</h1>
-          <p>Enter a new password below</p>
-        </header>
-
-        <section
-          className={`${formStyles.formSection} ${formStyles.authFormSection}`}
+    <div className={styles.auth}>
+      <header className={styles.authHeader}>
+        <LogoLarge />
+      </header>
+      <main>
+        <form
+          className={`${formStyles.form} ${formStyles.authForm}`}
+          onSubmit={handleSubmit}
         >
-          <div
-            className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
-          >
-            <label htmlFor="password">Create password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              autoComplete="new-password"
-              placeholder="At least 8 characters"
-              onChange={handleChange}
-              value={formData.password}
-              aria-describedby="password-error"
-              aria-invalid={errors.password !== ""}
-            />
-            <p id="password-error" className={formStyles.formErrorMessage}>
-              {errors.password}
-            </p>
-          </div>
-          <div
-            className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
-          >
-            <label htmlFor="confirmPassword">Confirm password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              autoComplete="new-password"
-              placeholder="At least 8 characters"
-              onChange={handleChange}
-              value={formData.confirmPassword}
-              aria-invalid={errors.password !== ""}
-            />
-            <p style={{ marginTop: "0.5rem" }}>
-              Password must contain at least 8 characters
-            </p>
-          </div>
-        </section>
+          <header className={formStyles.formHeader}>
+            <h1>Update password</h1>
+            <p>Enter a new password below</p>
+          </header>
 
-        <footer
-          className={`${formStyles.formFooter} ${formStyles.authFormFooter}`}
-        >
-          <button type="submit" className="btn btn--primary">
-            Update password
-          </button>
-        </footer>
-      </form>
-    </>
+          <section
+            className={`${formStyles.formSection} ${formStyles.authFormSection}`}
+          >
+            <div
+              className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
+            >
+              <label htmlFor="password">Create password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                autoComplete="new-password"
+                placeholder="At least 8 characters"
+                onChange={handleChange}
+                value={formData.password}
+                aria-describedby="password-error"
+                aria-invalid={errors.password !== ""}
+              />
+              <p id="password-error" className={formStyles.formErrorMessage}>
+                {errors.password}
+              </p>
+            </div>
+            <div
+              className={`${formStyles.formInputGroup} ${formStyles.formInputGroupColumn}`}
+            >
+              <label htmlFor="confirmPassword">Confirm password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                autoComplete="new-password"
+                placeholder="At least 8 characters"
+                onChange={handleChange}
+                value={formData.confirmPassword}
+                aria-invalid={errors.password !== ""}
+              />
+              <p style={{ marginTop: "0.5rem" }}>
+                Password must contain at least 8 characters
+              </p>
+            </div>
+          </section>
+
+          <footer
+            className={`${formStyles.formFooter} ${formStyles.authFormFooter}`}
+          >
+            <button type="submit" className="btn btn--primary">
+              Update password
+            </button>
+          </footer>
+        </form>
+      </main>
+    </div>
   );
 };
 
