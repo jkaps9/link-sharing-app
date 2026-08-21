@@ -33,7 +33,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+<img src="./screenshot_preview.png" width="500">
+
+<img src="./screenshot_profile.png" width="500">
+
+<img src="./screenshot_links.png" width="500">
 
 ### Links
 
