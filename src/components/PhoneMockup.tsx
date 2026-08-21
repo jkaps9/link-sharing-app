@@ -1,5 +1,5 @@
 import PhoneSVG from "../assets/icons/illustration-phone-mockup.svg?react";
-import PreviewLink from "./PreviewLink.jsx";
+import PreviewLink from "./PreviewLink.js";
 import styles from "../styles/PhoneMockup.module.css";
 import type { ProfileData, UserLink } from "../types.js";
 import LogoSmall from "../assets/icons/logo-devlinks-small.svg";
@@ -16,21 +16,15 @@ const PhoneMockup = ({ userLinks, profileData }: PhoneMockupProps) => {
       <div className={styles.screenOverlay}>
         <div className={styles.profileWrapper}>
           <img
-            src={`${profileData.avatar ? profileData.avatar : LogoSmall}`}
+            src={profileData.avatar ? profileData.avatar : LogoSmall}
             alt="user avatar"
             className={styles.avatar}
           />
           <div className={styles.profileInfo}>
-            <p
-              style={{
-                color: "var(--color-text-header)",
-                fontSize: "1.125rem",
-                fontWeight: "600",
-              }}
-            >
+            <p className={styles.profileName}>
               {profileData.first_name} {profileData.last_name}
             </p>
-            <p style={{ fontSize: "0.875rem" }}>{profileData.email}</p>
+            <p className={styles.profileEmail}>{profileData.email}</p>
           </div>
         </div>
         <div className={styles.linksWrapper}>
