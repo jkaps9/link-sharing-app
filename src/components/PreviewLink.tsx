@@ -15,8 +15,10 @@ const PreviewLink = ({ link, isMockup = false }: PreviewLinkProps) => {
   if (!platform) return null;
   const PlatformIcon = getPlatformIcon(platform.iconFilename);
   return (
-    <Link
-      to={link.url}
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`${styles.previewLink} ${isMockup ? styles.mockupModifier : ""}`}
       style={{
         backgroundColor: platform.color,
@@ -42,7 +44,7 @@ const PreviewLink = ({ link, isMockup = false }: PreviewLinkProps) => {
         <span>{platform.name}</span>
       </div>
       <ArrowIcon aria-hidden="true" width="12" height="12" />
-    </Link>
+    </a>
   );
 };
 
