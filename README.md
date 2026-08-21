@@ -45,22 +45,26 @@ Users should be able to:
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
+- CSS Modules & Custom Properties
+- Advanced CSS (`:has()`, `clamp()`, fluid typography)
+- Hand-coded custom components (no templates or bloated UI libraries)
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
+- [TypeScript](https://www.typescriptlang.org/) - Static typing
 - [Vite](https://vitejs.dev/) - Frontend tooling
 - [Supabase](https://supabase.com/) - Database and Authentication
 - [dnd-kit](https://dndkit.com/) - Drag and drop toolkit
 - [React Router](https://reactrouter.com/) - Routing
-- React Hot Toast - Notifications
 
 ### What I learned
 
-A major focus of this project was engineering the dynamic platform icon mapping and ensuring strict form validation. I also spent a significant amount of time deepening my understanding of React Router for seamless navigation and integrating Supabase's auth logic to handle secure user sessions and database interactions. Building out the interface required careful attention to data structures, especially when managing state synchronization across various component handlers as users add, edit, or reorder their links using dnd-kit.
+A major focus of this project was engineering the dynamic platform icon mapping and ensuring strict, performant form validation. Instead of relying on array iterations for validation checks, I implemented dictionary-based state objects for instant $O(1)$ error lookups.
 
-```javascript
+Building out the interface required careful attention to accessibility and data structures. I opted to hand-code complex interactive elements—like a fully accessible custom dropdown menu with keyboard navigation—rather than reaching for off-the-shelf component libraries. I also deepened my understanding of React Router to ensure seamless navigation between authenticated and public routes while integrating Supabase's auth logic to handle secure user sessions.
+
+One critical hurdle was ensuring dynamic asset loading didn't crash the React tree. I updated my Vite glob importer to guarantee a valid fallback component is always returned:
+
+```typescript
 import React from "react";
 
 type SvgModule = {
@@ -80,9 +84,9 @@ export const getPlatformIcon = (filename: string) => {
 
 ### Continued development
 
-Further refining the drag-and-drop accessibility and supporting drag and drop on mobile.
+Further refining the drag-and-drop accessibility by properly exposing @dnd-kit keyboard listeners to screen readers, and supporting seamless drag-and-drop interactions on mobile touch screens.
 
-Expanding the backend database schema to support additional user profile features such as generating an actual link to share.
+I also plan to expand the backend database schema and edge functions to support more robust public profile sharing and analytics.
 
 ## Author
 
