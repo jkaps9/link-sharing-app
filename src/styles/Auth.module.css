@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: clamp(3rem, 4.3521rem + -1.5023vw, 4rem);
-  height: stretch;
   margin-inline: auto;
   max-width: 476px;
   padding-block: 2rem;
