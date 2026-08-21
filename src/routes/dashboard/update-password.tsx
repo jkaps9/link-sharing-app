@@ -50,7 +50,7 @@ const UpdatePassword = () => {
     } else {
       setFormData(() => ({ password: "", confirmPassword: "" }));
       toast.success("Password has been updated");
-      navigate(`${import.meta.env.BASE_URL}dashboard/links`);
+      navigate(`${import.meta.env.BASE_URL}/dashboard/links`);
     }
   }
 

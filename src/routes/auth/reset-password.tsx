@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import formStyles from "../../styles/Forms.module.css";
 import { supabase } from "../../lib/supabaseClient.js";
 import { toast } from "react-hot-toast";
-const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL}dashboard/links`;
+const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL}/dashboard/links`;
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({

@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: `${import.meta.env.BASE_URL}auth`,
+    path: `${import.meta.env.BASE_URL}/auth`,
     Component: Auth,
     children: [
       { path: "login", Component: Login },

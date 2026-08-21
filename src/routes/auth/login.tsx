@@ -47,7 +47,7 @@ const Login = () => {
     if (error) {
       toast.error(error.message);
     } else {
-      navigate(`${import.meta.env.BASE_URL}dashboard/links`);
+      navigate(`${import.meta.env.BASE_URL}/dashboard/links`);
     }
   }
 
