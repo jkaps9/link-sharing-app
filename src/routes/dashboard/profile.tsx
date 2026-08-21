@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useOutletContext } from "react-router";
 import type { OutletContextType } from "../../types.js";
 import PhoneMockup from "../../components/PhoneMockup.js";
-
+import { toast } from "react-hot-toast";
 import ImageIcon from "../../assets/icons/icon-upload-image.svg?react";
 import styles from "../../styles/Profile.module.css";
 import formStyles from "../../styles/Forms.module.css";
@@ -67,7 +67,7 @@ const Profile = () => {
       const file = files[0];
       if (file) {
         if (file.size > 2097152) {
-          alert("file is too large");
+          toast.error("file is too large");
           return;
         }
 
