@@ -2,6 +2,11 @@ body:has(.previewContainer) {
   background-color: var(--color-bg-surface);
 }
 
+.previewMain {
+  display: flex;
+  margin-inline: auto;
+}
+
 .previewContainer {
   display: flex;
   flex: 1;
@@ -51,8 +56,18 @@ body:has(.previewContainer) {
 }
 
 .previewHeader {
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
   position: sticky;
   top: 0;
+  width: 100%;
+}
+
+.profileName {
+  color: var(--color-text-header);
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 @media (min-width: 48rem) {

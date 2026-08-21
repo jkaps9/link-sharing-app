@@ -14,19 +14,10 @@ const notify = () =>
 
 const Preview = () => {
   const { userLinks, profileData } = useOutletContext<OutletContextType>();
-  // TODO: #1 breakout inline styles to preview.module.css
   return (
     <div className={styles.previewContainer}>
       <div className={styles.backgroundShape}></div>
-      <header
-        className={`card ${styles.previewHeader}`}
-        style={{
-          flexDirection: "row",
-          gap: "1rem",
-          justifyContent: "space-between",
-          width: "100%",
-        }}
-      >
+      <header className={`card ${styles.previewHeader}`}>
         <Link
           to={`${import.meta.env.BASE_URL}/dashboard/links`}
           className="btn btn--secondary"
@@ -37,7 +28,7 @@ const Preview = () => {
           <span>Share Link</span>
         </button>
       </header>
-      <main style={{ display: "flex", marginInline: "auto" }}>
+      <main className={styles.previewMain}>
         <section>
           <div className={`${styles.previewCard} card`}>
             <div className={styles.profileWrapper}>
@@ -47,13 +38,7 @@ const Preview = () => {
                 className="avatar"
               />
               <div className={styles.profileInfo}>
-                <p
-                  style={{
-                    color: "var(--color-text-header)",
-                    fontSize: "2rem",
-                    fontWeight: "600",
-                  }}
-                >
+                <p className={styles.profileName}>
                   {profileData.first_name} {profileData.last_name}
                 </p>
                 <p>{profileData.email}</p>
